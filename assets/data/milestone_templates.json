@@ -1,0 +1,102 @@
+[
+  {
+    "id": "m001",
+    "entry_type": "birthday",
+    "title_template": "🎂 {{name}}'s {{ordinal}} Birthday!",
+    "trigger": "birthdate",
+    "offset_days": 0,
+    "is_annual": true,
+    "body_template": "Happy birthday to {{name}}! Another year of adventures together. 🐾",
+    "is_auto_created": true
+  },
+  {
+    "id": "m002",
+    "entry_type": "gotcha_day",
+    "title_template": "🏠 Gotcha Day — {{name}}'s {{ordinal}} Adoption Anniversary!",
+    "trigger": "adopted_date",
+    "offset_days": 0,
+    "is_annual": true,
+    "body_template": "{{ordinal}} year since {{name}} found their forever home. Here's to many more!",
+    "is_auto_created": true
+  },
+  {
+    "id": "m003",
+    "entry_type": "first",
+    "title_template": "🐾 First Day Home with {{name}}",
+    "trigger": "adopted_date",
+    "offset_days": 0,
+    "is_annual": false,
+    "body_template": "The day everything changed. Welcome home, {{name}}!",
+    "is_auto_created": true
+  },
+  {
+    "id": "m004",
+    "entry_type": "milestone",
+    "title_template": "🎉 {{name}}'s First Birthday!",
+    "trigger": "birthdate",
+    "offset_days": 365,
+    "is_annual": false,
+    "body_template": "{{name}} is one year old today! From tiny puppy to a proper dog. 🐶",
+    "is_auto_created": true
+  },
+  {
+    "id": "m005",
+    "entry_type": "milestone",
+    "title_template": "🌟 {{name}} Turns 2!",
+    "trigger": "birthdate",
+    "offset_days": 730,
+    "is_annual": false,
+    "body_template": "Two years of tail wags, zoomies, and unconditional love.",
+    "is_auto_created": true
+  },
+  {
+    "id": "m006",
+    "entry_type": "milestone",
+    "title_template": "⭐ {{name}} Turns 5 — Halfway There!",
+    "trigger": "birthdate",
+    "offset_days": 1825,
+    "is_annual": false,
+    "body_template": "Five incredible years with {{name}}. Every day a gift.",
+    "is_auto_created": true
+  },
+  {
+    "id": "m007",
+    "entry_type": "milestone",
+    "title_template": "🏅 {{name}} Turns 7 — Senior Status!",
+    "trigger": "birthdate",
+    "offset_days": 2555,
+    "is_annual": false,
+    "body_template": "Seven years young! Senior dogs are the best dogs. Here's to many more.",
+    "is_auto_created": true
+  },
+  {
+    "id": "m008",
+    "entry_type": "milestone",
+    "title_template": "👑 {{name}} Turns 10 — A Decade of Joy!",
+    "trigger": "birthdate",
+    "offset_days": 3650,
+    "is_annual": false,
+    "body_template": "Ten years! A whole decade of unconditional love from {{name}}.",
+    "is_auto_created": true
+  },
+  {
+    "id": "m009",
+    "entry_type": "milestone",
+    "title_template": "💫 One Month with {{name}}",
+    "trigger": "adopted_date",
+    "offset_days": 30,
+    "is_annual": false,
+    "body_template": "One month in and {{name}} has already stolen everyone's hearts.",
+    "is_auto_created": true
+  },
+  {
+    "id": "m010",
+    "entry_type": "milestone",
+    "title_template": "🌸 Six Months with {{name}}",
+    "trigger": "adopted_date",
+    "offset_days": 180,
+    "is_annual": false,
+    "body_template": "Half a year down. {{name}} is settling in beautifully.",
+    "is_auto_created": true
+  }
+]

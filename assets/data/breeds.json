@@ -1,0 +1,3241 @@
+[
+  {
+    "species": "dog",
+    "slug": "labrador-retriever",
+    "name": "Labrador Retriever",
+    "size_class": "large",
+    "weight_kg_min": 25.0,
+    "weight_kg_max": 36.0,
+    "lifespan_years": 12.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 4,
+      "trainability": 5,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Elbow dysplasia",
+        "severity": "moderate",
+        "screen": "OFA elbow evaluation"
+      },
+      {
+        "condition": "Obesity tendency",
+        "severity": "mild",
+        "screen": "Weight monitoring"
+      },
+      {
+        "condition": "Exercise-induced collapse",
+        "severity": "mild",
+        "screen": "DNA test for EIC"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Prone to overeating; measure portions carefully.",
+      "exercise": "Needs at least an hour of activity daily.",
+      "grooming": "Brush weekly; sheds heavily twice a year."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "golden-retriever",
+    "name": "Golden Retriever",
+    "size_class": "large",
+    "weight_kg_min": 25.0,
+    "weight_kg_max": 34.0,
+    "lifespan_years": 11.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 4,
+      "trainability": 5,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA/PennHIP hip evaluation"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "moderate",
+        "screen": "CERF/OFA eye exam"
+      },
+      {
+        "condition": "Cancer predisposition",
+        "severity": "serious",
+        "screen": "Regular veterinary checkups"
+      },
+      {
+        "condition": "Cardiac issues",
+        "severity": "mild",
+        "screen": "Cardiac auscultation"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; prone to weight gain.",
+      "exercise": "Needs daily vigorous exercise.",
+      "grooming": "Brush several times weekly; heavy shedder."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "french-bulldog",
+    "name": "French Bulldog",
+    "size_class": "small",
+    "weight_kg_min": 8.0,
+    "weight_kg_max": 14.0,
+    "lifespan_years": 11.0,
+    "risk_flags": [
+      "brachycephalic"
+    ],
+    "traits": {
+      "energy": 3,
+      "shedding": 2,
+      "trainability": 3,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Brachycephalic airway syndrome",
+        "severity": "serious",
+        "screen": "Airway evaluation"
+      },
+      {
+        "condition": "Spinal disorders",
+        "severity": "moderate",
+        "screen": "Spinal x-ray"
+      },
+      {
+        "condition": "Skin fold dermatitis",
+        "severity": "mild",
+        "screen": "Skin check"
+      },
+      {
+        "condition": "Heat intolerance",
+        "severity": "moderate",
+        "screen": "Avoid overheating and overexertion"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Avoid rapid eating to reduce bloat risk.",
+      "exercise": "Short walks; avoid heat and humidity.",
+      "grooming": "Clean facial folds regularly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "german-shepherd",
+    "name": "German Shepherd Dog",
+    "size_class": "large",
+    "weight_kg_min": 22.0,
+    "weight_kg_max": 40.0,
+    "lifespan_years": 10.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 5,
+      "shedding": 4,
+      "trainability": 5,
+      "friendliness": 3,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "serious",
+        "screen": "OFA/PennHIP hip evaluation"
+      },
+      {
+        "condition": "Elbow dysplasia",
+        "severity": "moderate",
+        "screen": "OFA elbow evaluation"
+      },
+      {
+        "condition": "Degenerative myelopathy",
+        "severity": "moderate",
+        "screen": "DNA test"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split into two meals to reduce bloat risk.",
+      "exercise": "Needs significant daily mental and physical exercise.",
+      "grooming": "Brush several times weekly; heavy shedder."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "poodle-standard",
+    "name": "Poodle (Standard)",
+    "size_class": "medium",
+    "weight_kg_min": 20.0,
+    "weight_kg_max": 32.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 1,
+      "trainability": 5,
+      "friendliness": 4,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "moderate",
+        "screen": "CERF/OFA eye exam"
+      },
+      {
+        "condition": "Addison's disease",
+        "severity": "moderate",
+        "screen": "ACTH stimulation test"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Feed measured meals; avoid free-feeding.",
+      "exercise": "Needs daily activity and mental stimulation.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "poodle-miniature",
+    "name": "Poodle (Miniature)",
+    "size_class": "small",
+    "weight_kg_min": 6.0,
+    "weight_kg_max": 9.0,
+    "lifespan_years": 14.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 1,
+      "trainability": 5,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "moderate",
+        "screen": "CERF/OFA eye exam"
+      },
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Legg-Calve-Perthes disease",
+        "severity": "mild",
+        "screen": "Hip x-ray"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals to avoid weight gain.",
+      "exercise": "Moderate daily walks and play.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "poodle-toy",
+    "name": "Poodle (Toy)",
+    "size_class": "small",
+    "weight_kg_min": 2.0,
+    "weight_kg_max": 4.0,
+    "lifespan_years": 14.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 3,
+      "shedding": 1,
+      "trainability": 5,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "moderate",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Dental disease",
+        "severity": "moderate",
+        "screen": "Dental checkups"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Small frequent meals suit their size.",
+      "exercise": "Short walks and indoor play.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "bulldog",
+    "name": "Bulldog",
+    "size_class": "medium",
+    "weight_kg_min": 18.0,
+    "weight_kg_max": 25.0,
+    "lifespan_years": 8.5,
+    "risk_flags": [
+      "brachycephalic"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 3,
+      "trainability": 2,
+      "friendliness": 4,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Brachycephalic airway syndrome",
+        "severity": "serious",
+        "screen": "Airway evaluation"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Skin fold dermatitis",
+        "severity": "moderate",
+        "screen": "Skin check"
+      },
+      {
+        "condition": "Heat intolerance",
+        "severity": "serious",
+        "screen": "Avoid heat and exertion"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Avoid overfeeding; prone to obesity.",
+      "exercise": "Short gentle walks; avoid heat.",
+      "grooming": "Clean facial folds daily."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "beagle",
+    "name": "Beagle",
+    "size_class": "small",
+    "weight_kg_min": 9.0,
+    "weight_kg_max": 11.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 3,
+      "trainability": 3,
+      "friendliness": 5,
+      "vocalness": 5
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "moderate",
+        "screen": "Thyroid panel"
+      },
+      {
+        "condition": "Epilepsy",
+        "severity": "moderate",
+        "screen": "Veterinary neurological exam"
+      },
+      {
+        "condition": "Obesity tendency",
+        "severity": "moderate",
+        "screen": "Weight monitoring"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measure food carefully; prone to weight gain.",
+      "exercise": "Daily walks and scent activities.",
+      "grooming": "Brush weekly; moderate shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "rottweiler",
+    "name": "Rottweiler",
+    "size_class": "large",
+    "weight_kg_min": 35.0,
+    "weight_kg_max": 60.0,
+    "lifespan_years": 9.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 4,
+      "shedding": 3,
+      "trainability": 4,
+      "friendliness": 3,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "serious",
+        "screen": "OFA/PennHIP hip evaluation"
+      },
+      {
+        "condition": "Elbow dysplasia",
+        "severity": "moderate",
+        "screen": "OFA elbow evaluation"
+      },
+      {
+        "condition": "Osteosarcoma",
+        "severity": "moderate",
+        "screen": "Monitor for lameness"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split meals to reduce bloat risk.",
+      "exercise": "Needs substantial daily exercise.",
+      "grooming": "Brush weekly; moderate shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "dachshund",
+    "name": "Dachshund",
+    "size_class": "small",
+    "weight_kg_min": 7.0,
+    "weight_kg_max": 15.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [
+      "long_backed"
+    ],
+    "traits": {
+      "energy": 3,
+      "shedding": 2,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Intervertebral disc disease",
+        "severity": "serious",
+        "screen": "Spinal exam"
+      },
+      {
+        "condition": "Obesity tendency",
+        "severity": "moderate",
+        "screen": "Weight monitoring"
+      },
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Keep lean to protect the spine.",
+      "exercise": "Moderate walks; avoid jumping from heights.",
+      "grooming": "Varies by coat type; brush regularly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "pembroke-welsh-corgi",
+    "name": "Pembroke Welsh Corgi",
+    "size_class": "small",
+    "weight_kg_min": 10.0,
+    "weight_kg_max": 14.0,
+    "lifespan_years": 12.5,
+    "risk_flags": [
+      "long_backed"
+    ],
+    "traits": {
+      "energy": 4,
+      "shedding": 4,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Intervertebral disc disease",
+        "severity": "moderate",
+        "screen": "Spinal exam"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Degenerative myelopathy",
+        "severity": "moderate",
+        "screen": "DNA test"
+      },
+      {
+        "condition": "Obesity tendency",
+        "severity": "moderate",
+        "screen": "Weight monitoring"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measure meals to protect joints and spine.",
+      "exercise": "Daily walks and play.",
+      "grooming": "Brush frequently; heavy seasonal shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "german-shorthaired-pointer",
+    "name": "German Shorthaired Pointer",
+    "size_class": "large",
+    "weight_kg_min": 20.0,
+    "weight_kg_max": 32.0,
+    "lifespan_years": 12.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 3,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Von Willebrand's disease",
+        "severity": "mild",
+        "screen": "Clotting test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split meals to reduce bloat risk.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Brush weekly; low-maintenance coat."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "yorkshire-terrier",
+    "name": "Yorkshire Terrier",
+    "size_class": "small",
+    "weight_kg_min": 2.0,
+    "weight_kg_max": 3.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 3,
+      "shedding": 1,
+      "trainability": 3,
+      "friendliness": 3,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "moderate",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Tracheal collapse",
+        "severity": "moderate",
+        "screen": "Chest x-ray"
+      },
+      {
+        "condition": "Dental disease",
+        "severity": "serious",
+        "screen": "Dental checkups"
+      },
+      {
+        "condition": "Portosystemic shunt",
+        "severity": "mild",
+        "screen": "Bile acid test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Small frequent meals suit their size.",
+      "exercise": "Short walks and indoor play.",
+      "grooming": "Daily brushing if coat kept long."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "boxer",
+    "name": "Boxer",
+    "size_class": "large",
+    "weight_kg_min": 25.0,
+    "weight_kg_max": 32.0,
+    "lifespan_years": 10.5,
+    "risk_flags": [
+      "brachycephalic",
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 5,
+      "shedding": 2,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Cardiomyopathy",
+        "severity": "serious",
+        "screen": "Cardiac evaluation"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Cancer predisposition",
+        "severity": "moderate",
+        "screen": "Regular checkups"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split meals to reduce bloat risk.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "cavalier-king-charles-spaniel",
+    "name": "Cavalier King Charles Spaniel",
+    "size_class": "small",
+    "weight_kg_min": 5.0,
+    "weight_kg_max": 8.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [
+      "brachycephalic"
+    ],
+    "traits": {
+      "energy": 3,
+      "shedding": 3,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Mitral valve disease",
+        "severity": "serious",
+        "screen": "Cardiac evaluation"
+      },
+      {
+        "condition": "Syringomyelia",
+        "severity": "moderate",
+        "screen": "MRI if symptomatic"
+      },
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; avoid weight gain.",
+      "exercise": "Moderate daily walks and play.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "great-dane",
+    "name": "Great Dane",
+    "size_class": "large",
+    "weight_kg_min": 50.0,
+    "weight_kg_max": 90.0,
+    "lifespan_years": 8.0,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 3,
+      "shedding": 2,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Bloat",
+        "severity": "serious",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Dilated cardiomyopathy",
+        "severity": "moderate",
+        "screen": "Cardiac evaluation"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Bone cancer",
+        "severity": "moderate",
+        "screen": "Monitor for lameness"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split into multiple smaller meals.",
+      "exercise": "Moderate exercise; avoid overexertion as a puppy.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "siberian-husky",
+    "name": "Siberian Husky",
+    "size_class": "medium",
+    "weight_kg_min": 16.0,
+    "weight_kg_max": 27.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 5,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; efficient metabolism.",
+      "exercise": "Needs extensive daily exercise.",
+      "grooming": "Brush frequently; heavy seasonal shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "doberman-pinscher",
+    "name": "Doberman Pinscher",
+    "size_class": "large",
+    "weight_kg_min": 27.0,
+    "weight_kg_max": 45.0,
+    "lifespan_years": 11.0,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 5,
+      "shedding": 2,
+      "trainability": 5,
+      "friendliness": 3,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Dilated cardiomyopathy",
+        "severity": "serious",
+        "screen": "Cardiac evaluation"
+      },
+      {
+        "condition": "Von Willebrand's disease",
+        "severity": "moderate",
+        "screen": "Clotting test"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split meals to reduce bloat risk.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "australian-shepherd",
+    "name": "Australian Shepherd",
+    "size_class": "medium",
+    "weight_kg_min": 16.0,
+    "weight_kg_max": 32.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 4,
+      "trainability": 5,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "MDR1 drug sensitivity",
+        "severity": "moderate",
+        "screen": "DNA test"
+      },
+      {
+        "condition": "Epilepsy",
+        "severity": "mild",
+        "screen": "Neurological exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs extensive daily exercise and mental work.",
+      "grooming": "Brush weekly; moderate shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "miniature-schnauzer",
+    "name": "Miniature Schnauzer",
+    "size_class": "small",
+    "weight_kg_min": 5.0,
+    "weight_kg_max": 9.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 1,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Pancreatitis",
+        "severity": "moderate",
+        "screen": "Watch fat intake"
+      },
+      {
+        "condition": "Bladder stones",
+        "severity": "moderate",
+        "screen": "Urinalysis"
+      },
+      {
+        "condition": "Myotonia congenita",
+        "severity": "mild",
+        "screen": "DNA test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Low-fat diet reduces pancreatitis risk.",
+      "exercise": "Daily walks and play.",
+      "grooming": "Professional grooming every 5-8 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "shih-tzu",
+    "name": "Shih Tzu",
+    "size_class": "small",
+    "weight_kg_min": 4.0,
+    "weight_kg_max": 7.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [
+      "brachycephalic"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 2,
+      "trainability": 2,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Brachycephalic airway syndrome",
+        "severity": "moderate",
+        "screen": "Airway evaluation"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Eye ulcers",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Dental disease",
+        "severity": "moderate",
+        "screen": "Dental checkups"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; avoid weight gain.",
+      "exercise": "Short walks; avoid heat.",
+      "grooming": "Daily brushing if coat kept long."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "boston-terrier",
+    "name": "Boston Terrier",
+    "size_class": "small",
+    "weight_kg_min": 5.0,
+    "weight_kg_max": 11.0,
+    "lifespan_years": 12.5,
+    "risk_flags": [
+      "brachycephalic"
+    ],
+    "traits": {
+      "energy": 3,
+      "shedding": 2,
+      "trainability": 3,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Brachycephalic airway syndrome",
+        "severity": "moderate",
+        "screen": "Airway evaluation"
+      },
+      {
+        "condition": "Cataracts",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Heat intolerance",
+        "severity": "moderate",
+        "screen": "Avoid heat and exertion"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; avoid weight gain.",
+      "exercise": "Short walks; avoid heat.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "bernese-mountain-dog",
+    "name": "Bernese Mountain Dog",
+    "size_class": "large",
+    "weight_kg_min": 36.0,
+    "weight_kg_max": 50.0,
+    "lifespan_years": 8.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 3,
+      "shedding": 4,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Cancer predisposition",
+        "severity": "serious",
+        "screen": "Regular checkups"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Elbow dysplasia",
+        "severity": "moderate",
+        "screen": "OFA elbow evaluation"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "mild",
+        "screen": "Monitor after meals"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals sized for a large breed.",
+      "exercise": "Moderate daily exercise; avoid overexertion when young.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "pomeranian",
+    "name": "Pomeranian",
+    "size_class": "small",
+    "weight_kg_min": 1.5,
+    "weight_kg_max": 3.5,
+    "lifespan_years": 14.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 4,
+      "trainability": 3,
+      "friendliness": 3,
+      "vocalness": 5
+    },
+    "health_risks": [
+      {
+        "condition": "Tracheal collapse",
+        "severity": "moderate",
+        "screen": "Chest x-ray"
+      },
+      {
+        "condition": "Patellar luxation",
+        "severity": "moderate",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Dental disease",
+        "severity": "moderate",
+        "screen": "Dental checkups"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Small frequent meals suit their size.",
+      "exercise": "Short walks and indoor play.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "havanese",
+    "name": "Havanese",
+    "size_class": "small",
+    "weight_kg_min": 3.0,
+    "weight_kg_max": 6.0,
+    "lifespan_years": 14.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 3,
+      "shedding": 1,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Cataracts",
+        "severity": "mild",
+        "screen": "Eye exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; avoid weight gain.",
+      "exercise": "Moderate daily walks and play.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "border-collie",
+    "name": "Border Collie",
+    "size_class": "medium",
+    "weight_kg_min": 14.0,
+    "weight_kg_max": 20.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 3,
+      "trainability": 5,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Collie eye anomaly",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Epilepsy",
+        "severity": "mild",
+        "screen": "Neurological exam"
+      },
+      {
+        "condition": "MDR1 drug sensitivity",
+        "severity": "mild",
+        "screen": "DNA test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; high working metabolism.",
+      "exercise": "Needs extensive daily exercise and mental work.",
+      "grooming": "Brush weekly; moderate shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "vizsla",
+    "name": "Vizsla",
+    "size_class": "medium",
+    "weight_kg_min": 18.0,
+    "weight_kg_max": 27.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 2,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Epilepsy",
+        "severity": "mild",
+        "screen": "Neurological exam"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "chihuahua",
+    "name": "Chihuahua",
+    "size_class": "small",
+    "weight_kg_min": 1.5,
+    "weight_kg_max": 3.0,
+    "lifespan_years": 15.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 3,
+      "shedding": 2,
+      "trainability": 3,
+      "friendliness": 3,
+      "vocalness": 5
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "moderate",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Heart murmurs",
+        "severity": "mild",
+        "screen": "Cardiac auscultation"
+      },
+      {
+        "condition": "Dental disease",
+        "severity": "moderate",
+        "screen": "Dental checkups"
+      },
+      {
+        "condition": "Hydrocephalus",
+        "severity": "mild",
+        "screen": "Monitor as a puppy"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Small frequent meals suit their size.",
+      "exercise": "Short walks and indoor play.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "basset-hound",
+    "name": "Basset Hound",
+    "size_class": "medium",
+    "weight_kg_min": 20.0,
+    "weight_kg_max": 29.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [
+      "long_backed"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 3,
+      "trainability": 2,
+      "friendliness": 5,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Intervertebral disc disease",
+        "severity": "moderate",
+        "screen": "Spinal exam"
+      },
+      {
+        "condition": "Ear infections",
+        "severity": "moderate",
+        "screen": "Regular ear checks"
+      },
+      {
+        "condition": "Obesity tendency",
+        "severity": "moderate",
+        "screen": "Weight monitoring"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "mild",
+        "screen": "Monitor after meals"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; prone to weight gain.",
+      "exercise": "Moderate daily walks.",
+      "grooming": "Clean ears regularly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "english-springer-spaniel",
+    "name": "English Springer Spaniel",
+    "size_class": "medium",
+    "weight_kg_min": 18.0,
+    "weight_kg_max": 25.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 3,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Ear infections",
+        "severity": "moderate",
+        "screen": "Regular ear checks"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "brittany",
+    "name": "Brittany",
+    "size_class": "medium",
+    "weight_kg_min": 14.0,
+    "weight_kg_max": 18.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 2,
+      "trainability": 5,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Epilepsy",
+        "severity": "mild",
+        "screen": "Neurological exam"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs extensive daily exercise.",
+      "grooming": "Brush weekly; moderate shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "cocker-spaniel",
+    "name": "Cocker Spaniel",
+    "size_class": "small",
+    "weight_kg_min": 11.0,
+    "weight_kg_max": 16.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 3,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Ear infections",
+        "severity": "moderate",
+        "screen": "Regular ear checks"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; avoid weight gain.",
+      "exercise": "Daily walks and play.",
+      "grooming": "Brush several times weekly; clean ears regularly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "pug",
+    "name": "Pug",
+    "size_class": "small",
+    "weight_kg_min": 6.0,
+    "weight_kg_max": 8.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [
+      "brachycephalic"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 4,
+      "trainability": 2,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Brachycephalic airway syndrome",
+        "severity": "serious",
+        "screen": "Airway evaluation"
+      },
+      {
+        "condition": "Obesity tendency",
+        "severity": "serious",
+        "screen": "Weight monitoring"
+      },
+      {
+        "condition": "Eye ulcers",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Skin fold dermatitis",
+        "severity": "mild",
+        "screen": "Skin check"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measure portions carefully; prone to obesity.",
+      "exercise": "Short walks; avoid heat.",
+      "grooming": "Clean facial folds regularly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "mastiff",
+    "name": "Mastiff",
+    "size_class": "large",
+    "weight_kg_min": 55.0,
+    "weight_kg_max": 100.0,
+    "lifespan_years": 7.0,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 3,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "serious",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "serious",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Cardiomyopathy",
+        "severity": "moderate",
+        "screen": "Cardiac evaluation"
+      },
+      {
+        "condition": "Bone cancer",
+        "severity": "mild",
+        "screen": "Monitor for lameness"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split into multiple smaller meals.",
+      "exercise": "Moderate exercise; avoid overexertion when young.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "weimaraner",
+    "name": "Weimaraner",
+    "size_class": "large",
+    "weight_kg_min": 25.0,
+    "weight_kg_max": 40.0,
+    "lifespan_years": 11.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 5,
+      "shedding": 2,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Von Willebrand's disease",
+        "severity": "mild",
+        "screen": "Clotting test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split meals to reduce bloat risk.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "newfoundland",
+    "name": "Newfoundland",
+    "size_class": "large",
+    "weight_kg_min": 55.0,
+    "weight_kg_max": 70.0,
+    "lifespan_years": 9.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 4,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Subvalvular aortic stenosis",
+        "severity": "moderate",
+        "screen": "Cardiac evaluation"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Cystinuria",
+        "severity": "mild",
+        "screen": "Urinalysis"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals sized for a large breed.",
+      "exercise": "Moderate exercise; enjoys swimming.",
+      "grooming": "Brush several times weekly; heavy shedder."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "rhodesian-ridgeback",
+    "name": "Rhodesian Ridgeback",
+    "size_class": "large",
+    "weight_kg_min": 25.0,
+    "weight_kg_max": 40.0,
+    "lifespan_years": 11.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 4,
+      "shedding": 2,
+      "trainability": 4,
+      "friendliness": 3,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Dermoid sinus",
+        "severity": "mild",
+        "screen": "Spinal skin check"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "mild",
+        "screen": "Monitor after meals"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "west-highland-white-terrier",
+    "name": "West Highland White Terrier",
+    "size_class": "small",
+    "weight_kg_min": 6.0,
+    "weight_kg_max": 10.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 2,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Skin allergies",
+        "severity": "moderate",
+        "screen": "Dermatology exam"
+      },
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Craniomandibular osteopathy",
+        "severity": "mild",
+        "screen": "Jaw exam as a puppy"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; watch for food sensitivities.",
+      "exercise": "Daily walks and play.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "shetland-sheepdog",
+    "name": "Shetland Sheepdog",
+    "size_class": "small",
+    "weight_kg_min": 6.0,
+    "weight_kg_max": 12.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 4,
+      "trainability": 5,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Collie eye anomaly",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "MDR1 drug sensitivity",
+        "severity": "mild",
+        "screen": "DNA test"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Daily walks and mental work.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "bloodhound",
+    "name": "Bloodhound",
+    "size_class": "large",
+    "weight_kg_min": 36.0,
+    "weight_kg_max": 50.0,
+    "lifespan_years": 8.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 3,
+      "shedding": 3,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Bloat",
+        "severity": "serious",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Ear infections",
+        "severity": "moderate",
+        "screen": "Regular ear checks"
+      },
+      {
+        "condition": "Eye issues",
+        "severity": "mild",
+        "screen": "Eye exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split into multiple smaller meals.",
+      "exercise": "Moderate daily walks.",
+      "grooming": "Clean ears and facial folds regularly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "collie",
+    "name": "Collie",
+    "size_class": "large",
+    "weight_kg_min": 20.0,
+    "weight_kg_max": 34.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 4,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Collie eye anomaly",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "MDR1 drug sensitivity",
+        "severity": "moderate",
+        "screen": "DNA test"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Daily walks and mental work.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "akita",
+    "name": "Akita",
+    "size_class": "large",
+    "weight_kg_min": 32.0,
+    "weight_kg_max": 59.0,
+    "lifespan_years": 11.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 4,
+      "trainability": 3,
+      "friendliness": 3,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "moderate",
+        "screen": "Thyroid panel"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "mild",
+        "screen": "Monitor after meals"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals sized for a large breed.",
+      "exercise": "Needs daily exercise.",
+      "grooming": "Brush frequently; heavy seasonal shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "st-bernard",
+    "name": "St. Bernard",
+    "size_class": "large",
+    "weight_kg_min": 55.0,
+    "weight_kg_max": 90.0,
+    "lifespan_years": 8.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 4,
+      "trainability": 3,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "serious",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Elbow dysplasia",
+        "severity": "moderate",
+        "screen": "OFA elbow evaluation"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Cardiomyopathy",
+        "severity": "mild",
+        "screen": "Cardiac evaluation"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split into multiple smaller meals.",
+      "exercise": "Moderate exercise; avoid overexertion when young.",
+      "grooming": "Brush several times weekly; heavy shedder."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "chinese-shar-pei",
+    "name": "Chinese Shar-Pei",
+    "size_class": "medium",
+    "weight_kg_min": 18.0,
+    "weight_kg_max": 29.0,
+    "lifespan_years": 10.0,
+    "risk_flags": [
+      "brachycephalic"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 1,
+      "trainability": 3,
+      "friendliness": 3,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Skin fold dermatitis",
+        "severity": "serious",
+        "screen": "Skin check"
+      },
+      {
+        "condition": "Entropion",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Shar-Pei fever",
+        "severity": "moderate",
+        "screen": "Veterinary monitoring"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; avoid weight gain.",
+      "exercise": "Moderate daily walks.",
+      "grooming": "Clean skin folds regularly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "maltese",
+    "name": "Maltese",
+    "size_class": "small",
+    "weight_kg_min": 2.0,
+    "weight_kg_max": 4.0,
+    "lifespan_years": 14.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 3,
+      "shedding": 1,
+      "trainability": 3,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "moderate",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Dental disease",
+        "severity": "moderate",
+        "screen": "Dental checkups"
+      },
+      {
+        "condition": "Portosystemic shunt",
+        "severity": "mild",
+        "screen": "Bile acid test"
+      },
+      {
+        "condition": "White shaker syndrome",
+        "severity": "mild",
+        "screen": "Neurological exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Small frequent meals suit their size.",
+      "exercise": "Short walks and indoor play.",
+      "grooming": "Daily brushing if coat kept long."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "papillon",
+    "name": "Papillon",
+    "size_class": "small",
+    "weight_kg_min": 2.0,
+    "weight_kg_max": 5.0,
+    "lifespan_years": 14.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 2,
+      "trainability": 5,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "moderate",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Dental disease",
+        "severity": "mild",
+        "screen": "Dental checkups"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Small frequent meals suit their size.",
+      "exercise": "Moderate daily play and walks.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "bull-terrier",
+    "name": "Bull Terrier",
+    "size_class": "medium",
+    "weight_kg_min": 22.0,
+    "weight_kg_max": 38.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 2,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Deafness",
+        "severity": "moderate",
+        "screen": "BAER hearing test"
+      },
+      {
+        "condition": "Kidney disease",
+        "severity": "moderate",
+        "screen": "Urinalysis"
+      },
+      {
+        "condition": "Skin allergies",
+        "severity": "mild",
+        "screen": "Dermatology exam"
+      },
+      {
+        "condition": "Heart issues",
+        "severity": "mild",
+        "screen": "Cardiac evaluation"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "chow-chow",
+    "name": "Chow Chow",
+    "size_class": "medium",
+    "weight_kg_min": 20.0,
+    "weight_kg_max": 32.0,
+    "lifespan_years": 10.0,
+    "risk_flags": [
+      "brachycephalic"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 4,
+      "trainability": 2,
+      "friendliness": 2,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Entropion",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; avoid weight gain.",
+      "exercise": "Moderate daily walks.",
+      "grooming": "Brush frequently; heavy coat."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "alaskan-malamute",
+    "name": "Alaskan Malamute",
+    "size_class": "large",
+    "weight_kg_min": 34.0,
+    "weight_kg_max": 39.0,
+    "lifespan_years": 11.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 5,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      },
+      {
+        "condition": "Chondrodysplasia",
+        "severity": "mild",
+        "screen": "DNA test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; efficient metabolism.",
+      "exercise": "Needs extensive daily exercise.",
+      "grooming": "Brush frequently; heavy seasonal shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "basenji",
+    "name": "Basenji",
+    "size_class": "small",
+    "weight_kg_min": 9.0,
+    "weight_kg_max": 11.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 1,
+      "trainability": 3,
+      "friendliness": 3,
+      "vocalness": 1
+    },
+    "health_risks": [
+      {
+        "condition": "Fanconi syndrome",
+        "severity": "moderate",
+        "screen": "Urinalysis"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs daily exercise.",
+      "grooming": "Minimal; very low-maintenance coat."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "bichon-frise",
+    "name": "Bichon Frise",
+    "size_class": "small",
+    "weight_kg_min": 3.0,
+    "weight_kg_max": 6.0,
+    "lifespan_years": 14.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 1,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Bladder stones",
+        "severity": "moderate",
+        "screen": "Urinalysis"
+      },
+      {
+        "condition": "Skin allergies",
+        "severity": "moderate",
+        "screen": "Dermatology exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; watch for food sensitivities.",
+      "exercise": "Daily walks and play.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "cane-corso",
+    "name": "Cane Corso",
+    "size_class": "large",
+    "weight_kg_min": 40.0,
+    "weight_kg_max": 50.0,
+    "lifespan_years": 10.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 4,
+      "shedding": 2,
+      "trainability": 4,
+      "friendliness": 3,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Elbow dysplasia",
+        "severity": "moderate",
+        "screen": "OFA elbow evaluation"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Eyelid abnormalities",
+        "severity": "mild",
+        "screen": "Eye exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split meals to reduce bloat risk.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "dalmatian",
+    "name": "Dalmatian",
+    "size_class": "large",
+    "weight_kg_min": 20.0,
+    "weight_kg_max": 32.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 4,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Urinary stones",
+        "severity": "moderate",
+        "screen": "Urinalysis"
+      },
+      {
+        "condition": "Deafness",
+        "severity": "moderate",
+        "screen": "BAER hearing test"
+      },
+      {
+        "condition": "Skin allergies",
+        "severity": "mild",
+        "screen": "Dermatology exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Low-purine diet reduces stone risk.",
+      "exercise": "Needs extensive daily exercise.",
+      "grooming": "Brush weekly; moderate shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "whippet",
+    "name": "Whippet",
+    "size_class": "medium",
+    "weight_kg_min": 11.0,
+    "weight_kg_max": 20.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 1,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 1
+    },
+    "health_risks": [
+      {
+        "condition": "Heart murmurs",
+        "severity": "mild",
+        "screen": "Cardiac auscultation"
+      },
+      {
+        "condition": "Eye issues",
+        "severity": "mild",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Anesthesia sensitivity",
+        "severity": "mild",
+        "screen": "Discuss with vet before procedures"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; lean build.",
+      "exercise": "Needs brief vigorous exercise plus rest.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "italian-greyhound",
+    "name": "Italian Greyhound",
+    "size_class": "small",
+    "weight_kg_min": 3.0,
+    "weight_kg_max": 6.0,
+    "lifespan_years": 14.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 1,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "moderate",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Dental disease",
+        "severity": "moderate",
+        "screen": "Dental checkups"
+      },
+      {
+        "condition": "Leg fractures",
+        "severity": "mild",
+        "screen": "Careful handling"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; lean build.",
+      "exercise": "Moderate daily play and walks.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "airedale-terrier",
+    "name": "Airedale Terrier",
+    "size_class": "medium",
+    "weight_kg_min": 18.0,
+    "weight_kg_max": 29.0,
+    "lifespan_years": 11.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 1,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      },
+      {
+        "condition": "Skin allergies",
+        "severity": "mild",
+        "screen": "Dermatology exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs daily vigorous exercise.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "american-staffordshire-terrier",
+    "name": "American Staffordshire Terrier",
+    "size_class": "medium",
+    "weight_kg_min": 18.0,
+    "weight_kg_max": 32.0,
+    "lifespan_years": 12.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 2,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Skin allergies",
+        "severity": "moderate",
+        "screen": "Dermatology exam"
+      },
+      {
+        "condition": "Heart issues",
+        "severity": "mild",
+        "screen": "Cardiac evaluation"
+      },
+      {
+        "condition": "Thyroid issues",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "staffordshire-bull-terrier",
+    "name": "Staffordshire Bull Terrier",
+    "size_class": "medium",
+    "weight_kg_min": 11.0,
+    "weight_kg_max": 17.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 2,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hereditary cataracts",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "L-2-hydroxyglutaric aciduria",
+        "severity": "mild",
+        "screen": "DNA test"
+      },
+      {
+        "condition": "Skin allergies",
+        "severity": "mild",
+        "screen": "Dermatology exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs daily vigorous exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "jack-russell-terrier",
+    "name": "Jack Russell Terrier",
+    "size_class": "small",
+    "weight_kg_min": 6.0,
+    "weight_kg_max": 8.0,
+    "lifespan_years": 14.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 2,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Lens luxation",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Deafness",
+        "severity": "mild",
+        "screen": "BAER hearing test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs extensive daily exercise.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "belgian-malinois",
+    "name": "Belgian Malinois",
+    "size_class": "large",
+    "weight_kg_min": 18.0,
+    "weight_kg_max": 36.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 3,
+      "trainability": 5,
+      "friendliness": 3,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Elbow dysplasia",
+        "severity": "mild",
+        "screen": "OFA elbow evaluation"
+      },
+      {
+        "condition": "Epilepsy",
+        "severity": "mild",
+        "screen": "Neurological exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; high working metabolism.",
+      "exercise": "Needs extensive daily exercise and mental work.",
+      "grooming": "Brush weekly; moderate shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "english-setter",
+    "name": "English Setter",
+    "size_class": "large",
+    "weight_kg_min": 20.0,
+    "weight_kg_max": 36.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 3,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Deafness",
+        "severity": "mild",
+        "screen": "BAER hearing test"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "irish-setter",
+    "name": "Irish Setter",
+    "size_class": "large",
+    "weight_kg_min": 24.0,
+    "weight_kg_max": 32.0,
+    "lifespan_years": 12.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 5,
+      "shedding": 3,
+      "trainability": 3,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split meals to reduce bloat risk.",
+      "exercise": "Needs extensive daily exercise.",
+      "grooming": "Brush several times weekly."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "australian-cattle-dog",
+    "name": "Australian Cattle Dog",
+    "size_class": "medium",
+    "weight_kg_min": 15.0,
+    "weight_kg_max": 22.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 3,
+      "trainability": 5,
+      "friendliness": 3,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Deafness",
+        "severity": "mild",
+        "screen": "BAER hearing test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs extensive daily exercise and mental work.",
+      "grooming": "Brush weekly; moderate shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "old-english-sheepdog",
+    "name": "Old English Sheepdog",
+    "size_class": "large",
+    "weight_kg_min": 27.0,
+    "weight_kg_max": 45.0,
+    "lifespan_years": 11.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 3,
+      "shedding": 4,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Cataracts",
+        "severity": "mild",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals sized for a large breed.",
+      "exercise": "Daily walks and play.",
+      "grooming": "Brush frequently; heavy coat needs regular care."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "samoyed",
+    "name": "Samoyed",
+    "size_class": "medium",
+    "weight_kg_min": 16.0,
+    "weight_kg_max": 30.0,
+    "lifespan_years": 13.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 5,
+      "trainability": 4,
+      "friendliness": 5,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Diabetes",
+        "severity": "mild",
+        "screen": "Monitor thirst and urination"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; watch for weight gain.",
+      "exercise": "Needs daily exercise.",
+      "grooming": "Brush frequently; heavy seasonal shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "greyhound",
+    "name": "Greyhound",
+    "size_class": "large",
+    "weight_kg_min": 27.0,
+    "weight_kg_max": 40.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 3,
+      "shedding": 1,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 1
+    },
+    "health_risks": [
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Anesthesia sensitivity",
+        "severity": "mild",
+        "screen": "Discuss with vet before procedures"
+      },
+      {
+        "condition": "Heart issues",
+        "severity": "mild",
+        "screen": "Cardiac evaluation"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; lean build.",
+      "exercise": "Needs brief vigorous exercise plus rest.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "lhasa-apso",
+    "name": "Lhasa Apso",
+    "size_class": "small",
+    "weight_kg_min": 5.0,
+    "weight_kg_max": 8.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [
+      "brachycephalic"
+    ],
+    "traits": {
+      "energy": 3,
+      "shedding": 2,
+      "trainability": 3,
+      "friendliness": 3,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Hereditary kidney disease",
+        "severity": "moderate",
+        "screen": "Urinalysis"
+      },
+      {
+        "condition": "Eye issues",
+        "severity": "moderate",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; avoid weight gain.",
+      "exercise": "Short to moderate daily walks.",
+      "grooming": "Daily brushing if coat kept long."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "scottish-terrier",
+    "name": "Scottish Terrier",
+    "size_class": "small",
+    "weight_kg_min": 8.0,
+    "weight_kg_max": 10.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 3,
+      "shedding": 1,
+      "trainability": 3,
+      "friendliness": 3,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Scottie cramp",
+        "severity": "mild",
+        "screen": "Neurological exam"
+      },
+      {
+        "condition": "Bladder cancer",
+        "severity": "moderate",
+        "screen": "Urinalysis"
+      },
+      {
+        "condition": "Von Willebrand's disease",
+        "severity": "mild",
+        "screen": "Clotting test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; watch for weight gain.",
+      "exercise": "Daily walks and play.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "portuguese-water-dog",
+    "name": "Portuguese Water Dog",
+    "size_class": "medium",
+    "weight_kg_min": 16.0,
+    "weight_kg_max": 27.0,
+    "lifespan_years": 12.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 1,
+      "trainability": 5,
+      "friendliness": 5,
+      "vocalness": 3
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "GM1 storage disease",
+        "severity": "mild",
+        "screen": "DNA test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs extensive daily exercise; enjoys swimming.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "cairn-terrier",
+    "name": "Cairn Terrier",
+    "size_class": "small",
+    "weight_kg_min": 6.0,
+    "weight_kg_max": 8.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 2,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Globoid cell leukodystrophy",
+        "severity": "mild",
+        "screen": "DNA test"
+      },
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Daily walks and play.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "bullmastiff",
+    "name": "Bullmastiff",
+    "size_class": "large",
+    "weight_kg_min": 41.0,
+    "weight_kg_max": 59.0,
+    "lifespan_years": 8.5,
+    "risk_flags": [
+      "deep_chested"
+    ],
+    "traits": {
+      "energy": 2,
+      "shedding": 3,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 2
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "moderate",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Bloat",
+        "severity": "moderate",
+        "screen": "Monitor after meals"
+      },
+      {
+        "condition": "Bone cancer",
+        "severity": "mild",
+        "screen": "Monitor for lameness"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Split into multiple smaller meals.",
+      "exercise": "Moderate exercise; avoid overexertion when young.",
+      "grooming": "Minimal; occasional brushing."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "wire-fox-terrier",
+    "name": "Wire Fox Terrier",
+    "size_class": "small",
+    "weight_kg_min": 7.0,
+    "weight_kg_max": 9.0,
+    "lifespan_years": 13.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 5,
+      "shedding": 1,
+      "trainability": 4,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Patellar luxation",
+        "severity": "mild",
+        "screen": "Orthopedic exam"
+      },
+      {
+        "condition": "Lens luxation",
+        "severity": "mild",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Deafness",
+        "severity": "mild",
+        "screen": "BAER hearing test"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs vigorous daily exercise.",
+      "grooming": "Professional grooming every 4-6 weeks."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "norwegian-elkhound",
+    "name": "Norwegian Elkhound",
+    "size_class": "medium",
+    "weight_kg_min": 16.0,
+    "weight_kg_max": 25.0,
+    "lifespan_years": 12.5,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 4,
+      "trainability": 3,
+      "friendliness": 4,
+      "vocalness": 4
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Progressive retinal atrophy",
+        "severity": "mild",
+        "screen": "Eye exam"
+      },
+      {
+        "condition": "Kidney disease",
+        "severity": "mild",
+        "screen": "Urinalysis"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; active metabolism.",
+      "exercise": "Needs daily vigorous exercise.",
+      "grooming": "Brush frequently; heavy seasonal shedding."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "afghan-hound",
+    "name": "Afghan Hound",
+    "size_class": "large",
+    "weight_kg_min": 20.0,
+    "weight_kg_max": 27.0,
+    "lifespan_years": 12.0,
+    "risk_flags": [],
+    "traits": {
+      "energy": 4,
+      "shedding": 3,
+      "trainability": 2,
+      "friendliness": 3,
+      "vocalness": 1
+    },
+    "health_risks": [
+      {
+        "condition": "Hip dysplasia",
+        "severity": "mild",
+        "screen": "OFA hip evaluation"
+      },
+      {
+        "condition": "Hypothyroidism",
+        "severity": "mild",
+        "screen": "Thyroid panel"
+      },
+      {
+        "condition": "Cataracts",
+        "severity": "mild",
+        "screen": "Eye exam"
+      }
+    ],
+    "care_guide": {
+      "feeding": "Measured meals; lean build.",
+      "exercise": "Needs daily exercise; enjoys sprinting.",
+      "grooming": "Daily brushing; long silky coat."
+    },
+    "is_mixed": false
+  },
+  {
+    "species": "dog",
+    "slug": "mixed-breed",
+    "name": "Mixed Breed",
+    "size_class": "medium",
+    "weight_kg_min": null,
+    "weight_kg_max": null,
+    "lifespan_years": null,
+    "risk_flags": [],
+    "traits": {},
+    "health_risks": [],
+    "care_guide": {},
+    "is_mixed": true
+  }
+]

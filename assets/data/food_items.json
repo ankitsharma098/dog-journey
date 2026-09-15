@@ -1,0 +1,402 @@
+[
+  {
+    "id": "f001",
+    "name": "Chicken Breast (Cooked, Boneless)",
+    "category": "protein",
+    "kcal_per_100g": 165,
+    "safety": "safe",
+    "notes": "Excellent lean protein source. Always serve plain — no seasoning, garlic, or onion."
+  },
+  {
+    "id": "f002",
+    "name": "Salmon (Cooked)",
+    "category": "protein",
+    "kcal_per_100g": 208,
+    "safety": "safe",
+    "notes": "Rich in omega-3 fatty acids. Must be fully cooked — raw salmon can carry fatal parasites."
+  },
+  {
+    "id": "f003",
+    "name": "Turkey (Cooked, Plain)",
+    "category": "protein",
+    "kcal_per_100g": 189,
+    "safety": "safe",
+    "notes": "Lean, digestible protein. Remove skin and bones. No seasoning."
+  },
+  {
+    "id": "f004",
+    "name": "Beef (Lean, Cooked)",
+    "category": "protein",
+    "kcal_per_100g": 215,
+    "safety": "safe",
+    "notes": "Good protein and iron source. Choose lean cuts; high fat can cause pancreatitis."
+  },
+  {
+    "id": "f005",
+    "name": "Eggs (Cooked)",
+    "category": "protein",
+    "kcal_per_100g": 155,
+    "safety": "safe",
+    "notes": "Complete protein. Scrambled, boiled, or poached — no butter or salt."
+  },
+  {
+    "id": "f006",
+    "name": "Cottage Cheese (Low Fat)",
+    "category": "protein",
+    "kcal_per_100g": 98,
+    "safety": "safe",
+    "notes": "Lower lactose than other dairy. Good for bland diet. Small amounts only."
+  },
+  {
+    "id": "f007",
+    "name": "White Rice (Cooked)",
+    "category": "grain",
+    "kcal_per_100g": 130,
+    "safety": "safe",
+    "notes": "Classic bland diet staple. Easily digestible — ideal for upset stomachs."
+  },
+  {
+    "id": "f008",
+    "name": "Oatmeal (Plain, Cooked)",
+    "category": "grain",
+    "kcal_per_100g": 71,
+    "safety": "safe",
+    "notes": "Good soluble fiber. Plain only — no sugar, raisins, or flavoring."
+  },
+  {
+    "id": "f009",
+    "name": "Sweet Potato (Cooked)",
+    "category": "vegetable",
+    "kcal_per_100g": 86,
+    "safety": "safe",
+    "notes": "Excellent source of vitamins A, C, and fiber. Plain, no seasonings or butter."
+  },
+  {
+    "id": "f010",
+    "name": "Carrots (Raw or Cooked)",
+    "category": "vegetable",
+    "kcal_per_100g": 41,
+    "safety": "safe",
+    "notes": "Low calorie, high fiber. Great for teeth. A dog's favorite crunchy snack."
+  },
+  {
+    "id": "f011",
+    "name": "Green Beans (Plain)",
+    "category": "vegetable",
+    "kcal_per_100g": 31,
+    "safety": "safe",
+    "notes": "Low calorie. Good for weight management — can replace up to 10% of kibble."
+  },
+  {
+    "id": "f012",
+    "name": "Cucumber",
+    "category": "vegetable",
+    "kcal_per_100g": 16,
+    "safety": "safe",
+    "notes": "Very low calorie and hydrating. Great summer treat."
+  },
+  {
+    "id": "f013",
+    "name": "Pumpkin (Plain Puree)",
+    "category": "vegetable",
+    "kcal_per_100g": 26,
+    "safety": "safe",
+    "notes": "Excellent for GI health. Helps with both diarrhea and constipation. Not pie filling."
+  },
+  {
+    "id": "f014",
+    "name": "Peas",
+    "category": "vegetable",
+    "kcal_per_100g": 81,
+    "safety": "safe",
+    "notes": "Safe as a treat. Avoid canned (high sodium). Some debate about grain-free diets with peas as primary ingredient."
+  },
+  {
+    "id": "f015",
+    "name": "Blueberries",
+    "category": "fruit",
+    "kcal_per_100g": 57,
+    "safety": "safe",
+    "notes": "Antioxidant powerhouse. Great training treat. High water content."
+  },
+  {
+    "id": "f016",
+    "name": "Watermelon (Seedless, No Rind)",
+    "category": "fruit",
+    "kcal_per_100g": 30,
+    "safety": "safe",
+    "notes": "Hydrating. Remove seeds and rind. Good summer treat."
+  },
+  {
+    "id": "f017",
+    "name": "Apple (Flesh, No Seeds/Core)",
+    "category": "fruit",
+    "kcal_per_100g": 52,
+    "safety": "safe",
+    "notes": "Good source of fiber and vitamins. Remove core and seeds — seeds contain amygdalin."
+  },
+  {
+    "id": "f018",
+    "name": "Banana",
+    "category": "fruit",
+    "kcal_per_100g": 89,
+    "safety": "safe",
+    "notes": "Safe in small amounts. High in sugar — limit for overweight or diabetic dogs."
+  },
+  {
+    "id": "f019",
+    "name": "Strawberries",
+    "category": "fruit",
+    "kcal_per_100g": 32,
+    "safety": "safe",
+    "notes": "Safe and enjoyed by most dogs. High in vitamin C. Limit for diabetic dogs."
+  },
+  {
+    "id": "f020",
+    "name": "Mango (Pitted, No Skin)",
+    "category": "fruit",
+    "kcal_per_100g": 60,
+    "safety": "safe",
+    "notes": "Safe without pit or skin. High in vitamins A, C, E, and B6."
+  },
+  {
+    "id": "f021",
+    "name": "Peanut Butter (Xylitol-Free)",
+    "category": "treat",
+    "kcal_per_100g": 589,
+    "safety": "safe",
+    "notes": "ALWAYS check label for xylitol — it is deadly. Natural, unsalted varieties preferred. High calorie — use sparingly."
+  },
+  {
+    "id": "f022",
+    "name": "Plain Popcorn (Air-Popped)",
+    "category": "treat",
+    "kcal_per_100g": 382,
+    "safety": "safe",
+    "notes": "Plain only. Avoid kernels — choking hazard. No butter, salt, or flavoring."
+  },
+  {
+    "id": "f023",
+    "name": "Bread (Plain White)",
+    "category": "grain",
+    "kcal_per_100g": 265,
+    "safety": "safe",
+    "notes": "Not toxic in small amounts but no nutritional value. Avoid bread with raisins, garlic, or xylitol."
+  },
+  {
+    "id": "f024",
+    "name": "Broccoli",
+    "category": "vegetable",
+    "kcal_per_100g": 34,
+    "safety": "caution",
+    "notes": "Safe in very small amounts (under 10% of diet). Large amounts cause significant GI upset due to isothiocyanates."
+  },
+  {
+    "id": "f025",
+    "name": "Spinach",
+    "category": "vegetable",
+    "kcal_per_100g": 23,
+    "safety": "caution",
+    "notes": "Contains oxalic acid which can affect kidney function in large quantities. Avoid in dogs with kidney disease."
+  },
+  {
+    "id": "f026",
+    "name": "Coconut Flesh",
+    "category": "treat",
+    "kcal_per_100g": 354,
+    "safety": "caution",
+    "notes": "Not toxic but high in fat. Small amounts are fine. Coconut water is high in potassium — avoid."
+  },
+  {
+    "id": "f027",
+    "name": "Dairy / Cheese",
+    "category": "protein",
+    "kcal_per_100g": 402,
+    "safety": "caution",
+    "notes": "Many dogs are lactose intolerant. Hard cheese in tiny amounts is usually tolerated. Avoid soft cheeses, large amounts of milk, or ice cream."
+  },
+  {
+    "id": "f028",
+    "name": "Peaches (Flesh Only, No Pit)",
+    "category": "fruit",
+    "kcal_per_100g": 39,
+    "safety": "caution",
+    "notes": "Remove pit and stem completely. Flesh in small amounts is safe — pit contains amygdalin (cyanide precursor)."
+  },
+  {
+    "id": "f029",
+    "name": "Cinnamon",
+    "category": "spice",
+    "kcal_per_100g": 247,
+    "safety": "caution",
+    "notes": "Small amounts in food are unlikely to harm but can irritate mouth and digestive tract. Cinnamon oil is concentrated — avoid."
+  },
+  {
+    "id": "f030",
+    "name": "Raw Meat",
+    "category": "protein",
+    "kcal_per_100g": 200,
+    "safety": "caution",
+    "notes": "Carries bacterial risk (Salmonella, Listeria) for both dogs and humans. If feeding raw, use commercially prepared, pathogen-tested products."
+  },
+  {
+    "id": "f031",
+    "name": "Chocolate",
+    "category": "treat",
+    "kcal_per_100g": 546,
+    "safety": "toxic",
+    "notes": "TOXIC. Theobromine and caffeine cause life-threatening toxicity. Dark and baking chocolate most dangerous. Emergency vet immediately."
+  },
+  {
+    "id": "f032",
+    "name": "Grapes & Raisins",
+    "category": "fruit",
+    "kcal_per_100g": 299,
+    "safety": "toxic",
+    "notes": "TOXIC. Can cause sudden kidney failure. No safe dose known. Emergency vet immediately."
+  },
+  {
+    "id": "f033",
+    "name": "Onions & Garlic",
+    "category": "vegetable",
+    "kcal_per_100g": 40,
+    "safety": "toxic",
+    "notes": "TOXIC. All alliums (onion, garlic, leek, chive) destroy red blood cells causing hemolytic anemia. Cooked, powdered, and raw all equally dangerous."
+  },
+  {
+    "id": "f034",
+    "name": "Macadamia Nuts",
+    "category": "treat",
+    "kcal_per_100g": 718,
+    "safety": "toxic",
+    "notes": "TOXIC. Causes weakness, vomiting, hyperthermia, and tremors. Call vet immediately."
+  },
+  {
+    "id": "f035",
+    "name": "Avocado",
+    "category": "fruit",
+    "kcal_per_100g": 160,
+    "safety": "toxic",
+    "notes": "TOXIC. Persin in flesh, skin, and leaves is toxic. Pit is a deadly obstruction hazard."
+  },
+  {
+    "id": "f036",
+    "name": "Xylitol Products (Sugar-Free)",
+    "category": "treat",
+    "kcal_per_100g": 240,
+    "safety": "toxic",
+    "notes": "DEADLY. Causes rapid insulin release and liver failure. Found in gum, candy, some peanut butters, baked goods. Always check labels."
+  },
+  {
+    "id": "f037",
+    "name": "Corn Cob",
+    "category": "vegetable",
+    "kcal_per_100g": 86,
+    "safety": "toxic",
+    "notes": "The cob (not kernels) causes life-threatening intestinal obstruction. Emergency surgery often required. Never give dogs access to corn cobs."
+  },
+  {
+    "id": "f038",
+    "name": "Wild Mushrooms",
+    "category": "vegetable",
+    "kcal_per_100g": 22,
+    "safety": "toxic",
+    "notes": "POTENTIALLY FATAL. Amanita species (death cap, destroying angel) can kill with no antidote. Never allow dogs near wild mushrooms."
+  },
+  {
+    "id": "f039",
+    "name": "Raw Yeast Dough",
+    "category": "grain",
+    "kcal_per_100g": 280,
+    "safety": "toxic",
+    "notes": "TOXIC. Expands in stomach (can rupture) and produces ethanol. Emergency vet required."
+  },
+  {
+    "id": "f040",
+    "name": "Nutmeg",
+    "category": "spice",
+    "kcal_per_100g": 525,
+    "safety": "toxic",
+    "notes": "TOXIC. Contains myristicin causing tremors, seizures, and disorientation."
+  },
+  {
+    "id": "f041",
+    "name": "Dry Dog Kibble (Standard)",
+    "category": "dog_food",
+    "kcal_per_100g": 350,
+    "safety": "safe",
+    "notes": "Primary food source. Caloric density varies by brand — check packaging for kcal/cup."
+  },
+  {
+    "id": "f042",
+    "name": "Wet/Canned Dog Food",
+    "category": "dog_food",
+    "kcal_per_100g": 85,
+    "safety": "safe",
+    "notes": "Higher moisture content (~78%). Lower calorie density than kibble. Check label for kcal/can."
+  },
+  {
+    "id": "f043",
+    "name": "Raw Dog Food (Commercial)",
+    "category": "dog_food",
+    "kcal_per_100g": 150,
+    "safety": "safe",
+    "notes": "Safe when commercially prepared and handled properly. Pathogen-tested products recommended."
+  },
+  {
+    "id": "f044",
+    "name": "Dog Treats (Standard)",
+    "category": "treat",
+    "kcal_per_100g": 320,
+    "safety": "safe",
+    "notes": "Treats should not exceed 10% of daily caloric intake. Check label for kcal per treat."
+  },
+  {
+    "id": "f045",
+    "name": "Dental Chews",
+    "category": "treat",
+    "kcal_per_100g": 290,
+    "safety": "safe",
+    "notes": "Count calories toward daily intake. Choose VOHC-approved products for proven dental benefit."
+  },
+  {
+    "id": "f046",
+    "name": "Raspberries",
+    "category": "fruit",
+    "kcal_per_100g": 52,
+    "safety": "caution",
+    "notes": "Safe in very small amounts. Contains trace amounts of xylitol naturally — only a concern in very large quantities. Good antioxidants."
+  },
+  {
+    "id": "f047",
+    "name": "Tomatoes (Ripe Red)",
+    "category": "vegetable",
+    "kcal_per_100g": 18,
+    "safety": "caution",
+    "notes": "Ripe red tomato flesh in small amounts is generally safe. Green parts (leaves, stems, unripe) contain solanine — avoid."
+  },
+  {
+    "id": "f048",
+    "name": "Honey",
+    "category": "treat",
+    "kcal_per_100g": 304,
+    "safety": "caution",
+    "notes": "Safe for healthy adult dogs in tiny amounts. Avoid for puppies under 1 year (botulism risk) and diabetic dogs."
+  },
+  {
+    "id": "f049",
+    "name": "Lentils",
+    "category": "grain",
+    "kcal_per_100g": 116,
+    "safety": "safe",
+    "notes": "Cooked lentils are safe in moderate amounts. Good fiber source. Some concern about legume-heavy grain-free diets — discuss with vet."
+  },
+  {
+    "id": "f050",
+    "name": "Quinoa (Cooked)",
+    "category": "grain",
+    "kcal_per_100g": 120,
+    "safety": "safe",
+    "notes": "Safe and nutritious. Some dogs may have digestive sensitivity — introduce gradually."
+  }
+]

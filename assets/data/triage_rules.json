@@ -1,0 +1,362 @@
+[
+  {
+    "code": "EMERGENCY_CHOCOLATE",
+    "level": "emergency",
+    "patterns": ["chocolate", "cocoa", "cacao"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Chocolate is toxic to dogs",
+    "action_text": "Contact your vet or an emergency animal poison hotline immediately. Do not wait for symptoms — chocolate toxicity can be fatal and time matters."
+  },
+  {
+    "code": "EMERGENCY_XYLITOL",
+    "level": "emergency",
+    "patterns": ["xylitol", "sugar-free gum", "sugar free gum", "sugar-free candy", "sugar free candy", "birch sugar"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Xylitol causes life-threatening low blood sugar in dogs",
+    "action_text": "Go to an emergency vet NOW. Xylitol can cause rapid blood sugar drop and liver failure — this cannot wait."
+  },
+  {
+    "code": "EMERGENCY_GRAPES",
+    "level": "emergency",
+    "patterns": ["grapes", "raisins", "grape", "raisin", "currant", "sultana"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Grapes and raisins can cause kidney failure",
+    "action_text": "Contact your vet or emergency animal poison hotline now. Even small amounts can cause sudden kidney failure. Do not wait for symptoms."
+  },
+  {
+    "code": "EMERGENCY_BLOAT",
+    "level": "emergency",
+    "patterns": ["bloat", "swollen belly", "swollen abdomen", "distended abdomen", "distended belly", "stomach torsion", "gdv", "can't vomit", "trying to vomit", "retching nothing", "unproductive retching"],
+    "negate_patterns": [],
+    "breed_flags": ["great-dane", "german-shepherd", "standard-poodle", "irish-wolfhound", "st-bernard", "weimaraner", "bloodhound", "doberman"],
+    "headline": "🚨 Possible bloat (GDV) — this is life-threatening",
+    "action_text": "Rush to an emergency vet NOW. Gastric dilation-volvulus (bloat) can be fatal within hours without surgery."
+  },
+  {
+    "code": "EMERGENCY_NOT_BREATHING",
+    "level": "emergency",
+    "patterns": ["not breathing", "stopped breathing", "no breath", "unconscious", "unresponsive", "collapsed"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Immediate emergency",
+    "action_text": "Call emergency vet services NOW or go to the nearest 24-hour animal hospital immediately."
+  },
+  {
+    "code": "EMERGENCY_SEIZURE",
+    "level": "emergency",
+    "patterns": ["seizure", "convulsion", "convulsing", "fitting", "epileptic", "shaking uncontrollably", "grand mal"],
+    "negate_patterns": ["history of seizures and acting normal", "seizure yesterday and fine now"],
+    "breed_flags": [],
+    "headline": "🚨 Seizure — requires emergency care",
+    "action_text": "Keep your dog safe from injury (clear furniture), do not restrain, time the seizure. Go to an emergency vet if the seizure lasts more than 2–3 minutes or if multiple seizures occur."
+  },
+  {
+    "code": "EMERGENCY_ONION_GARLIC",
+    "level": "emergency",
+    "patterns": ["onion", "garlic", "leek", "chive", "shallot", "scallion"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Onion and garlic are toxic to dogs",
+    "action_text": "Contact your vet or animal poison hotline. Allium toxicity causes red blood cell damage that may not show for days. Cooking does not make it safe."
+  },
+  {
+    "code": "EMERGENCY_MACADAMIA",
+    "level": "emergency",
+    "patterns": ["macadamia", "macadamia nut"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Macadamia nuts are toxic to dogs",
+    "action_text": "Contact your vet now. Symptoms include weakness, vomiting, tremors, and fever. Usually not fatal but requires monitoring."
+  },
+  {
+    "code": "EMERGENCY_AVOCADO",
+    "level": "emergency",
+    "patterns": ["avocado", "guacamole"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "⚠️ Avocado can be harmful to dogs",
+    "action_text": "Contact your vet. The flesh is mildly toxic; the pit is a choking/obstruction hazard and contains concentrated persin."
+  },
+  {
+    "code": "EMERGENCY_ALCOHOL",
+    "level": "emergency",
+    "patterns": ["alcohol", "beer", "wine", "liquor", "ethanol", "bourbon", "vodka", "whiskey"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Alcohol is highly toxic to dogs",
+    "action_text": "Contact your vet or emergency animal hotline immediately. Even small amounts can cause respiratory failure in dogs."
+  },
+  {
+    "code": "EMERGENCY_BREATHING",
+    "level": "emergency",
+    "patterns": ["can't breathe", "cannot breathe", "difficulty breathing", "laboured breathing", "labored breathing", "gasping", "blue gums", "purple gums", "gums are blue"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Breathing difficulty — go to emergency vet now",
+    "action_text": "This is a life-threatening emergency. Blue or purple gums indicate oxygen deprivation. Go to the nearest emergency animal hospital immediately."
+  },
+  {
+    "code": "EMERGENCY_TRAUMA",
+    "level": "emergency",
+    "patterns": ["hit by car", "run over", "been in an accident", "fell from", "fell off balcony", "major bleeding", "bleeding won't stop", "serious wound"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Trauma — emergency care needed",
+    "action_text": "Go to an emergency vet immediately. Apply gentle pressure to any wounds with a clean cloth. Keep your dog as still and calm as possible during transport."
+  },
+  {
+    "code": "EMERGENCY_EYE_PROLAPSE",
+    "level": "emergency",
+    "patterns": ["eye popped out", "eye bulging out", "eye coming out", "proptosis"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Eye proptosis — emergency",
+    "action_text": "Cover the eye with a moist clean cloth and go to an emergency vet immediately. Do not try to push it back in."
+  },
+  {
+    "code": "URGENT_VOMITING",
+    "level": "urgent",
+    "patterns": ["vomiting", "throwing up", "been sick", "vomited"],
+    "negate_patterns": ["vomited once", "vomited and is fine", "vomited grass"],
+    "breed_flags": [],
+    "headline": "⚠️ Repeated vomiting needs attention",
+    "action_text": "If vomiting more than 2–3 times, or accompanied by lethargy, blood, or abdominal pain, see your vet today. Withhold food for 4–6 hours but keep water available."
+  },
+  {
+    "code": "URGENT_DIARRHEA_BLOOD",
+    "level": "urgent",
+    "patterns": ["blood in stool", "bloody diarrhea", "bloody poop", "blood in poop", "blood in feces", "red in stool"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "⚠️ Blood in stool requires same-day vet visit",
+    "action_text": "Small amounts of red blood can have minor causes, but it warrants a vet check today — especially if accompanied by vomiting or lethargy. Bright red blood is often lower GI; dark tarry stool can indicate upper GI bleeding (more serious)."
+  },
+  {
+    "code": "URGENT_SWALLOWED_OBJECT",
+    "level": "urgent",
+    "patterns": ["swallowed", "ate a sock", "ate a toy", "swallowed toy", "swallowed bone", "swallowed rock", "foreign body", "ingested object"],
+    "negate_patterns": ["swallowed a small piece", "swallowed a tiny bit"],
+    "breed_flags": [],
+    "headline": "⚠️ Possible foreign body ingestion",
+    "action_text": "See your vet today. Swallowed objects can cause obstruction or perforation. Do not try to induce vomiting without vet guidance — some objects become more dangerous on the way up."
+  },
+  {
+    "code": "URGENT_EYE_INJURY",
+    "level": "urgent",
+    "patterns": ["eye injury", "scratched eye", "cloudy eye", "eye is cloudy", "red eye", "eye is red and swollen", "pawing at eye"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "⚠️ Eye problems can deteriorate quickly",
+    "action_text": "See a vet today. Eye injuries and infections worsen fast and can lead to permanent damage if untreated. Do not apply any eye drops without veterinary guidance."
+  },
+  {
+    "code": "URGENT_ALLERGIC_REACTION",
+    "level": "urgent",
+    "patterns": ["hives", "allergic reaction", "face swelling", "swollen face", "swollen muzzle", "anaphylaxis", "bee sting swelling"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "⚠️ Possible allergic reaction",
+    "action_text": "If your dog has facial swelling, difficulty breathing, or extreme lethargy after a sting or new exposure, go to an emergency vet NOW. Mild hives without breathing problems — see your vet today."
+  },
+  {
+    "code": "URGENT_URINARY",
+    "level": "urgent",
+    "patterns": ["can't urinate", "straining to urinate", "no urine", "hasn't urinated", "crying when urinating", "blood in urine"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "⚠️ Urinary issues need prompt attention",
+    "action_text": "Inability to urinate is an emergency (blocked bladder). Blood in urine or painful urination warrants a same-day vet visit. Male dogs are at higher risk of full urinary blockage."
+  },
+  {
+    "code": "URGENT_LIMPING_SUDDEN",
+    "level": "urgent",
+    "patterns": ["sudden lameness", "suddenly can't walk", "won't put weight on", "non weight bearing", "can't stand up"],
+    "negate_patterns": ["slight limp", "minor limp", "mild limp", "limping a little"],
+    "breed_flags": [],
+    "headline": "⚠️ Sudden inability to bear weight",
+    "action_text": "Rest your dog and restrict movement. If non-weight-bearing on a limb or the leg looks deformed, see a vet today. This can indicate a fracture, ligament tear, or joint injury."
+  },
+  {
+    "code": "URGENT_HEAT_STROKE",
+    "level": "urgent",
+    "patterns": ["heat stroke", "overheating", "hyperthermia", "excessive panting in heat", "collapsed in heat", "panting heavily in car"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "🚨 Suspected heat stroke — act immediately",
+    "action_text": "Move to a cool area immediately, wet with cool (not cold) water, and fan. Go to an emergency vet now — heat stroke can be fatal rapidly."
+  },
+  {
+    "code": "ROUTINE_LIMPING",
+    "level": "routine",
+    "patterns": ["limping", "slight limp", "favouring a leg", "favoring a leg", "lame"],
+    "negate_patterns": ["suddenly can't walk", "won't put weight on", "non weight bearing"],
+    "breed_flags": [],
+    "headline": "💙 Mild limping — worth a vet check",
+    "action_text": "Rest your dog and avoid strenuous activity. Schedule a vet appointment in the next few days. If the limp worsens, becomes non-weight-bearing, or is accompanied by swelling, move it up to urgent."
+  },
+  {
+    "code": "ROUTINE_SCRATCHING",
+    "level": "routine",
+    "patterns": ["scratching", "itchy", "itching", "skin irritation"],
+    "negate_patterns": ["scratching and bleeding", "severe skin reaction"],
+    "breed_flags": [],
+    "headline": "💙 Itching and scratching",
+    "action_text": "Common causes include allergies, fleas, dry skin, or contact irritation. Schedule a vet visit if it's been more than a few days or you see skin changes, hair loss, or hotspots."
+  },
+  {
+    "code": "ROUTINE_VOMITING_ONCE",
+    "level": "routine",
+    "patterns": ["vomited once", "threw up once", "vomited grass", "ate grass and vomited"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "💙 Single vomiting episode — usually not serious",
+    "action_text": "A single vomit, especially after eating grass, is often normal. Withhold food for 4–6 hours, then offer a small bland meal (rice + boiled chicken). Monitor for repeat vomiting, lethargy, or blood."
+  },
+  {
+    "code": "ROUTINE_DIARRHEA",
+    "level": "routine",
+    "patterns": ["diarrhea", "loose stool", "runny poop", "soft stool"],
+    "negate_patterns": ["bloody diarrhea", "blood in stool", "severe diarrhea"],
+    "breed_flags": [],
+    "headline": "💙 Mild diarrhea — watch and manage",
+    "action_text": "Offer a bland diet (boiled chicken and rice) for 24–48 hours. Keep water available to prevent dehydration. See a vet if it lasts more than 48 hours, or if your dog seems lethargic or stops eating."
+  },
+  {
+    "code": "ROUTINE_EAR",
+    "level": "routine",
+    "patterns": ["ear infection", "shaking head", "scratching ear", "smelly ear", "discharge from ear", "head shaking"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "💙 Possible ear infection",
+    "action_text": "Schedule a vet visit this week. Ear infections are common and very treatable, but can worsen if left. Do not insert anything into the ear canal without vet guidance."
+  },
+  {
+    "code": "ROUTINE_DENTAL",
+    "level": "routine",
+    "patterns": ["bad breath", "dental", "teeth", "gum", "tartar", "tooth"],
+    "negate_patterns": ["tooth knocked out", "broken tooth", "cracked tooth"],
+    "breed_flags": [],
+    "headline": "💙 Dental health check recommended",
+    "action_text": "Bad breath in dogs is often a sign of periodontal disease. Schedule a dental examination. Regular brushing and dental chews can help prevent buildup."
+  },
+  {
+    "code": "ROUTINE_WEIGHT_GAIN",
+    "level": "routine",
+    "patterns": ["overweight", "weight gain", "getting fat", "gained weight", "too heavy"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "💙 Weight management",
+    "action_text": "Obesity is the most common preventable health problem in dogs. Use the Nutrition module to generate a feeding plan based on your dog's ideal weight. Schedule a vet visit to rule out thyroid or other metabolic conditions."
+  },
+  {
+    "code": "ROUTINE_BROKEN_TOOTH",
+    "level": "urgent",
+    "patterns": ["broken tooth", "cracked tooth", "fractured tooth"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "⚠️ Broken tooth — see vet this week",
+    "action_text": "A cracked or broken tooth is painful and can lead to infection. Avoid hard chews on that side. Schedule a dental appointment this week."
+  },
+  {
+    "code": "INFO_PUPPY_EATING",
+    "level": "info",
+    "patterns": ["puppy not eating", "new puppy won't eat", "puppy picky eater"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "ℹ️ Puppy eating habits",
+    "action_text": "New puppies often take 1–3 days to settle into eating in a new home. Offer meals 3–4 times daily at set times. If the puppy hasn't eaten in 24 hours or seems lethargic, see a vet. Stress, new environment, and food changes are common culprits."
+  },
+  {
+    "code": "INFO_NORMAL_PUPPY",
+    "level": "info",
+    "patterns": ["puppy sleeping a lot", "puppy tired", "my puppy sleeps all day"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "ℹ️ Puppies sleep 16–18 hours a day — that's normal",
+    "action_text": "Young puppies need a lot of sleep for brain and body development. This is entirely normal as long as the puppy is eating, has normal stool, and is energetic when awake."
+  },
+  {
+    "code": "INFO_SCOOTING",
+    "level": "routine",
+    "patterns": ["scooting", "dragging bottom", "dragging butt", "licking bottom excessively"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "💙 Scooting often means anal glands need expressing",
+    "action_text": "The most common cause is full or impacted anal glands. Schedule a vet or groomer appointment. Recurring scooting may indicate food allergy or worms."
+  },
+  {
+    "code": "INFO_COUGHING",
+    "level": "routine",
+    "patterns": ["coughing", "kennel cough", "cough"],
+    "negate_patterns": ["coughing blood", "coughing and collapsed", "can't breathe"],
+    "breed_flags": [],
+    "headline": "💙 Cough — most often kennel cough",
+    "action_text": "A honking or goose-like cough is often kennel cough (bordetella), which is usually self-limiting. Schedule a vet visit if it has persisted more than 5–7 days, is accompanied by fever or lethargy, or if your dog is very young or immunocompromised."
+  },
+  {
+    "code": "INFO_WATER_DRINKING",
+    "level": "routine",
+    "patterns": ["drinking too much water", "excessive thirst", "drinking a lot", "urinating a lot", "very thirsty"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "💙 Excessive thirst and urination",
+    "action_text": "Polydipsia/polyuria can indicate diabetes, Cushing's disease, kidney disease, or Addison's — all manageable when caught early. Schedule a vet appointment and request blood and urine tests."
+  },
+  {
+    "code": "INFO_AGGRESSION",
+    "level": "info",
+    "patterns": ["aggressive", "biting", "snapping", "growling at people", "growling at me"],
+    "negate_patterns": ["growling at stranger dogs", "growling when playing"],
+    "breed_flags": [],
+    "headline": "ℹ️ Aggression — rule out pain first",
+    "action_text": "Sudden aggression in a previously gentle dog is often pain-related. Schedule a vet visit to rule out injury or illness. If behavioral, a certified dog trainer or veterinary behaviorist can help. Never punish growling — it's communication."
+  },
+  {
+    "code": "INFO_LUMP",
+    "level": "routine",
+    "patterns": ["lump", "bump", "growth", "mass on", "cyst", "lipoma"],
+    "negate_patterns": ["rapidly growing lump", "ulcerated lump"],
+    "breed_flags": [],
+    "headline": "💙 New lump — have it checked",
+    "action_text": "Most lumps in dogs are benign (lipomas, cysts), but new growths should be examined by a vet. Note the size and location, and monitor for rapid changes."
+  },
+  {
+    "code": "URGENT_LUMP_GROWING",
+    "level": "urgent",
+    "patterns": ["rapidly growing lump", "lump getting bigger fast", "ulcerated lump", "bleeding lump"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "⚠️ Rapidly changing mass — see vet soon",
+    "action_text": "A lump that is growing quickly, changing color, ulcerating, or bleeding warrants a vet visit this week for examination and possible fine needle aspirate."
+  },
+  {
+    "code": "INFO_LETHARGY",
+    "level": "routine",
+    "patterns": ["lethargic", "low energy", "not playful", "seems tired", "not himself", "not herself", "quiet"],
+    "negate_patterns": ["collapsed", "unresponsive", "semiconscious"],
+    "breed_flags": [],
+    "headline": "💙 Lethargy — watch for 24 hours",
+    "action_text": "One quiet day after exercise or excitement is normal. If lethargy persists more than 24–48 hours, is accompanied by vomiting, diarrhea, or appetite loss, or comes on suddenly, schedule a vet visit."
+  },
+  {
+    "code": "INFO_NOT_EATING",
+    "level": "routine",
+    "patterns": ["not eating", "won't eat", "lost appetite", "skipped meals", "off food"],
+    "negate_patterns": ["not eating and vomiting", "not eating and lethargic"],
+    "breed_flags": [],
+    "headline": "💙 Appetite loss",
+    "action_text": "A dog skipping one meal is usually not alarming. If appetite loss persists more than 48 hours or is accompanied by other symptoms (vomiting, diarrhea, lethargy), see your vet."
+  },
+  {
+    "code": "URGENT_NOT_EATING_SICK",
+    "level": "urgent",
+    "patterns": ["not eating and vomiting", "not eating and lethargic", "won't eat and seems sick", "won't eat or drink"],
+    "negate_patterns": [],
+    "breed_flags": [],
+    "headline": "⚠️ Not eating plus other symptoms",
+    "action_text": "Appetite loss combined with vomiting, lethargy, or refusing water for more than 24 hours warrants a same-day vet visit to rule out obstruction, illness, or pain."
+  }
+]

@@ -1,0 +1,141 @@
+[
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000001",
+    "name": "Rabies",
+    "abbreviation": "RAB",
+    "species": ["dog"],
+    "is_core": true,
+    "description": "Protects against rabies virus. Legally required in most regions.",
+    "puppy_series": [],
+    "puppy_start_weeks": null,
+    "adult_interval_months": 36,
+    "first_adult_dose_months": 12
+  },
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000002",
+    "name": "DHPP (Distemper, Hepatitis, Parvo, Parainfluenza)",
+    "abbreviation": "DHPP",
+    "species": ["dog"],
+    "is_core": true,
+    "description": "Core 4-in-1 vaccine protecting against distemper, adenovirus (hepatitis), parvovirus, and parainfluenza.",
+    "puppy_series": [
+      {"dose": 1, "weeks": 8, "label": "First puppy dose"},
+      {"dose": 2, "weeks": 12, "label": "Second puppy dose"},
+      {"dose": 3, "weeks": 16, "label": "Third puppy dose (booster)"}
+    ],
+    "puppy_start_weeks": 8,
+    "adult_interval_months": 36,
+    "first_adult_dose_months": 12
+  },
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000003",
+    "name": "Leptospirosis",
+    "abbreviation": "LEPTO",
+    "species": ["dog"],
+    "is_core": false,
+    "description": "Protects against Leptospira bacteria. Recommended for dogs with outdoor exposure.",
+    "puppy_series": [
+      {"dose": 1, "weeks": 12, "label": "Initial dose"},
+      {"dose": 2, "weeks": 16, "label": "Booster (3–4 weeks later)"}
+    ],
+    "puppy_start_weeks": 12,
+    "adult_interval_months": 12,
+    "first_adult_dose_months": 12
+  },
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000004",
+    "name": "Bordetella (Kennel Cough)",
+    "abbreviation": "BORD",
+    "species": ["dog"],
+    "is_core": false,
+    "description": "Protects against Bordetella bronchiseptica. Required for boarding, grooming, or dog parks.",
+    "puppy_series": [
+      {"dose": 1, "weeks": 8, "label": "Initial dose"}
+    ],
+    "puppy_start_weeks": 8,
+    "adult_interval_months": 12,
+    "first_adult_dose_months": 6
+  },
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000005",
+    "name": "Lyme Disease",
+    "abbreviation": "LYME",
+    "species": ["dog"],
+    "is_core": false,
+    "description": "Protects against Borrelia burgdorferi. Recommended in tick-endemic areas.",
+    "puppy_series": [
+      {"dose": 1, "weeks": 12, "label": "Initial dose"},
+      {"dose": 2, "weeks": 15, "label": "Booster (3–4 weeks later)"}
+    ],
+    "puppy_start_weeks": 12,
+    "adult_interval_months": 12,
+    "first_adult_dose_months": 12
+  },
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000006",
+    "name": "Canine Influenza (H3N2 + H3N8)",
+    "abbreviation": "CIV",
+    "species": ["dog"],
+    "is_core": false,
+    "description": "Bivalent canine influenza vaccine. Recommended for dogs in high-contact environments.",
+    "puppy_series": [
+      {"dose": 1, "weeks": 12, "label": "Initial dose"},
+      {"dose": 2, "weeks": 15, "label": "Booster (3–4 weeks later)"}
+    ],
+    "puppy_start_weeks": 12,
+    "adult_interval_months": 12,
+    "first_adult_dose_months": 12
+  },
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000007",
+    "name": "Heartworm Prevention",
+    "abbreviation": "HW",
+    "species": ["dog"],
+    "is_core": true,
+    "description": "Monthly preventive medication against heartworm (Dirofilaria immitis).",
+    "puppy_series": [],
+    "puppy_start_weeks": 8,
+    "adult_interval_months": 1,
+    "first_adult_dose_months": 0
+  },
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000008",
+    "name": "Flea & Tick Prevention",
+    "abbreviation": "F&T",
+    "species": ["dog"],
+    "is_core": false,
+    "description": "Monthly or quarterly preventive treatment against fleas and ticks.",
+    "puppy_series": [],
+    "puppy_start_weeks": 8,
+    "adult_interval_months": 3,
+    "first_adult_dose_months": 0
+  },
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000009",
+    "name": "DAPP (Distemper, Adenovirus, Parvo, Parainfluenza)",
+    "abbreviation": "DAPP",
+    "species": ["dog"],
+    "is_core": true,
+    "description": "Alternative 4-in-1 core vaccine. Same coverage as DHPP with adenovirus-2 strain.",
+    "puppy_series": [
+      {"dose": 1, "weeks": 8, "label": "First puppy dose"},
+      {"dose": 2, "weeks": 12, "label": "Second puppy dose"},
+      {"dose": 3, "weeks": 16, "label": "Third puppy dose"}
+    ],
+    "puppy_start_weeks": 8,
+    "adult_interval_months": 36,
+    "first_adult_dose_months": 12
+  },
+  {
+    "id": "a1b2c3d4-0001-0001-0001-000000000010",
+    "name": "Rattlesnake Vaccine",
+    "abbreviation": "RSV",
+    "species": ["dog"],
+    "is_core": false,
+    "description": "Reduces severity of Western Diamondback rattlesnake venom. Recommended for dogs in snake-prone areas.",
+    "puppy_series": [],
+    "puppy_start_weeks": null,
+    "adult_interval_months": 6,
+    "first_adult_dose_months": 12
+  }
+]

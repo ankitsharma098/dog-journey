@@ -1,0 +1,502 @@
+[
+  {
+    "id": "t001",
+    "name": "Chocolate",
+    "slug": "chocolate",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Vomiting, diarrhea, restlessness, excessive urination, tremors, seizures, elevated heart rate",
+    "action": "Emergency vet immediately. Dark chocolate and baking chocolate are most dangerous; milk chocolate is still toxic in quantity.",
+    "lethal_dose_note": "Toxic threshold approximately 20mg theobromine/kg. Baking chocolate ~390mg/oz; milk chocolate ~44–64mg/oz."
+  },
+  {
+    "id": "t002",
+    "name": "Xylitol (Sugar-Free Products)",
+    "slug": "xylitol",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Vomiting, weakness, lethargy, ataxia (incoordination), seizures, liver failure",
+    "action": "Emergency vet immediately. Xylitol triggers insulin release causing hypoglycemia and can cause acute liver failure.",
+    "lethal_dose_note": "As little as 0.1g/kg can cause hypoglycemia; 0.5g/kg associated with liver failure."
+  },
+  {
+    "id": "t003",
+    "name": "Grapes & Raisins",
+    "slug": "grapes-raisins",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Vomiting, diarrhea, lethargy, abdominal pain, decreased urine output, kidney failure",
+    "action": "Emergency vet immediately. No safe dose known — even one grape can cause kidney failure in some dogs.",
+    "lethal_dose_note": "Toxic dose unknown; idiosyncratic — some dogs tolerate it, others do not. Do not take the risk."
+  },
+  {
+    "id": "t004",
+    "name": "Onions & Garlic",
+    "slug": "onions-garlic",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Vomiting, diarrhea, weakness, pale gums, elevated heart rate — symptoms may be delayed 3–5 days",
+    "action": "Contact vet. Allium toxicity destroys red blood cells causing hemolytic anemia. Cooked, powdered, and dehydrated forms are just as dangerous.",
+    "lethal_dose_note": ">0.5% body weight (any allium). Garlic is ~5× more toxic than onion per weight."
+  },
+  {
+    "id": "t005",
+    "name": "Macadamia Nuts",
+    "slug": "macadamia",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Weakness, hyperthermia, vomiting, tremors, lethargy (within 12 hours of ingestion)",
+    "action": "Contact vet today. Usually not fatal but can cause significant distress and may need supportive care.",
+    "lethal_dose_note": "As few as 2.4g/kg can cause clinical signs."
+  },
+  {
+    "id": "t006",
+    "name": "Avocado",
+    "slug": "avocado",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Vomiting, diarrhea, fluid accumulation. Pit is a choking hazard and contains high concentration of persin.",
+    "action": "Contact vet. The flesh is mildly toxic due to persin; the pit is a dangerous obstruction risk.",
+    "lethal_dose_note": "Persin: toxic dose not well-established in dogs, but the pit ingestion is the primary emergency concern."
+  },
+  {
+    "id": "t007",
+    "name": "Alcohol",
+    "slug": "alcohol",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Vomiting, diarrhea, incoordination, central nervous system depression, difficulty breathing, coma",
+    "action": "Emergency vet immediately. Dogs are much more sensitive to ethanol than humans.",
+    "lethal_dose_note": "Even small amounts can be fatal depending on body weight."
+  },
+  {
+    "id": "t008",
+    "name": "Caffeine (Coffee, Tea, Energy Drinks)",
+    "slug": "caffeine",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Restlessness, rapid breathing, elevated heart rate, tremors, seizures",
+    "action": "Contact vet immediately. Caffeine and methylxanthines are toxic to dogs.",
+    "lethal_dose_note": "Toxic dose around 140mg/kg; coffee grounds and tea bags are highly concentrated."
+  },
+  {
+    "id": "t009",
+    "name": "Raw Yeast Dough",
+    "slug": "yeast-dough",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Bloating, abdominal distension, vomiting, disorientation (ethanol produced by fermentation)",
+    "action": "Emergency vet. Yeast dough expands in the stomach and produces ethanol — double danger.",
+    "lethal_dose_note": "Stomach can rupture from expansion. Treat as emergency."
+  },
+  {
+    "id": "t010",
+    "name": "Nutmeg",
+    "slug": "nutmeg",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Tremors, seizures, disorientation, hallucinations, elevated heart rate",
+    "action": "Contact vet immediately. Myristicin is the toxic compound. Small amounts cause GI upset; larger doses are neurologically dangerous.",
+    "lethal_dose_note": "Toxic above ~1 teaspoon for a medium dog."
+  },
+  {
+    "id": "t011",
+    "name": "Apple Seeds & Fruit Pits",
+    "slug": "apple-seeds-pits",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "If significant amounts ingested: vomiting, breathing difficulty (cyanide poisoning)",
+    "action": "Contact vet if a large number of seeds or pits were consumed. Small amounts are unlikely to cause harm — the concern is the amygdalin (cyanide precursor) inside.",
+    "lethal_dose_note": "Flesh is safe; seeds and pits contain amygdalin. Large quantities are the concern."
+  },
+  {
+    "id": "t012",
+    "name": "Chives",
+    "slug": "chives",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Same as onion/garlic — hemolytic anemia, vomiting, weakness",
+    "action": "Contact vet. Part of the allium family — equally toxic to onions and garlic.",
+    "lethal_dose_note": "Toxic at >0.5% body weight."
+  },
+  {
+    "id": "t013",
+    "name": "Leeks",
+    "slug": "leeks",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Vomiting, diarrhea, hemolytic anemia, pale gums",
+    "action": "Contact vet. Allium family — same mechanism as onion.",
+    "lethal_dose_note": "Any quantity warrants a vet call."
+  },
+  {
+    "id": "t014",
+    "name": "Mushrooms (Wild)",
+    "slug": "wild-mushrooms",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Vomiting, diarrhea, abdominal pain, liver/kidney failure (Amanita species), neurological signs",
+    "action": "Emergency vet. If you cannot positively ID a mushroom as safe, treat as potentially deadly (Amanita phalloides is fatal with no antidote).",
+    "lethal_dose_note": "Amanita phalloides: a single cap can be fatal. Never guess with wild mushrooms."
+  },
+  {
+    "id": "t015",
+    "name": "Rhubarb",
+    "slug": "rhubarb",
+    "level": "toxic",
+    "species": ["dog"],
+    "symptoms": "Drooling, vomiting, diarrhea, lethargy, kidney failure (with large amounts)",
+    "action": "Contact vet. The leaves are most toxic; stalks less so but still problematic.",
+    "lethal_dose_note": "Leaves contain soluble oxalates and anthraquinones."
+  },
+  {
+    "id": "t016",
+    "name": "Cherries",
+    "slug": "cherries",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "GI upset; seeds/pits contain cyanide-releasing amygdalin",
+    "action": "Remove pits before giving any cherry. Pitted cherry flesh in very small amounts is not acutely toxic, but pits, stems, and leaves contain amygdalin. Avoid to be safe.",
+    "lethal_dose_note": "Pits are the hazard; a few pitted cherries are unlikely to cause harm."
+  },
+  {
+    "id": "t017",
+    "name": "Tomatoes (Green/Unripe)",
+    "slug": "tomatoes-green",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "Weakness, cardiac effects, GI upset (solanine toxicity)",
+    "action": "Ripe red tomatoes in small amounts are generally safe; the green parts (leaves, stems, unripe fruit) contain solanine and should be avoided.",
+    "lethal_dose_note": "Ripe tomatoes: low risk. Green parts: moderate concern."
+  },
+  {
+    "id": "t018",
+    "name": "Dairy Products",
+    "slug": "dairy",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "Diarrhea, gas, vomiting (lactose intolerance)",
+    "action": "Many dogs are lactose intolerant. Small amounts of hard cheese or plain yogurt are often tolerated; large amounts of milk, ice cream, or soft cheese can cause GI upset.",
+    "lethal_dose_note": "Not toxic; digestive intolerance."
+  },
+  {
+    "id": "t019",
+    "name": "Raw Salmon & Trout",
+    "slug": "raw-salmon",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "Vomiting, diarrhea, fever, lethargy (Salmon Poisoning Disease — Pacific Northwest specific)",
+    "action": "In Pacific Northwest regions, raw salmon can carry Neorickettsia helminthoeca which can be fatal. Cook salmon fully. Other raw fish carry parasites but salmon poisoning is the most serious concern.",
+    "lethal_dose_note": "Salmon Poisoning Disease can be fatal if untreated; very treatable with antibiotics if caught early."
+  },
+  {
+    "id": "t020",
+    "name": "Cooked Chicken (Plain)",
+    "slug": "cooked-chicken",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Plain cooked chicken (no seasoning, no onion, no garlic) is safe and easily digestible. Good as a bland diet addition.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t021",
+    "name": "Cooked Turkey (Plain)",
+    "slug": "cooked-turkey",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Plain cooked turkey without seasonings, skin, or bones is safe.",
+    "lethal_dose_note": "Safe. Avoid skin (high fat) and avoid with stuffing (onion/garlic)."
+  },
+  {
+    "id": "t022",
+    "name": "Carrots",
+    "slug": "carrots",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Excellent low-calorie snack. Both raw and cooked are safe. Good for teeth. High in beta-carotene.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t023",
+    "name": "Blueberries",
+    "slug": "blueberries",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Safe in moderation. High in antioxidants. Excellent treat option.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t024",
+    "name": "Watermelon (Seedless)",
+    "slug": "watermelon",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Hydrating and safe. Remove seeds and rind. The rind can cause GI upset.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t025",
+    "name": "Peanut Butter (Xylitol-Free)",
+    "slug": "peanut-butter",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None (if xylitol-free)",
+    "action": "Safe and popular treat. ALWAYS check the label — some brands use xylitol which is deadly. Choose natural, unsalted varieties. High in fat, so moderate amounts.",
+    "lethal_dose_note": "Safe if xylitol-free. Always check the label."
+  },
+  {
+    "id": "t026",
+    "name": "Peanuts",
+    "slug": "peanuts",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None in small amounts",
+    "action": "Unsalted, plain peanuts are safe in small amounts. High fat content — too many can cause digestive upset or pancreatitis.",
+    "lethal_dose_note": "Safe in moderation. Avoid salted varieties."
+  },
+  {
+    "id": "t027",
+    "name": "Bananas",
+    "slug": "bananas",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None in moderation",
+    "action": "Safe in small amounts. High in sugar so limit for diabetic or overweight dogs.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t028",
+    "name": "Apple (Flesh Only)",
+    "slug": "apple",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None (flesh only)",
+    "action": "Remove core and seeds. The flesh is safe and a good source of fiber and vitamin C.",
+    "lethal_dose_note": "Safe (flesh only). Seeds contain amygdalin — remove them."
+  },
+  {
+    "id": "t029",
+    "name": "Cooked Eggs",
+    "slug": "cooked-eggs",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Fully cooked eggs are a good protein source. Raw eggs carry Salmonella risk and contain avidin which inhibits biotin absorption — cook them.",
+    "lethal_dose_note": "Cooked: safe. Raw: not recommended."
+  },
+  {
+    "id": "t030",
+    "name": "Cooked White Rice",
+    "slug": "white-rice",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Safe and easily digestible. Classic bland diet staple alongside boiled chicken for GI upset.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t031",
+    "name": "Cooked Sweet Potato",
+    "slug": "sweet-potato",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Excellent source of vitamins. Serve plain and cooked (no butter, no seasoning). Remove skin for easier digestion.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t032",
+    "name": "Cucumber",
+    "slug": "cucumber",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Low calorie, hydrating snack. Safe and well-tolerated.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t033",
+    "name": "Pumpkin (Plain)",
+    "slug": "pumpkin",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Plain pumpkin puree (not pie filling) is excellent for digestive health. High in fiber, helps with both diarrhea and constipation.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t034",
+    "name": "Green Beans",
+    "slug": "green-beans",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Safe and nutritious. Good low-calorie treat or food extender for overweight dogs.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t035",
+    "name": "Broccoli",
+    "slug": "broccoli",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "GI upset in large amounts; isothiocyanates can irritate the digestive tract",
+    "action": "Safe in very small amounts (less than 10% of daily diet) as occasional treat. Larger amounts cause significant GI upset.",
+    "lethal_dose_note": "Florets are lower risk; stalks are a choking hazard."
+  },
+  {
+    "id": "t036",
+    "name": "Corn (Off the Cob)",
+    "slug": "corn",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None (kernels only)",
+    "action": "Corn kernels are safe in moderation. The cob is a choking and obstruction hazard — never give a dog the whole cob.",
+    "lethal_dose_note": "Kernels: safe. Cob: obstruction emergency risk."
+  },
+  {
+    "id": "t037",
+    "name": "Mango (Pitted)",
+    "slug": "mango",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None in moderation",
+    "action": "Remove skin and pit. The flesh is safe and nutritious. Pit is a choking hazard and contains cyanide.",
+    "lethal_dose_note": "Safe (flesh only)."
+  },
+  {
+    "id": "t038",
+    "name": "Peaches (Pitted)",
+    "slug": "peaches",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "GI upset if too much; pit contains cyanide (amygdalin)",
+    "action": "Remove the pit and stem entirely. The flesh in small amounts is safe; the pit is toxic and a choking hazard.",
+    "lethal_dose_note": "Flesh: safe in small amounts. Pit: toxic."
+  },
+  {
+    "id": "t039",
+    "name": "Strawberries",
+    "slug": "strawberries",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None in moderation",
+    "action": "Safe and a good source of vitamin C. High in sugar; limit for overweight or diabetic dogs.",
+    "lethal_dose_note": "Safe."
+  },
+  {
+    "id": "t040",
+    "name": "Cooked Salmon (Fully Cooked)",
+    "slug": "cooked-salmon",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None",
+    "action": "Excellent source of omega-3 fatty acids. Must be fully cooked — raw salmon can carry Salmon Poisoning Disease (fatal if untreated).",
+    "lethal_dose_note": "Cooked: safe and beneficial. Raw: serious risk."
+  },
+  {
+    "id": "t041",
+    "name": "Spinach",
+    "slug": "spinach",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "In very large amounts: kidney stress from oxalic acid",
+    "action": "Safe in very small quantities. Not recommended as a regular food due to oxalic acid content which can affect kidney function. Not a concern in tiny amounts.",
+    "lethal_dose_note": "Small amounts: negligible risk. Avoid in dogs with kidney disease."
+  },
+  {
+    "id": "t042",
+    "name": "Coconut & Coconut Oil",
+    "slug": "coconut",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "Loose stools, diarrhea if too much fat",
+    "action": "Not toxic, but high in medium-chain triglycerides. Small amounts are generally fine. Too much can cause GI upset. Coconut water is high in potassium — avoid.",
+    "lethal_dose_note": "Not toxic; digestive tolerance varies."
+  },
+  {
+    "id": "t043",
+    "name": "Milk",
+    "slug": "milk",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "Diarrhea, gas, vomiting (lactose intolerance)",
+    "action": "Most adult dogs are lactose intolerant. Small sips are unlikely to harm, but avoid regular feeding. Puppies can digest mother's milk; cow's milk is still problematic.",
+    "lethal_dose_note": "Not toxic; lactose intolerance issue."
+  },
+  {
+    "id": "t044",
+    "name": "Honey",
+    "slug": "honey",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "Blood sugar spike in diabetic dogs; botulism risk for puppies",
+    "action": "Safe for healthy adult dogs in very small amounts. Do not give to diabetic dogs or puppies under 1 year (botulism risk from Clostridium spores).",
+    "lethal_dose_note": "Not toxic for healthy adults; contraindicated for puppies and diabetic dogs."
+  },
+  {
+    "id": "t045",
+    "name": "Cinnamon",
+    "slug": "cinnamon",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "Irritation to mouth, skin, or digestive tract; if inhaled: coughing, choking",
+    "action": "Not acutely toxic, but irritating in large amounts. Small amounts in food are generally fine. Cinnamon oil is concentrated and more of a concern.",
+    "lethal_dose_note": "Not toxic in small amounts. Large amounts of cinnamon oil can cause problems."
+  },
+  {
+    "id": "t046",
+    "name": "Raw Meat (General)",
+    "slug": "raw-meat",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "Salmonella, Listeria, Campylobacter infection; parasites",
+    "action": "Raw meat carries bacterial and parasitic risks to both pets and people in the household. If feeding raw, use commercially prepared, pathogen-tested raw food. Avoid raw pork (trichinosis risk).",
+    "lethal_dose_note": "Risk varies by source and handling. Not inherently toxic but carries pathogen risk."
+  },
+  {
+    "id": "t047",
+    "name": "Mushrooms (Store-Bought, Common)",
+    "slug": "store-mushrooms",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None for standard edible varieties",
+    "action": "Common grocery store mushrooms (button, portobello, shiitake) are safe for dogs when plain and cooked. Wild mushrooms are a different story — never assume wild mushrooms are safe.",
+    "lethal_dose_note": "Store-bought edible varieties: safe. Wild: potentially deadly."
+  },
+  {
+    "id": "t048",
+    "name": "Bread (Plain)",
+    "slug": "bread",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None (small amounts)",
+    "action": "Plain bread in small amounts is not toxic. No nutritional benefit and high in carbohydrates. Avoid bread with raisins, onion, garlic, or xylitol.",
+    "lethal_dose_note": "Safe (plain). Bread with raisins/garlic/xylitol is dangerous."
+  },
+  {
+    "id": "t049",
+    "name": "Popcorn (Plain, Air-Popped)",
+    "slug": "popcorn",
+    "level": "caution",
+    "species": ["dog"],
+    "symptoms": "Choking on unpopped kernels; GI upset from buttered or salted varieties",
+    "action": "Plain, air-popped popcorn in small amounts is safe. Avoid buttered, salted, or flavored popcorn. Watch for unpopped kernels which are choking hazards.",
+    "lethal_dose_note": "Plain is safe. Flavored varieties can be problematic."
+  },
+  {
+    "id": "t050",
+    "name": "Peas",
+    "slug": "peas",
+    "level": "safe",
+    "species": ["dog"],
+    "symptoms": "None in moderation",
+    "action": "Fresh or frozen peas are safe. Avoid canned peas (high sodium). Some concern about peas in grain-free diets and dilated cardiomyopathy — discuss with your vet if it's a primary ingredient.",
+    "lethal_dose_note": "Safe as occasional treat."
+  }
+]
