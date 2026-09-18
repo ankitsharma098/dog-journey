@@ -53,6 +53,25 @@ class ScanQuotaRepository {
     }
   }
 
+  /// Remaining scans today — the "3 SCANS LEFT" chip on the scanner
+  /// screen. Same read as [hasQuota]; exposed as a count instead of a
+  /// bool since the chip needs the number, not just whether it's zero.
+  Future<Result<int>> remaining(String uid, {required int limit}) async {
+    try {
+      final row = await _table
+          .select('count')
+          .eq('user_id', uid)
+          .eq('kind', 'scans')
+          .eq('date', _today)
+          .maybeSingle();
+      final current = (row?['count'] as num?)?.toInt() ?? 0;
+      return Result.ok((limit - current).clamp(0, limit));
+    } catch (e, st) {
+      AppLogger.error('ScanQuota remaining $uid/$_today — failed', e, st);
+      return Result.err(mapSupabaseError(e));
+    }
+  }
+
   /// Reserves one unit of today's quota. Only call this after a scan
   /// is confirmed worth spending it on (model call already
   /// succeeded) — see [ScanRepository.findCached] and the cubit's

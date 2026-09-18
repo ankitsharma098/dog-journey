@@ -1,16 +1,77 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/widgets/glass/glass_container.dart';
-import '../../bloc/billing_cubit.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/app_snackbar.dart';
+import '../../../../core/widgets/legal/legal_document_screen.dart';
+import '../../bloc/billing_cubit.dart';
 
-/// Paywall sheet presented when user hits a pro feature gate.
-class PaywallSheet extends StatelessWidget {
+/// The bottom-sheet paywall — for soft teasers (post-scan, nutrition
+/// entry). See README § "10. Paywall — bottom sheet (default)". The
+/// full-screen alternate (README § 11) is for hard gates; this app
+/// doesn't have a distinct hard-gate flow yet, so this single surface
+/// covers both until one is needed.
+/// Real savings, not an assumed "50%" — compares the yearly package's
+/// normalised monthly-equivalent price against the actual monthly
+/// package's price, so this stays correct if pricing ever changes in
+/// App Store Connect / Play Console without a code change. Null
+/// (renders as just the period) whenever both prices aren't available
+/// to compare, rather than guessing.
+String? _yearlySavingsLabel(List<Package?> packages) {
+  StoreProduct? monthly;
+  StoreProduct? yearly;
+  for (final pkg in packages) {
+    final period = pkg?.storeProduct.subscriptionPeriod;
+    if (period == null) continue;
+    if (period.contains('Y')) yearly = pkg!.storeProduct;
+    if (period.contains('M') && !period.contains('Y')) {
+      monthly = pkg!.storeProduct;
+    }
+  }
+  final monthlyPrice = monthly?.price;
+  final yearlyPerMonth = yearly?.pricePerMonth;
+  if (monthlyPrice == null || monthlyPrice <= 0 || yearlyPerMonth == null) {
+    return null;
+  }
+  final pct = ((1 - (yearlyPerMonth / monthlyPrice)) * 100).round();
+  return pct > 0 ? 'save $pct%' : null;
+}
+
+class PaywallSheet extends StatefulWidget {
   const PaywallSheet({super.key});
+
+  @override
+  State<PaywallSheet> createState() => _PaywallSheetState();
+}
+
+class _PaywallSheetState extends State<PaywallSheet>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _sheen;
+
+  static const _perks = [
+    'Unlimited AI vet chat',
+    'Every dog in the house, one account',
+    'Photos backed up, forever',
+    'Breed health watchlists',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _sheen = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 3600),
+    )..repeat();
+  }
+
+  @override
+  void dispose() {
+    _sheen.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,109 +81,214 @@ class PaywallSheet extends StatelessWidget {
       },
       builder: (context, state) {
         final offering = state.offerings?.current;
-        return Container(
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Color(0xFF14142B), Color(0xFF1E1E40)],
+        final packages = offering?.availablePackages ?? const <Package?>[null];
+        final savingsLabel = _yearlySavingsLabel(packages);
+
+        return ClipRRect(
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(26)),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment(-0.3, -1),
+                end: Alignment(0.3, 1),
+                colors: [Color(0xFF2B2741), Color(0xFF1D1F2C)],
+                stops: [0, 0.7],
+              ),
+              border: Border(
+                top: BorderSide(
+                  color: AppColors.champagne.withValues(alpha: 0.45),
+                ),
+              ),
             ),
-            borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
-          ),
-          child: SingleChildScrollView(
-            padding: EdgeInsets.fromLTRB(
-              24,
-              12,
-              24,
-              24 + MediaQuery.of(context).padding.bottom,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
+            child: Stack(
               children: [
-                // Drag handle
-                Center(
-                  child: Container(
-                    width: 36, height: 4,
-                    decoration: BoxDecoration(
-                      color: Colors.white30,
-                      borderRadius: BorderRadius.circular(2),
+                Positioned.fill(
+                  child: AnimatedBuilder(
+                    animation: _sheen,
+                    builder: (context, _) => IgnorePointer(
+                      child: Align(
+                        alignment: Alignment(-3 + _sheen.value * 6, 0),
+                        child: Transform.rotate(
+                          angle: -0.35,
+                          child: Container(
+                            width: 140,
+                            height: 900,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [
+                                  Colors.transparent,
+                                  AppColors.champagne.withValues(alpha: 0.09),
+                                  Colors.transparent,
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-                const SizedBox(height: 24),
-                // Icon
-                Container(
-                  width: 72,
-                  height: 72,
-                  decoration: BoxDecoration(
-                    gradient: const LinearGradient(
-                      colors: [AppColors.primary, Color(0xFFFF9950)],
-                    ),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors.primary.withValues(alpha: 0.4),
-                        blurRadius: 20,
-                        offset: const Offset(0, 8),
+                SingleChildScrollView(
+                  padding: EdgeInsets.fromLTRB(
+                    22,
+                    16,
+                    22,
+                    28 + MediaQuery.of(context).padding.bottom,
+                  ),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 38,
+                        height: 4,
+                        margin: const EdgeInsets.only(bottom: 18),
+                        decoration: BoxDecoration(
+                          color: Colors.white.withValues(alpha: 0.2),
+                          borderRadius: BorderRadius.circular(2),
+                        ),
+                      ),
+                      Container(
+                        width: 56,
+                        height: 56,
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          border: Border.all(
+                            color: AppColors.champagne.withValues(alpha: 0.6),
+                          ),
+                          color: AppColors.champagne.withValues(alpha: 0.08),
+                        ),
+                        alignment: Alignment.center,
+                        child: const Icon(
+                          PhosphorIconsFill.crownSimple,
+                          size: 24,
+                          color: AppColors.champagne,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        'PAWJOURNEY PRO',
+                        style: AppTextStyles.engravedLabel.copyWith(
+                          letterSpacing: 0.32 * 9.5,
+                          color: AppColors.champagne,
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Text(
+                        'Unlimited vet chat, and nothing left to memory.',
+                        textAlign: TextAlign.center,
+                        style: AppTextStyles.screenTitle.copyWith(
+                          fontSize: 22,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const SizedBox(height: 20),
+                      Column(
+                        children: _perks
+                            .map(
+                              (perk) => Padding(
+                                padding: const EdgeInsets.only(bottom: 9),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      PhosphorIconsFill.checkCircle,
+                                      size: 16,
+                                      color: AppColors.champagne,
+                                    ),
+                                    const SizedBox(width: 10),
+                                    Expanded(
+                                      child: Text(
+                                        perk,
+                                        style: AppTextStyles.body.copyWith(
+                                          color: Colors.white.withValues(
+                                            alpha: 0.85,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ),
+                      const SizedBox(height: 10),
+                      // While the very first RevenueCat/StoreKit round
+                      // trip is in flight (a few seconds on a cold
+                      // start), show a spinner rather than the
+                      // "Unavailable" fallback — that fallback means
+                      // the fetch genuinely came back empty, which
+                      // isn't true yet during this window and looks
+                      // broken to a reviewer who taps in fast.
+                      if (state.status == BillingStatus.loading)
+                        const SizedBox(
+                          height: 92,
+                          child: Center(
+                            child: SizedBox(
+                              width: 22,
+                              height: 22,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2.5,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        )
+                      else
+                        Row(
+                          children: [
+                            for (final pkg in packages) ...[
+                              Expanded(
+                                child: _PlanCard(
+                                  package: pkg,
+                                  savingsLabel:
+                                      (pkg?.storeProduct.subscriptionPeriod
+                                              ?.contains('Y') ??
+                                          false)
+                                      ? savingsLabel
+                                      : null,
+                                ),
+                              ),
+                              if (pkg != packages.last)
+                                const SizedBox(width: 8),
+                            ],
+                          ],
+                        ),
+                      const SizedBox(height: 16),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _FooterLink(
+                            label: 'Restore purchases',
+                            onTap: () =>
+                                context.read<BillingCubit>().restorePurchases(),
+                          ),
+                          const SizedBox(width: 18),
+                          _FooterLink(
+                            label: 'Terms',
+                            onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const LegalDocumentScreen(
+                                  doc: LegalDoc.terms,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(width: 18),
+                          _FooterLink(
+                            label: 'Privacy',
+                            onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (_) => const LegalDocumentScreen(
+                                  doc: LegalDoc.privacy,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ],
-                  ),
-                  child: const Icon(Icons.auto_awesome_rounded,
-                      color: Colors.white, size: 36),
-                ),
-                const SizedBox(height: 20),
-                Text(
-                  'PawJourney Pro',
-                  style: GoogleFonts.sora(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                Text(
-                  'Unlock unlimited AI vet chats, PDF export, and premium features for your dog.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.65),
-                    fontSize: 14,
-                    height: 1.5,
-                  ),
-                ),
-                const SizedBox(height: 24),
-                // Feature list
-                _FeatureList(),
-                const SizedBox(height: 24),
-                // Pricing packages
-                if (offering != null) ...[
-                  ...offering.availablePackages.map(
-                    (pkg) => _PackageCard(package: pkg),
-                  ),
-                ] else ...[
-                  _PackageCard(package: null),
-                ],
-                const SizedBox(height: 16),
-                // Restore
-                TextButton(
-                  onPressed: () =>
-                      context.read<BillingCubit>().restorePurchases(),
-                  child: Text(
-                    'Restore purchases',
-                    style: TextStyle(
-                      color: Colors.white.withValues(alpha: 0.5),
-                      fontSize: 12,
-                    ),
-                  ),
-                ),
-                // Legal
-                Text(
-                  'Subscription auto-renews. Cancel anytime in App Store/Play Store settings.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white.withValues(alpha: 0.3),
-                    fontSize: 10,
-                    height: 1.4,
                   ),
                 ),
               ],
@@ -134,149 +300,111 @@ class PaywallSheet extends StatelessWidget {
   }
 }
 
-class _FeatureList extends StatelessWidget {
+class _FooterLink extends StatelessWidget {
+  const _FooterLink({required this.label, required this.onTap});
+  final String label;
+  final VoidCallback onTap;
+
   @override
   Widget build(BuildContext context) {
-    const features = [
-      (Icons.chat_rounded, 'Unlimited AI vet chats'),
-      (Icons.vaccines_rounded, 'Full health passport export'),
-      (Icons.picture_as_pdf_rounded, 'PDF export & vet sharing'),
-      (Icons.notifications_active_rounded, 'Smart reminders'),
-      (Icons.auto_stories_rounded, 'Unlimited memory timeline'),
-      (Icons.cloud_sync_rounded, 'Multi-device sync'),
-    ];
-
-    return GlassContainer(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        children: features.map((f) {
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 6),
-            child: Row(
-              children: [
-                Icon(f.$1, color: AppColors.primary, size: 18),
-                const SizedBox(width: 12),
-                Text(
-                  f.$2,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 13,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          );
-        }).toList(),
+    return GestureDetector(
+      onTap: onTap,
+      child: Text(
+        label,
+        style: AppTextStyles.caption.copyWith(
+          color: Colors.white.withValues(alpha: 0.45),
+        ),
       ),
     );
   }
 }
 
-class _PackageCard extends StatefulWidget {
-  const _PackageCard({this.package});
+class _PlanCard extends StatefulWidget {
+  const _PlanCard({this.package, this.savingsLabel});
   final Package? package;
+  final String? savingsLabel;
 
   @override
-  State<_PackageCard> createState() => _PackageCardState();
+  State<_PlanCard> createState() => _PlanCardState();
 }
 
-class _PackageCardState extends State<_PackageCard> {
+class _PlanCardState extends State<_PlanCard> {
   bool _loading = false;
 
   @override
   Widget build(BuildContext context) {
     final pkg = widget.package;
-    final price = pkg?.storeProduct.priceString ?? '\$6.99';
-    final period = pkg?.storeProduct.subscriptionPeriod ?? 'P1M';
-    final label = period.contains('Y') ? 'year' : 'month';
+    // No fake "$9.99" — if RevenueCat's offerings failed to load, this
+    // card must look and behave unavailable rather than pass off a
+    // guessed price as real, tappable pricing that can't actually
+    // charge anyone (see _purchase's no-op below).
+    final unavailable = pkg == null;
+    final price = pkg?.storeProduct.priceString;
+    final period = pkg?.storeProduct.subscriptionPeriod ?? '';
     final isYearly = period.contains('Y');
+    final dimAlpha = unavailable ? 0.4 : 1.0;
 
-    return Container(
-      margin: const EdgeInsets.only(bottom: 10),
-      decoration: BoxDecoration(
-        gradient: isYearly
-            ? const LinearGradient(
-                colors: [AppColors.primary, Color(0xFFFF9950)],
-              )
-            : null,
-        color: isYearly ? null : Colors.white.withValues(alpha: 0.08),
-        borderRadius: BorderRadius.circular(16),
-        border: !isYearly
-            ? Border.all(
-                color: Colors.white.withValues(alpha: 0.15),
-                width: 0.5,
-              )
-            : null,
-      ),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-          borderRadius: BorderRadius.circular(16),
-          onTap: _loading ? null : _purchase,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            isYearly ? 'Annual' : 'Monthly',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w700,
-                              fontSize: 16,
-                            ),
-                          ),
-                          if (isYearly) ...[
-                            const SizedBox(width: 8),
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 8, vertical: 2),
-                              decoration: BoxDecoration(
-                                color: Colors.white.withValues(alpha: 0.2),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: const Text(
-                                'BEST VALUE',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w700,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ],
-                      ),
-                      Text(
-                        '$price / $label',
-                        style: TextStyle(
-                          color: Colors.white.withValues(alpha: 0.75),
-                          fontSize: 13,
-                        ),
-                      ),
-                    ],
-                  ),
+    return GestureDetector(
+      onTap: unavailable || _loading ? null : _purchase,
+      child: Opacity(
+        opacity: dimAlpha,
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 6),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: isYearly
+                  ? AppColors.champagne
+                  : Colors.white.withValues(alpha: 0.16),
+            ),
+            color: isYearly
+                ? AppColors.champagne.withValues(alpha: 0.12)
+                : Colors.transparent,
+          ),
+          child: Column(
+            children: [
+              Text(
+                isYearly
+                    ? 'YEARLY'
+                    : (period.contains('W') ? 'WEEKLY' : 'MONTHLY'),
+                style: AppTextStyles.chipLabel.copyWith(
+                  fontSize: 10.5,
+                  color: isYearly
+                      ? AppColors.champagne
+                      : Colors.white.withValues(alpha: 0.6),
                 ),
-                if (_loading)
-                  const SizedBox(
-                    width: 20,
-                    height: 20,
+              ),
+              const SizedBox(height: 6),
+              if (_loading)
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 4),
+                  child: SizedBox(
+                    width: 17,
+                    height: 17,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
                       color: Colors.white,
                     ),
-                  )
-                else
-                  const Icon(Icons.arrow_forward_ios_rounded,
-                      color: Colors.white70, size: 16),
-              ],
-            ),
+                  ),
+                )
+              else
+                Text(
+                  price ?? '—',
+                  style: AppTextStyles.listRowTitle.copyWith(
+                    fontSize: 17,
+                    color: Colors.white,
+                  ),
+                ),
+              const SizedBox(height: 3),
+              Text(
+                unavailable
+                    ? 'Unavailable'
+                    : (widget.savingsLabel ?? (isYearly ? '' : 'per month')),
+                style: AppTextStyles.caption.copyWith(
+                  color: Colors.white.withValues(alpha: 0.5),
+                ),
+              ),
+            ],
           ),
         ),
       ),

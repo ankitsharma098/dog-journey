@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../../core/theme/app_colors.dart';
-import '../../../../core/widgets/primary_button.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/widgets/app_snackbar.dart';
 import '../../bloc/nutrition_cubit.dart';
 import '../../data/models/nutrition_models.dart';
-import '../../../../core/widgets/app_snackbar.dart';
 
 /// Bottom sheet to generate or update a feeding plan.
 class GeneratePlanSheet extends StatefulWidget {
@@ -45,15 +44,15 @@ class _GeneratePlanSheetState extends State<GeneratePlanSheet> {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
     final bottomPad = MediaQuery.of(context).viewInsets.bottom;
     return Container(
       decoration: BoxDecoration(
-        color: Theme.of(context).brightness == Brightness.dark
-            ? AppColors.cardDark
-            : AppColors.cardLight,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        color: AppColors.sheet(brightness),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(26)),
+        border: Border(top: BorderSide(color: AppColors.hairline(brightness))),
       ),
-      padding: EdgeInsets.fromLTRB(20, 12, 20, 20 + bottomPad),
+      padding: EdgeInsets.fromLTRB(20, 14, 20, 26 + bottomPad),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -61,71 +60,89 @@ class _GeneratePlanSheetState extends State<GeneratePlanSheet> {
           children: [
             Center(
               child: Container(
-                width: 36, height: 4,
+                width: 38,
+                height: 4,
+                margin: const EdgeInsets.only(bottom: 16),
                 decoration: BoxDecoration(
-                  color: AppColors.dividerLight,
+                  color: AppColors.textPrimary(brightness).withValues(alpha: 0.2),
                   borderRadius: BorderRadius.circular(2),
                 ),
               ),
             ),
-            const SizedBox(height: 16),
             Text(
-              'Feeding Plan',
-              style: GoogleFonts.sora(fontSize: 18, fontWeight: FontWeight.w700),
+              'Feeding plan',
+              style: AppTextStyles.sheetTitle.copyWith(color: AppColors.textPrimary(brightness)),
             ),
             const SizedBox(height: 4),
-            const Text(
-              'Calorie target is calculated using the Resting Energy Requirement formula (70 × kg^0.75 × MER factor).',
-              style: TextStyle(
-                color: AppColors.textSecondaryLight,
-                fontSize: 12,
-                height: 1.4,
+            Text(
+              'Calorie target uses the Resting Energy Requirement formula '
+              '(70 × kg^0.75 × MER factor).',
+              style: AppTextStyles.secondaryLine.copyWith(
+                color: AppColors.textSecondary(brightness),
               ),
             ),
-            const SizedBox(height: 16),
-            // Goal selector
-            Text('Goal', style: GoogleFonts.inter(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.textSecondaryLight)),
-            const SizedBox(height: 8),
+            const SizedBox(height: 18),
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: PlanGoal.values.map((g) => ChoiceChip(
-                label: Text(g.label),
-                selected: g == _goal,
-                onSelected: (v) { if (v) setState(() => _goal = g); },
-                selectedColor: AppColors.primary.withValues(alpha: 0.15),
-                labelStyle: TextStyle(
-                  color: g == _goal ? AppColors.primary : AppColors.textSecondaryLight,
-                  fontWeight: g == _goal ? FontWeight.w600 : FontWeight.normal,
-                ),
-              )).toList(),
+              children: PlanGoal.values.map((g) {
+                final selected = g == _goal;
+                return GestureDetector(
+                  onTap: () => setState(() => _goal = g),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: selected ? AppColors.accent.withValues(alpha: 0.18) : Colors.transparent,
+                      border: Border.all(
+                        color: selected ? AppColors.accent : AppColors.hairline(brightness),
+                      ),
+                    ),
+                    child: Text(
+                      g.label,
+                      style: AppTextStyles.listRowTitle.copyWith(
+                        fontSize: 12.5,
+                        color: selected
+                            ? AppColors.textPrimary(brightness)
+                            : AppColors.textSecondary(brightness),
+                      ),
+                    ),
+                  ),
+                );
+              }).toList(),
             ),
             const SizedBox(height: 16),
             TextField(
               controller: _weightCtrl,
               keyboardType: const TextInputType.numberWithOptions(decimal: true),
-              decoration: InputDecoration(
-                labelText: 'Current weight (kg)',
-                hintText: 'e.g. 15.5',
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-              ),
+              style: AppTextStyles.body.copyWith(height: 1, color: AppColors.textPrimary(brightness)),
+              decoration: const InputDecoration(hintText: 'Current weight (kg) — e.g. 15.5'),
             ),
             if (_goal == PlanGoal.lose || _goal == PlanGoal.gain) ...[
               const SizedBox(height: 12),
               TextField(
                 controller: _targetCtrl,
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
-                decoration: InputDecoration(
-                  labelText: 'Target weight (kg)',
-                  hintText: 'e.g. 12.0',
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-                ),
+                style: AppTextStyles.body.copyWith(height: 1, color: AppColors.textPrimary(brightness)),
+                decoration: const InputDecoration(hintText: 'Target weight (kg) — e.g. 12.0'),
               ),
             ],
-            const SizedBox(height: 24),
-            PrimaryButton(
-              label: _saving ? 'Calculating…' : 'Generate Plan',
-              onPressed: _saving ? null : _generate,
+            const SizedBox(height: 20),
+            SizedBox(
+              width: double.infinity,
+              child: OutlinedButton(
+                onPressed: _saving ? null : _generate,
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size(0, 52),
+                  backgroundColor: AppColors.accent.withValues(alpha: 0.18),
+                  side: const BorderSide(color: AppColors.accent),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                ),
+                child: Text(
+                  _saving ? 'Calculating…' : 'Generate plan',
+                  style: AppTextStyles.listRowTitle.copyWith(color: AppColors.textPrimary(brightness)),
+                ),
+              ),
             ),
           ],
         ),

@@ -76,6 +76,13 @@ class HealthRecordRepository extends SupabaseRepository<HealthRecord> {
     return updateFields(id, {'is_active': false});
   }
 
+  /// Completes a due item in place (Care calendar's "Done" action) by
+  /// clearing its due date — it drops out of every due-soon/overdue
+  /// query without deleting the underlying record.
+  Future<Result<void>> markDone(String id) {
+    return updateFields(id, {'due_on': null});
+  }
+
   /// Weight records for charting: all weight-type records for a pet, oldest first.
   Future<Result<List<HealthRecord>>> weightHistory(String petId) {
     return queryOnce(

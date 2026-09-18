@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/data/supabase_storage_service.dart';
 import '../../../core/error/failure.dart';
 import '../../../core/error/result.dart';
 import '../../../core/logging/app_logger.dart';
@@ -28,14 +30,17 @@ class AddPetCubit extends Cubit<AddPetState> {
   AddPetCubit({
     required PetRepository petRepository,
     required UserRepository userRepository,
+    required SupabaseStorageService storageService,
     required String ownerId,
   }) : _petRepository = petRepository,
        _userRepository = userRepository,
+       _storageService = storageService,
        _ownerId = ownerId,
        super(const AddPetState());
 
   final PetRepository _petRepository;
   final UserRepository _userRepository;
+  final SupabaseStorageService _storageService;
   final String _ownerId;
 
   Future<void> submit({
@@ -46,8 +51,23 @@ class AddPetCubit extends Cubit<AddPetState> {
     DateTime? adoptedDate,
     String? breedId,
     List<Map<String, dynamic>>? breedMix,
+    Uint8List? photoBytes,
   }) async {
     emit(state.copyWith(status: AuthFormStatus.submitting));
+
+    String? photoUrl;
+    if (photoBytes != null) {
+      try {
+        photoUrl = await _storageService.upload(
+          photoBytes,
+          '$_ownerId/pets/${DateTime.now().millisecondsSinceEpoch}.jpg',
+        );
+      } catch (e, st) {
+        // A failed photo upload shouldn't block onboarding — the dog
+        // still gets a passport, just without a photo yet.
+        AppLogger.error('AddPetCubit photo upload failed', e, st);
+      }
+    }
 
     final result = await _petRepository.add(
       Pet(
@@ -59,6 +79,7 @@ class AddPetCubit extends Cubit<AddPetState> {
         adoptedDate: adoptedDate,
         breedId: breedId,
         breedMix: breedMix ?? const [],
+        photoUrl: photoUrl,
       ),
     );
 

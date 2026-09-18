@@ -8,90 +8,111 @@ abstract final class AppTheme {
   static ThemeData dark = _build(Brightness.dark);
 
   static ThemeData _build(Brightness brightness) {
-    final isDark = brightness == Brightness.dark;
+    final canvas = AppColors.canvas(brightness);
+    final card = AppColors.card(brightness);
+    final hairline = AppColors.hairline(brightness);
+    final accent = AppColors.accentOn(brightness);
+    final textPrimary = AppColors.textPrimary(brightness);
+    final textSecondary = AppColors.textSecondary(brightness);
+
     final colorScheme = ColorScheme.fromSeed(
-      seedColor: AppColors.primary,
+      seedColor: accent,
       brightness: brightness,
-      surface: isDark ? AppColors.canvasDark : AppColors.canvasLight,
+      surface: canvas,
     );
 
     return ThemeData(
       useMaterial3: true,
       brightness: brightness,
       colorScheme: colorScheme,
-      scaffoldBackgroundColor: isDark ? AppColors.canvasDark : AppColors.canvasLight,
+      scaffoldBackgroundColor: canvas,
       textTheme: AppTextStyles.textTheme(brightness),
       appBarTheme: AppBarTheme(
-        backgroundColor: isDark ? AppColors.canvasDark : AppColors.canvasLight,
+        backgroundColor: canvas,
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
-        iconTheme: IconThemeData(
-          color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
-        ),
-        titleTextStyle: TextStyle(
-          color: isDark ? AppColors.textPrimaryDark : AppColors.textPrimaryLight,
+        iconTheme: IconThemeData(color: textPrimary),
+        titleTextStyle: AppTextStyles.sheetTitle.copyWith(
+          color: textPrimary,
           fontSize: 18,
-          fontWeight: FontWeight.w600,
         ),
       ),
+      // Royal cards are an opaque surface plus a 1px hairline — no
+      // drop shadow; the "elevation" reads as an edge, not a shadow.
       cardTheme: CardThemeData(
-        color: isDark ? AppColors.cardDark : AppColors.cardLight,
-        elevation: isDark ? 0 : 4,
-        shadowColor: isDark ? Colors.transparent : Colors.black12,
+        color: card,
+        elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
-          side: BorderSide(
-            color: isDark ? AppColors.cardBorderDark : AppColors.cardBorderLight,
-            width: 1,
-          ),
+          borderRadius: BorderRadius.circular(18),
+          side: BorderSide(color: hairline, width: 1),
         ),
       ),
+      // Outlined-with-tint, never a flat accent fill — matches every
+      // primary CTA in the design reference.
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: AppColors.primary,
-          foregroundColor: Colors.white,
+          backgroundColor: accent.withValues(alpha: 0.14),
+          foregroundColor: textPrimary,
+          disabledBackgroundColor: hairline,
+          disabledForegroundColor: textSecondary,
           elevation: 0,
+          side: BorderSide(color: accent),
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(14),
           ),
-          textStyle: const TextStyle(fontWeight: FontWeight.w700),
+          textStyle: AppTextStyles.listRowTitle.copyWith(fontSize: 15),
+        ),
+      ),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          foregroundColor: accent,
+          side: BorderSide(color: accent.withValues(alpha: 0.5)),
+          padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(14),
+          ),
+          textStyle: AppTextStyles.listRowTitle,
+        ),
+      ),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: AppColors.accentLight,
+          textStyle: AppTextStyles.listRowTitle.copyWith(fontSize: 12),
         ),
       ),
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
-        fillColor: isDark ? AppColors.chipFillDark : AppColors.chipFillLight,
+        fillColor: card,
+        hintStyle: AppTextStyles.body.copyWith(color: textSecondary, height: 1),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide.none,
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(color: hairline),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: BorderSide(
-            color: isDark ? AppColors.dividerDark : AppColors.dividerLight,
-            width: 1,
-          ),
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(color: hairline),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(
-            color: AppColors.primary,
-            width: 2,
-          ),
+          borderRadius: BorderRadius.circular(14),
+          borderSide: BorderSide(color: accent, width: 2),
         ),
         contentPadding: const EdgeInsets.symmetric(
-          horizontal: 16,
-          vertical: 16,
+          horizontal: 15,
+          vertical: 15,
         ),
+      ),
+      dividerTheme: DividerThemeData(
+        color: AppColors.divider(brightness),
+        thickness: 1,
+        space: 1,
       ),
       bottomNavigationBarTheme: BottomNavigationBarThemeData(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        selectedItemColor: AppColors.primary,
-        unselectedItemColor: isDark
-            ? AppColors.textSecondaryDark
-            : AppColors.textSecondaryLight,
+        selectedItemColor: AppColors.accentLight,
+        unselectedItemColor: AppColors.textTertiary(brightness),
       ),
     );
   }

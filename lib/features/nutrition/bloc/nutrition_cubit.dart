@@ -15,6 +15,7 @@ class NutritionState {
     this.activePlan,
     this.todayLogs = const [],
     this.foodItems = const [],
+    this.quickAddItems = const [],
     this.errorMessage,
   });
 
@@ -22,6 +23,9 @@ class NutritionState {
   final FeedingPlan? activePlan;
   final List<FoodLog> todayLogs;
   final List<FoodItem> foodItems;
+  /// The pet's most recently logged distinct items — Nutrition's
+  /// "Quick add" chips (README § "8. Nutrition").
+  final List<FoodLog> quickAddItems;
   final String? errorMessage;
 
   int get totalKcalToday => todayLogs.fold(0, (sum, l) => sum + (l.kcal ?? 0));
@@ -40,12 +44,14 @@ class NutritionState {
     FeedingPlan? activePlan,
     List<FoodLog>? todayLogs,
     List<FoodItem>? foodItems,
+    List<FoodLog>? quickAddItems,
     String? errorMessage,
   }) => NutritionState(
     status: status ?? this.status,
     activePlan: activePlan ?? this.activePlan,
     todayLogs: todayLogs ?? this.todayLogs,
     foodItems: foodItems ?? this.foodItems,
+    quickAddItems: quickAddItems ?? this.quickAddItems,
     errorMessage: errorMessage ?? this.errorMessage,
   );
 }
@@ -78,10 +84,12 @@ class NutritionCubit extends Cubit<NutritionState> {
     final planFuture = _planRepo.getActivePlan(_petId);
     final logsFuture = _logRepo.getDailyLogs(_petId, DateTime.now());
     final itemsFuture = _itemRepo.all();
+    final recentFuture = _logRepo.recentLogs(_petId);
 
     final planResult = await planFuture;
     final logsResult = await logsFuture;
     final items = await itemsFuture;
+    final recentResult = await recentFuture;
     if (isClosed) return;
 
     if (planResult case Err(:final failure)) {
@@ -109,8 +117,21 @@ class NutritionCubit extends Cubit<NutritionState> {
         activePlan: planResult.fold((v) => v, (_) => null),
         todayLogs: logsResult.fold((v) => v, (_) => <FoodLog>[]),
         foodItems: items,
+        quickAddItems: _dedupeByName(recentResult.fold((v) => v, (_) => const [])),
       ),
     );
+  }
+
+  /// Keeps the first (most recent, since [recentLogs] is newest-first)
+  /// occurrence of each distinct item name, capped at 4 chips.
+  List<FoodLog> _dedupeByName(List<FoodLog> logs) {
+    final seen = <String>{};
+    final result = <FoodLog>[];
+    for (final log in logs) {
+      if (seen.add(log.itemText.toLowerCase())) result.add(log);
+      if (result.length == 4) break;
+    }
+    return result;
   }
 
   void retry() {

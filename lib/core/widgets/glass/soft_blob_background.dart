@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../../theme/app_colors.dart';
 
-/// The soft, low-opacity color blobs behind every screen in
-/// design-ref/img.png. Built from radial gradients (not ImageFilter.blur)
-/// so it costs nothing to keep mounted behind scrolling content.
+/// Flat canvas behind every screen — the Royal system's "Nocturne
+/// ground" is a solid deep ink colour, not the decorative blurred
+/// blobs of the previous glass look. Kept as its own widget (rather
+/// than inlining `Container(color: ...)` at each call site) so a
+/// future screen-specific radial gradient (onboarding, paywall) can
+/// still layer on top of a single source of truth for the base colour.
 class SoftBlobBackground extends StatelessWidget {
   const SoftBlobBackground({super.key, required this.child});
 
@@ -12,7 +15,7 @@ class SoftBlobBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final brightness = Theme.of(context).brightness;
 
     // Scaffold.body hands its child loose constraints, not tight ones —
     // without this SizedBox.expand, a short child (anything that isn't
@@ -20,50 +23,9 @@ class SoftBlobBackground extends StatelessWidget {
     // sized to the content instead of the screen, and Flutter's raw
     // canvas (black) shows through below it.
     return SizedBox.expand(
-      child: Container(
-        color: isDark ? AppColors.canvasDark : AppColors.canvasLight,
-        child: Stack(
-          children: [
-            Positioned(
-              top: -120,
-              right: -100,
-              child: _Blob(color: AppColors.blobCool, size: 320, dark: isDark),
-            ),
-            Positioned(
-              bottom: -100,
-              left: -120,
-              child: _Blob(color: AppColors.blobWarm, size: 340, dark: isDark),
-            ),
-            child,
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _Blob extends StatelessWidget {
-  const _Blob({required this.color, required this.size, required this.dark});
-
-  final Color color;
-  final double size;
-  final bool dark;
-
-  @override
-  Widget build(BuildContext context) {
-    return IgnorePointer(
-      child: Container(
-        width: size,
-        height: size,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: RadialGradient(
-            colors: [
-              color.withValues(alpha: dark ? 0.16 : 0.35),
-              color.withValues(alpha: 0),
-            ],
-          ),
-        ),
+      child: ColoredBox(
+        color: AppColors.canvas(brightness),
+        child: child,
       ),
     );
   }

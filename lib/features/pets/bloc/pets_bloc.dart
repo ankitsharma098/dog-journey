@@ -27,18 +27,53 @@ class _PetsListChanged extends PetsEvent {
   final Result<List<Pet>> result;
 }
 
+/// Dispatched from the pet switcher — see
+/// design-ref/design_handoff_royal_redesign 2/README.md § "Multi-dog
+/// 2a". Every tab reads [PetsState.activePet] instead of `pets.first`
+/// so switching here is instantly visible everywhere.
+class SelectPet extends PetsEvent {
+  const SelectPet(this.petId);
+  final String petId;
+}
+
 enum PetsStatus { unknown, loaded, error }
 
 class PetsState {
-  const PetsState({this.status = PetsStatus.unknown, this.pets = const []});
+  const PetsState({
+    this.status = PetsStatus.unknown,
+    this.pets = const [],
+    this.activePetId,
+  });
 
   final PetsStatus status;
   final List<Pet> pets;
+  final String? activePetId;
 
   bool get hasPets => pets.isNotEmpty;
 
-  PetsState copyWith({PetsStatus? status, List<Pet>? pets}) {
-    return PetsState(status: status ?? this.status, pets: pets ?? this.pets);
+  /// The dog every screen should show — the explicitly-selected one if
+  /// it still exists, otherwise the first (oldest-created) pet. Falls
+  /// back silently rather than throwing so a deleted/stale
+  /// [activePetId] never blanks the whole app.
+  Pet? get activePet {
+    if (pets.isEmpty) return null;
+    if (activePetId == null) return pets.first;
+    for (final pet in pets) {
+      if (pet.id == activePetId) return pet;
+    }
+    return pets.first;
+  }
+
+  PetsState copyWith({
+    PetsStatus? status,
+    List<Pet>? pets,
+    String? activePetId,
+  }) {
+    return PetsState(
+      status: status ?? this.status,
+      pets: pets ?? this.pets,
+      activePetId: activePetId ?? this.activePetId,
+    );
   }
 }
 
@@ -56,6 +91,7 @@ class PetsBloc extends Bloc<PetsEvent, PetsState> {
     on<PetsSubscriptionRequested>(_onSubscriptionRequested);
     on<_PetsOwnerChanged>(_onOwnerChanged);
     on<_PetsListChanged>(_onListChanged);
+    on<SelectPet>(_onSelectPet);
   }
 
   final PetRepository _petRepository;
@@ -109,6 +145,10 @@ class PetsBloc extends Bloc<PetsEvent, PetsState> {
         AppLogger.error('PetsBloc failed to load pets — ${failure.message}');
         emit(state.copyWith(status: PetsStatus.error));
     }
+  }
+
+  void _onSelectPet(SelectPet event, Emitter<PetsState> emit) {
+    emit(state.copyWith(activePetId: event.petId));
   }
 
   @override

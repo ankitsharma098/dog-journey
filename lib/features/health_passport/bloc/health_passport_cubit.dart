@@ -108,7 +108,7 @@ class HealthPassportCubit extends Cubit<HealthPassportState> {
 
   Future<Result<String>> addRecord(HealthRecord record) async {
     final result = await _healthRecordRepository.addRecord(
-      record.copyWith(createdById: _currentUserId),
+      record.copyWith(petId: _petId, createdById: _currentUserId),
     );
     if (result case Ok(:final value)) {
       // Sync reminders if there's a due date

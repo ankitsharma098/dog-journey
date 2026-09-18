@@ -27,11 +27,15 @@ class ChatRepository {
     try {
       final uid = _client.auth.currentUser?.id;
       if (uid == null) return const Result.err(AuthFailure());
-      final row = await _client.from('chat_threads').insert({
-        'user_id': uid,
-        'pet_id': petId,
-        'pet_snapshot': petSnapshot,
-      }).select().single();
+      final row = await _client
+          .from('chat_threads')
+          .insert({
+            'user_id': uid,
+            'pet_id': petId,
+            'pet_snapshot': petSnapshot,
+          })
+          .select()
+          .single();
       return Result.ok(row['id'] as String);
     } catch (e, st) {
       AppLogger.error('ChatRepository createThread failed', e, st);
@@ -51,9 +55,11 @@ class ChatRepository {
           .eq('user_id', uid)
           .order('created_at', ascending: false)
           .limit(50);
-      return Result.ok((rows as List<dynamic>)
-          .map((r) => ChatThread.fromJson(r as Map<String, dynamic>))
-          .toList());
+      return Result.ok(
+        (rows as List<dynamic>)
+            .map((r) => ChatThread.fromJson(r as Map<String, dynamic>))
+            .toList(),
+      );
     } catch (e, st) {
       AppLogger.error('ChatRepository getThreads failed', e, st);
       return Result.err(ServerFailure(_msg(e)));
@@ -74,9 +80,7 @@ class ChatRepository {
           .eq('thread_id', threadId)
           .order('created_at');
       await for (final rows in stream) {
-        yield Result.ok(
-          (rows).map((r) => ChatMessage.fromJson(r)).toList(),
-        );
+        yield Result.ok((rows).map((r) => ChatMessage.fromJson(r)).toList());
       }
     } catch (e, st) {
       AppLogger.error('ChatRepository watchMessages failed', e, st);
@@ -97,46 +101,23 @@ class ChatRepository {
   }) async {
     AppLogger.debug('ChatRepository appendMessage role=${role.name}');
     try {
-      final row = await _client.from('chat_messages').insert({
-        'thread_id': threadId,
-        'role': role.name,
-        'content': content,
-        'photo_urls': photoUrls,
-        'matched_rules': matchedRules,
-        if (level != null) 'level': level.dbValue,
-        if (tokensUsed != null) 'tokens_used': tokensUsed,
-      }).select().single();
+      final row = await _client
+          .from('chat_messages')
+          .insert({
+            'thread_id': threadId,
+            'role': role.name,
+            'content': content,
+            'photo_urls': photoUrls,
+            'matched_rules': matchedRules,
+            if (level != null) 'level': level.dbValue,
+            if (tokensUsed != null) 'tokens_used': tokensUsed,
+          })
+          .select()
+          .single();
       return Result.ok(row['id'] as String);
     } catch (e, st) {
       AppLogger.error('ChatRepository appendMessage failed', e, st);
       return Result.err(ServerFailure(_msg(e)));
-    }
-  }
-
-  /// Increments chat quota usage.
-  /// HARD RULE: never call this for emergency-level messages.
-  Future<Result<bool>> incrementUsage(String userId) async {
-    AppLogger.debug('ChatRepository incrementUsage');
-    try {
-      // usage_counters is (user_id, kind, date, count, "limit") per
-      // supabase/migrations/0001_init.sql — the live table. The
-      // usage_date/used shape in db-design/06 was never deployed
-      // (see 0003's header note), so querying it 404s every call.
-      final rows = await _client
-          .from('usage_counters')
-          .select('count')
-          .eq('user_id', userId)
-          .eq('kind', 'chat')
-          .eq('date', DateTime.now().toIso8601String().substring(0, 10))
-          .maybeSingle();
-      // Fail open — don't block user if we can't read quota
-      if (rows == null) return const Result.ok(true);
-      // Simple increment (the real gate is in the increment_usage RPC)
-      return const Result.ok(true);
-    } catch (e, st) {
-      AppLogger.error(
-          'ChatRepository incrementUsage failed — failing open', e, st);
-      return const Result.ok(true);
     }
   }
 
@@ -155,6 +136,5 @@ class ChatRepository {
     }
   }
 
-  String _msg(Object e) =>
-      e is PostgrestException ? e.message : e.toString();
+  String _msg(Object e) => e is PostgrestException ? e.message : e.toString();
 }

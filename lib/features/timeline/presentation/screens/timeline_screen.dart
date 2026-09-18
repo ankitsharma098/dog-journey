@@ -2,20 +2,29 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../../core/data/supabase_storage_service.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/async_state_view.dart';
+import '../../../../core/widgets/glass/glass_container.dart';
 import '../../../../core/widgets/glass/glass_scaffold.dart';
+import '../../../../core/widgets/royal/engraved_label.dart';
+import '../../../../core/widgets/royal/fading_rule.dart';
 import '../../../auth/bloc/auth_bloc.dart';
 import '../../../pets/bloc/pets_bloc.dart';
+import '../../../pets/data/models/pet.dart';
 import '../../bloc/timeline_cubit.dart';
 import '../../data/models/timeline_entry.dart';
-import 'add_timeline_entry_sheet.dart';
 
+/// The "Story" screen — README § "9. Memory Timeline". Reached from
+/// Home's "Nine years, so far" strip; adding a memory now happens
+/// behind the shell's centre FAB rather than a local one here.
 class TimelineScreen extends StatelessWidget {
   const TimelineScreen({super.key});
 
@@ -23,7 +32,7 @@ class TimelineScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PetsBloc, PetsState>(
       builder: (context, petsState) {
-        final pet = petsState.pets.isNotEmpty ? petsState.pets.first : null;
+        final pet = petsState.activePet;
         if (pet == null) return const SizedBox.shrink();
         return BlocBuilder<AuthBloc, AuthState>(
           builder: (context, authState) {
@@ -36,8 +45,9 @@ class TimelineScreen extends StatelessWidget {
                 petId: pet.id,
                 currentUserId: userId,
                 timelineRepository: context.read(),
+                storageService: GetIt.I<SupabaseStorageService>(),
               ),
-              child: _TimelineView(petName: pet.name),
+              child: _TimelineView(pet: pet),
             );
           },
         );
@@ -47,33 +57,13 @@ class TimelineScreen extends StatelessWidget {
 }
 
 class _TimelineView extends StatelessWidget {
-  const _TimelineView({required this.petName});
-  final String petName;
+  const _TimelineView({required this.pet});
+  final Pet pet;
 
   @override
   Widget build(BuildContext context) {
     return GlassScaffold(
-      appBar: AppBar(
-        title: Text(
-          '$petName\'s Story',
-          style: GoogleFonts.sora(fontWeight: FontWeight.w700),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: 'timelineFab',
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-        child: const Icon(Icons.add_photo_alternate_rounded),
-        onPressed: () => showModalBottomSheet(
-          context: context,
-          isScrollControlled: true,
-          backgroundColor: Colors.transparent,
-          builder: (_) => BlocProvider.value(
-            value: context.read<TimelineCubit>(),
-            child: const AddTimelineEntrySheet(),
-          ),
-        ),
-      ),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 32),
       body: BlocBuilder<TimelineCubit, TimelineState>(
         builder: (context, state) {
           if (state.status == TimelineStatus.loading) {
@@ -87,47 +77,97 @@ class _TimelineView extends StatelessWidget {
               onRetry: () => context.read<TimelineCubit>().retry(),
             );
           }
-          if (state.entries.isEmpty) {
-            return _EmptyTimeline(petName: petName);
-          }
-          return _TimelineList(state: state);
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: _Masthead(pet: pet)),
+              if (state.entries.isEmpty)
+                SliverFillRemaining(
+                  hasScrollBody: false,
+                  child: _EmptyTimeline(petName: pet.name),
+                )
+              else ...[
+                for (final key in state.monthKeys)
+                  SliverToBoxAdapter(
+                    child: _MonthSection(
+                      monthKey: key,
+                      entries: state.grouped[key]!,
+                    ),
+                  ),
+                const SliverToBoxAdapter(child: _PrintYearbookCard()),
+              ],
+            ],
+          );
         },
       ),
     );
   }
 }
 
-class _TimelineList extends StatelessWidget {
-  const _TimelineList({required this.state});
-  final TimelineState state;
+class _Masthead extends StatelessWidget {
+  const _Masthead({required this.pet});
+  final Pet pet;
 
   @override
   Widget build(BuildContext context) {
-    final monthKeys = state.monthKeys;
-    return ListView.builder(
-      padding: const EdgeInsets.fromLTRB(16, 4, 16, 100),
-      itemCount: monthKeys.length,
-      itemBuilder: (_, i) {
-        final key = monthKeys[i];
-        final entries = state.grouped[key]!;
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Text(
-                _monthLabel(key),
-                style: GoogleFonts.sora(
-                  fontSize: 13,
-                  fontWeight: FontWeight.w700,
-                  color: AppColors.textSecondaryLight,
-                ),
+    final brightness = Theme.of(context).brightness;
+    final champagne = AppColors.champagneOn(brightness);
+    final years = pet.birthdate == null
+        ? null
+        : ((DateTime.now().difference(pet.birthdate!).inDays) / 365.25).floor();
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 22),
+      child: Column(
+        children: [
+          EngravedLabel(
+            years == null ? 'The story so far' : '$years years and counting',
+          ),
+          const SizedBox(height: 6),
+          Text(
+            '${pet.name}\'s story',
+            textAlign: TextAlign.center,
+            style: AppTextStyles.screenTitle.copyWith(
+              color: AppColors.textPrimary(brightness),
+            ),
+          ),
+          const SizedBox(height: 14),
+          SizedBox(width: 80, child: FadingRule(color: champagne)),
+        ],
+      ),
+    );
+  }
+}
+
+class _MonthSection extends StatelessWidget {
+  const _MonthSection({required this.monthKey, required this.entries});
+  final String monthKey;
+  final List<TimelineEntry> entries;
+
+  @override
+  Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Text(
+              _monthLabel(monthKey).toUpperCase(),
+              style: AppTextStyles.chipLabel.copyWith(
+                fontWeight: FontWeight.w600,
+                letterSpacing: 2,
+                color: AppColors.textTertiary(brightness),
               ),
             ),
-            ...entries.map((e) => _EntryCard(entry: e)),
+          ),
+          for (final e in entries) ...[
+            _EntryCard(entry: e),
+            const SizedBox(height: 26),
           ],
-        );
-      },
+        ],
+      ),
     );
   }
 
@@ -144,7 +184,7 @@ class _EntryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isSpecial = entry.isSpecialDay;
+    final brightness = Theme.of(context).brightness;
 
     return Dismissible(
       key: Key(entry.id),
@@ -152,37 +192,31 @@ class _EntryCard extends StatelessWidget {
       background: Container(
         alignment: Alignment.centerRight,
         padding: const EdgeInsets.only(right: 16),
-        child: const Icon(Icons.delete_rounded, color: AppColors.danger),
+        child: Icon(
+          PhosphorIconsRegular.trash,
+          color: AppColors.dangerOn(brightness),
+        ),
       ),
       onDismissed: (_) => context.read<TimelineCubit>().deleteEntry(entry.id),
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 12),
-        decoration: BoxDecoration(
-          color: isSpecial ? AppColors.primary.withValues(alpha: 0.08) : null,
-          border: isSpecial
-              ? Border.all(
-                  color: AppColors.primary.withValues(alpha: 0.3),
-                  width: 1,
-                )
-              : null,
-          borderRadius: BorderRadius.circular(16),
-        ),
+      child: GlassContainer(
+        borderRadius: 20,
+        border: true,
+        padding: EdgeInsets.zero,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Photo grid
             if (entry.photos.isNotEmpty)
               ClipRRect(
                 borderRadius: const BorderRadius.vertical(
-                  top: Radius.circular(16),
+                  top: Radius.circular(20),
                 ),
                 child: AspectRatio(
-                  aspectRatio: 4 / 3,
+                  aspectRatio: 390 / 230,
                   child: _EntryPhoto(photo: entry.photos.first),
                 ),
               ),
             Padding(
-              padding: const EdgeInsets.all(14),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -191,36 +225,36 @@ class _EntryCard extends StatelessWidget {
                       Expanded(
                         child: Text(
                           entry.title ?? entry.entryType.label,
-                          style: GoogleFonts.sora(
-                            fontWeight: FontWeight.w700,
+                          style: AppTextStyles.listRowTitle.copyWith(
                             fontSize: 15,
+                            color: AppColors.textPrimary(brightness),
                           ),
                         ),
                       ),
-                      // Share button
                       GestureDetector(
                         onTap: () => _share(context, entry),
                         child: Icon(
-                          Icons.ios_share_rounded,
-                          size: 18,
-                          color: AppColors.textSecondaryLight,
+                          PhosphorIconsRegular.export,
+                          size: 16,
+                          color: AppColors.textTertiary(brightness),
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: 3),
                   Text(
                     DateFormat('MMMM d, yyyy').format(entry.entryDate),
-                    style: const TextStyle(
-                      color: AppColors.textSecondaryLight,
-                      fontSize: 12,
+                    style: AppTextStyles.caption.copyWith(
+                      color: AppColors.textTertiary(brightness),
                     ),
                   ),
                   if (entry.body != null && entry.body!.isNotEmpty) ...[
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 10),
                     Text(
                       entry.body!,
-                      style: const TextStyle(fontSize: 13, height: 1.5),
+                      style: AppTextStyles.body.copyWith(
+                        color: AppColors.textSecondary(brightness),
+                      ),
                     ),
                   ],
                 ],
@@ -256,10 +290,18 @@ class _EntryPhoto extends StatelessWidget {
     BuildContext context,
     Object error,
     StackTrace? stackTrace,
-  ) => Container(
-    color: AppColors.primary.withValues(alpha: 0.1),
-    child: const Icon(Icons.image_rounded, color: AppColors.primary, size: 40),
-  );
+  ) {
+    final brightness = Theme.of(context).brightness;
+    return Container(
+      color: AppColors.hairline(brightness),
+      alignment: Alignment.center,
+      child: Icon(
+        PhosphorIconsRegular.image,
+        color: AppColors.textTertiary(brightness),
+        size: 32,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -282,12 +324,49 @@ class _EntryPhoto extends StatelessWidget {
   }
 }
 
+class _PrintYearbookCard extends StatelessWidget {
+  const _PrintYearbookCard();
+
+  @override
+  Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final champagne = AppColors.champagneOn(brightness);
+    return Container(
+      padding: const EdgeInsets.all(18),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: champagne.withValues(alpha: 0.4)),
+      ),
+      child: Column(
+        children: [
+          Text(
+            'Print the year as a book',
+            style: AppTextStyles.listRowTitle.copyWith(
+              fontSize: 13,
+              color: champagne,
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'Twelve months, bound in linen. A Pro perk.',
+            textAlign: TextAlign.center,
+            style: AppTextStyles.secondaryLine.copyWith(
+              color: AppColors.textSecondary(brightness),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
 class _EmptyTimeline extends StatelessWidget {
   const _EmptyTimeline({required this.petName});
   final String petName;
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
@@ -295,27 +374,25 @@ class _EmptyTimeline extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
-              Icons.auto_stories_rounded,
-              size: 64,
-              color: AppColors.primary.withValues(alpha: 0.35),
+              PhosphorIconsRegular.bookOpen,
+              size: 48,
+              color: AppColors.textTertiary(brightness),
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 18),
             Text(
-              '$petName\'s story starts here',
-              style: GoogleFonts.sora(
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
+              "$petName's story starts here",
+              style: AppTextStyles.sectionHeading.copyWith(
+                fontSize: 17,
+                color: AppColors.textPrimary(brightness),
               ),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 8),
-            const Text(
+            Text(
               'Add photos, milestones, and memories. Birthdays and gotcha days are added automatically.',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: AppColors.textSecondaryLight,
-                fontSize: 13,
-                height: 1.5,
+              style: AppTextStyles.body.copyWith(
+                color: AppColors.textSecondary(brightness),
               ),
             ),
           ],

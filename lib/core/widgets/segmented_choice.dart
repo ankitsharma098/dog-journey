@@ -25,7 +25,7 @@ class SegmentedChoice<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final brightness = Theme.of(context).brightness;
 
     return Row(
       children: [
@@ -33,27 +33,29 @@ class SegmentedChoice<T> extends StatelessWidget {
           Expanded(
             child: InkWell(
               onTap: () => onChanged(option.value),
-              borderRadius: BorderRadius.circular(14),
+              borderRadius: BorderRadius.circular(12),
               child: Container(
                 padding: const EdgeInsets.symmetric(vertical: 12),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   color: option.value == value
-                      ? AppColors.primary
-                      : (isDark
-                            ? AppColors.chipFillDark
-                            : AppColors.chipFillLight),
-                  borderRadius: BorderRadius.circular(14),
+                      ? AppColors.accent.withValues(alpha: 0.22)
+                      : Colors.transparent,
+                  borderRadius: BorderRadius.circular(12),
+                  border: Border.all(
+                    color: option.value == value
+                        ? AppColors.accent
+                        : AppColors.hairline(brightness),
+                  ),
                 ),
                 child: Text(
                   option.label,
                   style: TextStyle(
-                    fontWeight: FontWeight.w700,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 12.5,
                     color: option.value == value
-                        ? Colors.white
-                        : (isDark
-                              ? AppColors.textPrimaryDark
-                              : AppColors.textPrimaryLight),
+                        ? AppColors.textPrimary(brightness)
+                        : AppColors.textSecondary(brightness),
                   ),
                 ),
               ),

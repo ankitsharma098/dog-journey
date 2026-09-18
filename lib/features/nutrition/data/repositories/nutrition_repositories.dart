@@ -163,4 +163,24 @@ class FoodLogRepository {
       return Result.err(ServerFailure(e.toString()));
     }
   }
+
+  /// Most recent logs, newest first — used to derive the Nutrition
+  /// screen's "usuals" quick-add chips (README § "8. Nutrition") by
+  /// de-duplicating on `item_text` client-side. Not a distinct new data
+  /// point: it reads the same `food_logs` rows `getDailyLogs` does.
+  Future<Result<List<FoodLog>>> recentLogs(String petId, {int limit = 30}) async {
+    try {
+      final rows = await _client
+          .from('food_logs')
+          .select()
+          .eq('pet_id', petId)
+          .order('logged_at', ascending: false)
+          .limit(limit);
+      return Result.ok(
+          (rows as List<dynamic>).map((r) => FoodLog.fromJson(r as Map<String, dynamic>)).toList());
+    } catch (e, st) {
+      AppLogger.error('FoodLogRepository recentLogs failed', e, st);
+      return Result.err(ServerFailure(e.toString()));
+    }
+  }
 }

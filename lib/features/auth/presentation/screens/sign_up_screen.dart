@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../../../../core/di/injector.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/validators.dart';
+import '../../../../core/widgets/app_snackbar.dart';
 import '../../../../core/widgets/glass/glass_scaffold.dart';
 import '../../../../core/widgets/primary_button.dart';
 import '../../bloc/auth_form_status.dart';
 import '../../bloc/sign_up_cubit.dart';
-import '../../../../core/widgets/section_header.dart';
 import '../widgets/auth_text_field.dart';
-import '../../../../core/widgets/app_snackbar.dart';
 
+/// Matches `sign_up_screen.dart` per README § "0c. Sign up".
 class SignUpScreen extends StatelessWidget {
   const SignUpScreen({super.key});
 
@@ -56,14 +59,10 @@ class _SignUpViewState extends State<_SignUpView> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<SignUpCubit>();
+    final brightness = Theme.of(context).brightness;
 
     return GlassScaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_rounded),
-          onPressed: () => context.pop(),
-        ),
-      ),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
       body: BlocListener<SignUpCubit, SignUpState>(
         listener: (context, state) {
           if (state.status == AuthFormStatus.failure && state.failure != null) {
@@ -71,17 +70,33 @@ class _SignUpViewState extends State<_SignUpView> {
           }
         },
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 16),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SectionHeader(
-                  title: 'Create your account',
-                  subtitle: 'Breed, vaccines, weight, memories — all in one place, from day one.',
+                GestureDetector(
+                  onTap: () => context.pop(),
+                  child: Icon(
+                    PhosphorIconsRegular.arrowLeft,
+                    color: AppColors.textSecondary(brightness),
+                  ),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 20),
+                Text(
+                  'Create your account',
+                  style: AppTextStyles.screenTitle.copyWith(
+                    color: AppColors.textPrimary(brightness),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  'Breed, vaccines, weight, memories — all in one place, from day one.',
+                  style: AppTextStyles.body.copyWith(
+                    color: AppColors.textSecondary(brightness),
+                  ),
+                ),
+                const SizedBox(height: 28),
                 AuthTextField(
                   label: 'Email',
                   controller: _emailController,
@@ -110,17 +125,30 @@ class _SignUpViewState extends State<_SignUpView> {
                 const SizedBox(height: 24),
                 BlocBuilder<SignUpCubit, SignUpState>(
                   builder: (context, state) {
-                    return PrimaryButton(
-                      label: 'Create account',
-                      isLoading: state.status == AuthFormStatus.submitting,
-                      onPressed: () => _submit(cubit),
+                    return SizedBox(
+                      height: 54,
+                      child: PrimaryButton(
+                        label: 'Create account',
+                        isLoading: state.status == AuthFormStatus.submitting,
+                        onPressed: () => _submit(cubit),
+                      ),
                     );
                   },
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 14),
                 Text(
-                  'By continuing you agree this app offers triage and record-keeping, not a substitute for veterinary care.',
-                  style: Theme.of(context).textTheme.bodySmall,
+                  'By continuing you agree this app offers triage and record-keeping, not a '
+                  'substitute for veterinary care.',
+                  style: AppTextStyles.caption.copyWith(
+                    color: AppColors.textTertiary(brightness),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Center(
+                  child: TextButton(
+                    onPressed: () => context.pop(),
+                    child: const Text('Already have an account? Sign in'),
+                  ),
                 ),
               ],
             ),

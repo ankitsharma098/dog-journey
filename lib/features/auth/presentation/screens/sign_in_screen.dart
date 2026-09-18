@@ -4,16 +4,20 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/di/injector.dart';
 import '../../../../core/routing/app_router.dart';
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/utils/validators.dart';
+import '../../../../core/widgets/app_snackbar.dart';
 import '../../../../core/widgets/glass/glass_scaffold.dart';
 import '../../../../core/widgets/primary_button.dart';
+import '../../../../core/widgets/royal/crest.dart';
+import '../../../../core/widgets/royal/engraved_label.dart';
 import '../../bloc/auth_form_status.dart';
 import '../../bloc/sign_in_cubit.dart';
-import '../../../../core/widgets/section_header.dart';
 import '../widgets/auth_text_field.dart';
 import '../widgets/forgot_password_sheet.dart';
-import '../../../../core/widgets/app_snackbar.dart';
 
+/// Matches `sign_in_screen.dart` per README § "0b. Sign in".
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
 
@@ -56,8 +60,10 @@ class _SignInViewState extends State<_SignInView> {
   @override
   Widget build(BuildContext context) {
     final cubit = context.read<SignInCubit>();
+    final brightness = Theme.of(context).brightness;
 
     return GlassScaffold(
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
       body: BlocListener<SignInCubit, SignInState>(
         listener: (context, state) {
           if (state.status == AuthFormStatus.failure && state.failure != null) {
@@ -68,17 +74,34 @@ class _SignInViewState extends State<_SignInView> {
           // takes it from there.
         },
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(vertical: 32),
           child: Form(
             key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SectionHeader(
-                  title: 'Welcome back',
-                  subtitle: "Your dog's whole story, in one place.",
+                Row(
+                  children: [
+                    const RoyalCrest(size: 34),
+                    const SizedBox(width: 10),
+                    const EngravedLabel('PawJourney'),
+                  ],
                 ),
                 const SizedBox(height: 32),
+                Text(
+                  'Welcome back',
+                  style: AppTextStyles.screenTitle.copyWith(
+                    fontSize: 28,
+                    color: AppColors.textPrimary(brightness),
+                  ),
+                ),
+                const SizedBox(height: 6),
+                Text(
+                  "Your dog's whole story, in one place.",
+                  style: AppTextStyles.body.copyWith(
+                    color: AppColors.textSecondary(brightness),
+                  ),
+                ),
+                const SizedBox(height: 28),
                 AuthTextField(
                   label: 'Email',
                   controller: _emailController,
@@ -106,10 +129,13 @@ class _SignInViewState extends State<_SignInView> {
                 const SizedBox(height: 8),
                 BlocBuilder<SignInCubit, SignInState>(
                   builder: (context, state) {
-                    return PrimaryButton(
-                      label: 'Sign in',
-                      isLoading: state.status == AuthFormStatus.submitting,
-                      onPressed: () => _submit(cubit),
+                    return SizedBox(
+                      height: 54,
+                      child: PrimaryButton(
+                        label: 'Sign in',
+                        isLoading: state.status == AuthFormStatus.submitting,
+                        onPressed: () => _submit(cubit),
+                      ),
                     );
                   },
                 ),
@@ -117,7 +143,7 @@ class _SignInViewState extends State<_SignInView> {
                 Center(
                   child: TextButton(
                     onPressed: () => context.push(AppRoutes.signUp),
-                    child: const Text("Don't have an account? Create one"),
+                    child: const Text('New here? Create an account'),
                   ),
                 ),
               ],

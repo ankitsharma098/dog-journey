@@ -21,12 +21,14 @@ import '../../features/pets/bloc/add_pet_cubit.dart';
 import '../../features/pets/bloc/pets_bloc.dart';
 import '../../features/pets/data/repositories/pet_repository.dart';
 import '../../features/timeline/data/repositories/timeline_repository.dart';
+import '../../features/vet_chat/data/repositories/chat_quota_repository.dart';
 import '../../features/vet_chat/data/repositories/chat_repository.dart';
 import '../../features/vet_chat/data/services/triage_service.dart';
 import '../../features/vet_chat/data/services/vet_ai_service.dart';
 import '../data/app_config_repository.dart';
 import '../data/supabase_storage_service.dart';
 import '../services/notification_service.dart';
+import '../theme/theme_cubit.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -55,10 +57,16 @@ void setupInjector() {
     () => AuthRepository(client: getIt(), userRepository: getIt()),
   );
   getIt.registerLazySingleton<AuthBloc>(
-    () => AuthBloc(authRepository: getIt())..add(const AuthSubscriptionRequested()),
+    () =>
+        AuthBloc(authRepository: getIt())
+          ..add(const AuthSubscriptionRequested()),
   );
-  getIt.registerFactory<SignInCubit>(() => SignInCubit(authRepository: getIt()));
-  getIt.registerFactory<SignUpCubit>(() => SignUpCubit(authRepository: getIt()));
+  getIt.registerFactory<SignInCubit>(
+    () => SignInCubit(authRepository: getIt()),
+  );
+  getIt.registerFactory<SignUpCubit>(
+    () => SignUpCubit(authRepository: getIt()),
+  );
 
   // Pets — one repository and one PetsBloc for the whole app session
   // (it tracks its own auth subscription, same pattern as AuthBloc).
@@ -67,13 +75,15 @@ void setupInjector() {
     () => PetRepository(client: getIt()),
   );
   getIt.registerLazySingleton<PetsBloc>(
-    () => PetsBloc(petRepository: getIt(), authBloc: getIt())
-      ..add(const PetsSubscriptionRequested()),
+    () =>
+        PetsBloc(petRepository: getIt(), authBloc: getIt())
+          ..add(const PetsSubscriptionRequested()),
   );
   getIt.registerFactoryParam<AddPetCubit, String, void>(
     (ownerId, _) => AddPetCubit(
       petRepository: getIt(),
       userRepository: getIt(),
+      storageService: getIt(),
       ownerId: ownerId,
     ),
   );
@@ -124,14 +134,14 @@ void setupInjector() {
   getIt.registerLazySingleton<ChatRepository>(
     () => ChatRepository(client: getIt()),
   );
+  getIt.registerLazySingleton<ChatQuotaRepository>(
+    () => ChatQuotaRepository(client: getIt()),
+  );
 
   // ── Module 4: Nutrition ──────────────────────────────────────────────────
   getIt.registerLazySingleton<FoodItemRepository>(() => FoodItemRepository());
   getIt.registerLazySingleton<FeedingPlanRepository>(
-    () => FeedingPlanRepository(
-      client: getIt(),
-      appConfigRepository: getIt(),
-    ),
+    () => FeedingPlanRepository(client: getIt(), appConfigRepository: getIt()),
   );
   getIt.registerLazySingleton<FoodLogRepository>(
     () => FoodLogRepository(client: getIt()),
@@ -145,4 +155,7 @@ void setupInjector() {
   // ── Module 6: Billing ────────────────────────────────────────────────────
   // BillingCubit is app-scoped (RevenueCat subscription listener).
   getIt.registerLazySingleton<BillingCubit>(() => BillingCubit());
+
+  // App-wide light/dark override — see theme_cubit.dart.
+  getIt.registerLazySingleton<ThemeCubit>(() => ThemeCubit());
 }

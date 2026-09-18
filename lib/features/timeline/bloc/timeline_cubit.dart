@@ -1,7 +1,9 @@
 import 'dart:async';
+import 'dart:typed_data';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../core/data/supabase_storage_service.dart';
 import '../../../core/error/result.dart';
 import '../../../core/logging/app_logger.dart';
 import '../data/models/timeline_entry.dart';
@@ -51,9 +53,11 @@ class TimelineCubit extends Cubit<TimelineState> {
     required String petId,
     required String currentUserId,
     required TimelineRepository timelineRepository,
+    required SupabaseStorageService storageService,
   }) : _petId = petId,
        _currentUserId = currentUserId,
        _repository = timelineRepository,
+       _storageService = storageService,
        super(const TimelineState()) {
     _subscribe();
   }
@@ -61,6 +65,7 @@ class TimelineCubit extends Cubit<TimelineState> {
   final String _petId;
   final String _currentUserId;
   final TimelineRepository _repository;
+  final SupabaseStorageService _storageService;
   StreamSubscription<Result<List<TimelineEntry>>>? _sub;
 
   void _subscribe() {
@@ -87,13 +92,37 @@ class TimelineCubit extends Cubit<TimelineState> {
     _subscribe();
   }
 
-  Future<Result<String>> addEntry(TimelineEntry entry) {
+  Future<Result<String>> addEntry(
+    TimelineEntry entry, {
+    Uint8List? photoBytes,
+  }) async {
     // The presentation layer doesn't know the pet/user context, so it
     // always hands us an entry with blank petId/createdById — fill
     // those in from what the cubit was constructed with rather than
     // trusting the caller (entry.toJson() always has these keys
     // populated, blank or not, so a containsKey check here can't tell
     // the difference).
+    var photos = entry.photos;
+    if (photoBytes != null) {
+      try {
+        // Path must be prefixed with the *user's* uid, not the pet's —
+        // the `photos_insert` RLS policy (0001_init.sql) checks
+        // `(storage.foldername(name))[1] = auth.uid()`, and a pet id
+        // there would make every real upload fail silently.
+        final url = await _storageService.upload(
+          photoBytes,
+          '$_currentUserId/memories/$_petId/${DateTime.now().millisecondsSinceEpoch}.jpg',
+        );
+        photos = [
+          {'url': url, 'storage': 'supabase'},
+        ];
+      } catch (e, st) {
+        // Fails open — the memory is still worth saving without its
+        // photo rather than losing the caption/date over an upload
+        // hiccup.
+        AppLogger.error('TimelineCubit photo upload failed', e, st);
+      }
+    }
     return _repository.addEntry(
       TimelineEntry(
         petId: _petId,
@@ -101,7 +130,7 @@ class TimelineCubit extends Cubit<TimelineState> {
         title: entry.title,
         body: entry.body,
         entryDate: entry.entryDate,
-        photos: entry.photos,
+        photos: photos,
         createdById: _currentUserId,
       ),
     );

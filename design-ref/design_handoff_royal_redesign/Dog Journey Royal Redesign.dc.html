@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
+<link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
+<style>
+body{margin:0;background:#0f0f17;font-family:Inter,system-ui,sans-serif;color:#e9e9ed}
+a{color:#b5abfc;text-underline-offset:3px}
+a:hover{color:#d2cefd}
+*{box-sizing:border-box}
+::-webkit-scrollbar{width:0;height:0}
+@keyframes pj-blink{0%,100%{opacity:.25}50%{opacity:1}}
+@keyframes pj-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes pj-sheet{from{transform:translateY(100%)}to{transform:none}}
+@keyframes pj-sheen{0%{transform:translateX(-120%)}100%{transform:translateX(220%)}}
+</style>
+</helmet>
+
+<section style="padding:44px 48px 40px;border-bottom:1px solid rgba(233,233,237,.1)" id="t1">
+  <div style="display:flex;align-items:baseline;gap:10px;margin:0 0 6px">
+    <a href="#t1" style="font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#9184d9;color:#161826;border-radius:4px;text-decoration:none">1</a>
+    <span style="font:600 13px/1.2 Inter,sans-serif;color:#e9e9ed">Royal redesign — full flow, plus alternates</span>
+  </div>
+  <p style="margin:0 0 26px;max-width:720px;font:400 12.5px/1.6 Inter,sans-serif;color:rgba(233,233,237,.6)">Nocturne ground and blurple accent, with a champagne hairline reserved for the passport, the crest and Pro. Nav is 4 tabs + a centre FAB (Home · Passport · <span style="color:#d8bd86">＋</span> · Nutrition · Chat); Scanner, record, food and memories all live behind the FAB. Emotional weight sits on the companion card and the story strip.</p>
+  <div style="display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start">
+
+    <div id="1a" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+      <div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:rgba(233,233,237,.55)">
+        <a href="#1a" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(233,233,237,.1);color:#e9e9ed;border-radius:5px;text-decoration:none">1a</a>
+        Interactive prototype — dark, the whole flow
+      </div>
+
+      <div style="width:390px;height:844px;border-radius:46px;background:#161826;box-shadow:0 0 0 9px #0a0a11,0 0 0 10px rgba(216,189,134,.25),0 30px 70px rgba(0,0,0,.55);overflow:hidden;position:relative;display:flex;flex-direction:column">
+
+        <div style="height:52px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 6px;font:600 13px Inter,sans-serif;color:#e9e9ed;position:relative;z-index:3">
+          <span>5:39</span>
+          <span style="display:flex;gap:6px;align-items:center;font-size:12px;opacity:.85"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span>
+        </div>
+
+        <sc-if value="{{ isOnboarding }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Onboarding" style="flex:1;display:flex;flex-direction:column;padding:0 26px 34px;background:radial-gradient(120% 60% at 50% 0%,#2b2741 0%,#161826 62%)">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:20px">
+              <div style="width:96px;height:96px;border-radius:50%;border:1px solid rgba(216,189,134,.55);display:grid;place-items:center;background:rgba(216,189,134,.06)">
+                <i class="ph-fill ph-paw-print" style="font-size:40px;color:#d8bd86"></i>
+              </div>
+              <div style="width:120px;height:1px;background:linear-gradient(90deg,transparent,#d8bd86,transparent)"></div>
+              <div style="font:600 10px Inter,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#d8bd86">PawJourney</div>
+              <h1 style="margin:0;font:600 30px/1.18 Inter,sans-serif;letter-spacing:-.02em;text-wrap:pretty">Every dog deserves a record worth keeping.</h1>
+              <p style="margin:0;max-width:280px;font:400 14px/1.6 Inter,sans-serif;color:rgba(233,233,237,.62)">One passport for vaccines, weight and vet visits — and a story that grows beside it.</p>
+            </div>
+            <div style="display:flex;gap:6px;justify-content:center;margin-bottom:22px">
+              <span style="width:22px;height:3px;border-radius:2px;background:#d8bd86"></span>
+              <span style="width:8px;height:3px;border-radius:2px;background:rgba(233,233,237,.25)"></span>
+              <span style="width:8px;height:3px;border-radius:2px;background:rgba(233,233,237,.25)"></span>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <button onClick="{{ goHome }}" style="height:52px;border-radius:14px;border:1px solid #9184d9;background:rgba(145,132,217,.14);color:#e9e9ed;font:600 15px Inter,sans-serif;cursor:pointer" style-hover="background:rgba(145,132,217,.24)">Create Sarthak's passport</button>
+              <button onClick="{{ goHome }}" style="height:44px;border-radius:14px;border:0;background:transparent;color:rgba(233,233,237,.55);font:500 13px Inter,sans-serif;cursor:pointer">I already have an account</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isApp }}" hint-placeholder-val="{{ true }}">
+        <div style="flex:1;overflow:auto;position:relative">
+
+          <sc-if value="{{ isHome }}" hint-placeholder-val="{{ true }}">
+          <div data-screen-label="Home" style="padding:8px 20px 150px;animation:pj-in .25s ease">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px">
+              <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(216,189,134,.5);display:grid;place-items:center"><i class="ph-fill ph-paw-print" style="font-size:14px;color:#d8bd86"></i></div>
+              <span style="font:600 10px Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:rgba(233,233,237,.72)">PawJourney</span>
+              <span style="flex:1"></span>
+              <button onClick="{{ openPaywall }}" style="height:26px;padding:0 10px;border-radius:13px;border:1px solid rgba(216,189,134,.5);background:rgba(216,189,134,.08);color:#d8bd86;font:600 10px Inter,sans-serif;letter-spacing:.12em;cursor:pointer">GO PRO</button>
+              <button onClick="{{ goSettings }}" style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(233,233,237,.16);background:transparent;color:rgba(233,233,237,.7);cursor:pointer;display:grid;place-items:center"><i class="ph ph-gear-six" style="font-size:15px"></i></button>
+            </div>
+
+            <div style="border-radius:22px;padding:20px;background:linear-gradient(150deg,#2b2741 0%,#232532 58%);border:1px solid rgba(216,189,134,.22);position:relative;overflow:hidden">
+              <div style="display:flex;gap:16px;align-items:center">
+                <div style="width:70px;height:70px;border-radius:50%;flex:none;border:1px solid rgba(216,189,134,.45);background:repeating-linear-gradient(135deg,#2f3142 0 6px,#282a39 6px 12px);display:grid;place-items:center;font:500 8px ui-monospace,monospace;color:rgba(233,233,237,.5);text-align:center">dog<br>photo</div>
+                <div style="min-width:0">
+                  <div style="font:700 24px/1.1 Inter,sans-serif;letter-spacing:-.02em">Sarthak</div>
+                  <div style="font:400 13px/1.5 Inter,sans-serif;color:rgba(233,233,237,.62);margin-top:3px">Labrador Retriever · 9 yrs 1 mo</div>
+                </div>
+              </div>
+              <div style="height:1px;margin:16px 0 12px;background:linear-gradient(90deg,transparent,rgba(216,189,134,.55) 18%,rgba(216,189,134,.55) 82%,transparent)"></div>
+              <div style="display:flex;justify-content:space-between;font:500 10px ui-monospace,Menlo,monospace;letter-spacing:.12em;color:rgba(216,189,134,.85)">
+                <span>PASSPORT · PJ-0042-SAR</span><span>ISSUED 2017</span>
+              </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px">
+              <div style="border-radius:14px;padding:12px 10px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                <div style="font:400 10px Inter,sans-serif;color:rgba(233,233,237,.55)">Weight</div>
+                <div style="font:600 16px Inter,sans-serif;margin-top:4px">31.2<span style="font-size:11px;color:rgba(233,233,237,.55)"> kg</span></div>
+              </div>
+              <div style="border-radius:14px;padding:12px 10px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                <div style="font:400 10px Inter,sans-serif;color:rgba(233,233,237,.55)">Next shot</div>
+                <div style="font:600 16px Inter,sans-serif;margin-top:4px;color:#e0a458">12<span style="font-size:11px;color:rgba(233,233,237,.55)"> days</span></div>
+              </div>
+              <div style="border-radius:14px;padding:12px 10px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                <div style="font:400 10px Inter,sans-serif;color:rgba(233,233,237,.55)">Today</div>
+                <div style="font:600 16px Inter,sans-serif;margin-top:4px">{{ kcal }}<span style="font-size:11px;color:rgba(233,233,237,.55)"> /767</span></div>
+              </div>
+            </div>
+
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin:26px 0 10px">
+              <h2 style="margin:0;font:600 15px Inter,sans-serif;letter-spacing:-.01em">Needs you this week</h2>
+              <button onClick="{{ goReminders }}" style="border:0;background:transparent;color:#b5abfc;font:500 12px Inter,sans-serif;cursor:pointer">All care</button>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ reminders }}" as="r" hint-placeholder-count="2">
+                <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                  <div style="width:36px;height:36px;flex:none;border-radius:11px;background:rgba(145,132,217,.16);display:grid;place-items:center;color:#b5abfc"><i class="{{ r.icon }}" style="font-size:17px"></i></div>
+                  <div style="flex:1;min-width:0">
+                    <div style="font:600 13.5px Inter,sans-serif">{{ r.title }}</div>
+                    <div style="font:400 11.5px Inter,sans-serif;color:rgba(233,233,237,.55);margin-top:2px">{{ r.sub }}</div>
+                  </div>
+                  <span style="font:600 10px Inter,sans-serif;letter-spacing:.1em;padding:4px 9px;border-radius:9px;background:{{ r.chipBg }};color:{{ r.chipFg }}">{{ r.chip }}</span>
+                </div>
+              </sc-for>
+            </div>
+
+            <div onClick="{{ goChat }}" style="margin-top:12px;border-radius:18px;padding:16px;background:linear-gradient(135deg,rgba(145,132,217,.2),rgba(145,132,217,.06));border:1px solid rgba(145,132,217,.35);cursor:pointer;display:flex;gap:13px;align-items:center" style-hover="border-color:rgba(145,132,217,.6)">
+              <div style="width:40px;height:40px;flex:none;border-radius:50%;background:rgba(145,132,217,.25);display:grid;place-items:center"><i class="ph-fill ph-first-aid-kit" style="font-size:19px;color:#d2cefd"></i></div>
+              <div style="flex:1">
+                <div style="font:600 13.5px Inter,sans-serif">Still awake at 3am?</div>
+                <div style="font:400 11.5px/1.45 Inter,sans-serif;color:rgba(233,233,237,.66);margin-top:2px">The vet chat is too. Ask anything about Sarthak.</div>
+              </div>
+              <i class="ph ph-arrow-right" style="font-size:16px;color:#b5abfc"></i>
+            </div>
+
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin:26px 0 10px">
+              <h2 style="margin:0;font:600 15px Inter,sans-serif;letter-spacing:-.01em">Nine years, so far</h2>
+              <button onClick="{{ goStory }}" style="border:0;background:transparent;color:#b5abfc;font:500 12px Inter,sans-serif;cursor:pointer">Story</button>
+            </div>
+            <div style="display:flex;gap:8px;overflow:auto;padding-bottom:4px">
+              <sc-for list="{{ memories }}" as="m" hint-placeholder-count="3">
+                <div onClick="{{ goStory }}" style="width:112px;flex:none;cursor:pointer">
+                  <div style="height:112px;border-radius:14px;background:repeating-linear-gradient(135deg,#2f3142 0 6px,#282a39 6px 12px);border:1px solid rgba(233,233,237,.08);display:grid;place-items:center;font:500 8px ui-monospace,monospace;color:rgba(233,233,237,.45)">photo</div>
+                  <div style="font:500 11px Inter,sans-serif;margin-top:6px">{{ m.title }}</div>
+                  <div style="font:400 10px Inter,sans-serif;color:rgba(233,233,237,.45)">{{ m.date }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isPassport }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Passport" style="padding:8px 0 150px;animation:pj-in .25s ease">
+            <div style="padding:0 20px">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+                <div>
+                  <div style="font:600 9px Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#d8bd86">Health passport</div>
+                  <div style="font:700 21px/1.2 Inter,sans-serif;letter-spacing:-.02em;margin-top:3px">Sarthak</div>
+                </div>
+                <span style="flex:1"></span>
+                <button onClick="{{ exportPdf }}" style="width:34px;height:34px;border-radius:11px;border:1px solid rgba(233,233,237,.16);background:transparent;color:rgba(233,233,237,.72);cursor:pointer"><i class="ph ph-export" style="font-size:16px"></i></button>
+              </div>
+              <div style="display:flex;gap:6px;padding:4px;border-radius:14px;background:#1d1f2c;border:1px solid rgba(233,233,237,.07)">
+                <sc-for list="{{ passportTabs }}" as="t" hint-placeholder-count="4">
+                  <button onClick="{{ t.onClick }}" style="flex:1;height:34px;border:0;border-radius:11px;background:{{ t.bg }};color:{{ t.fg }};font:600 12px Inter,sans-serif;cursor:pointer">{{ t.label }}</button>
+                </sc-for>
+              </div>
+            </div>
+
+            <sc-if value="{{ pTimeline }}" hint-placeholder-val="{{ true }}">
+            <div style="padding:20px 20px 0">
+              <sc-for list="{{ records }}" as="rec" hint-placeholder-count="4">
+                <div style="display:flex;gap:14px">
+                  <div style="width:22px;flex:none;display:flex;flex-direction:column;align-items:center">
+                    <span style="width:9px;height:9px;border-radius:50%;background:{{ rec.dot }};margin-top:16px"></span>
+                    <span style="flex:1;width:1px;background:rgba(233,233,237,.12)"></span>
+                  </div>
+                  <div style="flex:1;margin-bottom:10px;padding:14px;border-radius:16px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                    <div style="display:flex;align-items:baseline;gap:8px">
+                      <span style="font:600 13.5px Inter,sans-serif">{{ rec.title }}</span>
+                      <span style="flex:1"></span>
+                      <span style="font:500 10px ui-monospace,monospace;color:rgba(233,233,237,.45)">{{ rec.date }}</span>
+                    </div>
+                    <div style="font:400 11.5px/1.5 Inter,sans-serif;color:rgba(233,233,237,.58);margin-top:3px">{{ rec.sub }}</div>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ pWeight }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:20px">
+              <div style="border-radius:18px;padding:18px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                <div style="display:flex;align-items:baseline;gap:8px">
+                  <span style="font:700 26px Inter,sans-serif">31.2 kg</span>
+                  <span style="font:500 11px Inter,sans-serif;color:#5fc79a">+0.4 since June</span>
+                </div>
+                <div style="display:flex;align-items:flex-end;gap:7px;height:110px;margin-top:20px">
+                  <sc-for list="{{ weights }}" as="w" hint-placeholder-count="6">
+                    <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:7px">
+                      <div style="width:100%;border-radius:6px 6px 0 0;background:linear-gradient(180deg,#9184d9,#5d5294);height:{{ w.h }}"></div>
+                      <span style="font:500 9px Inter,sans-serif;color:rgba(233,233,237,.45)">{{ w.m }}</span>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+              <p style="margin:14px 2px 0;font:400 12px/1.6 Inter,sans-serif;color:rgba(233,233,237,.55)">Healthy range for a 9-year-old Labrador is 29–36 kg. Sarthak has held steady for four months.</p>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ pVaccines }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:20px;display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ vaccines }}" as="v" hint-placeholder-count="4">
+                <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                  <i class="ph-fill ph-syringe" style="font-size:18px;color:{{ v.dot }}"></i>
+                  <div style="flex:1">
+                    <div style="font:600 13.5px Inter,sans-serif">{{ v.name }}</div>
+                    <div style="font:400 11.5px Inter,sans-serif;color:rgba(233,233,237,.55);margin-top:2px">{{ v.given }}</div>
+                  </div>
+                  <span style="font:600 10px Inter,sans-serif;letter-spacing:.08em;padding:4px 9px;border-radius:9px;background:{{ v.chipBg }};color:{{ v.chipFg }}">{{ v.chip }}</span>
+                </div>
+              </sc-for>
+            </div>
+            </sc-if>
+
+            <sc-if value="{{ pMeds }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:20px;display:flex;flex-direction:column;gap:8px">
+              <div style="padding:16px;border-radius:16px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                <div style="font:600 13.5px Inter,sans-serif">Carprofen 75mg</div>
+                <div style="font:400 11.5px Inter,sans-serif;color:rgba(233,233,237,.55);margin-top:3px">Once daily with food · 6 of 14 doses given</div>
+                <div style="height:6px;border-radius:3px;background:rgba(233,233,237,.1);margin-top:12px;overflow:hidden"><div style="width:43%;height:100%;background:#9184d9"></div></div>
+              </div>
+              <div style="padding:16px;border-radius:16px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                <div style="font:600 13.5px Inter,sans-serif">Flea &amp; tick spot-on</div>
+                <div style="font:400 11.5px Inter,sans-serif;color:rgba(233,233,237,.55);margin-top:3px">Monthly · next on 2 Oct</div>
+              </div>
+            </div>
+            </sc-if>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isReminders }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Reminders" style="padding:8px 20px 150px;animation:pj-in .25s ease">
+            <button onClick="{{ goHome }}" style="border:0;background:transparent;color:rgba(233,233,237,.6);font:500 12px Inter,sans-serif;cursor:pointer;padding:0;margin-bottom:12px"><i class="ph ph-arrow-left"></i> Home</button>
+            <h1 style="margin:0 0 4px;font:700 24px Inter,sans-serif;letter-spacing:-.02em">Care calendar</h1>
+            <p style="margin:0 0 22px;font:400 13px/1.55 Inter,sans-serif;color:rgba(233,233,237,.58)">Nothing quietly lapses. Every due date lives here and nudges you twice.</p>
+            <sc-for list="{{ careGroups }}" as="g" hint-placeholder-count="3">
+              <div style="margin-bottom:22px">
+                <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+                  <span style="font:600 9.5px Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:{{ g.color }}">{{ g.label }}</span>
+                  <span style="flex:1;height:1px;background:linear-gradient(90deg,rgba(233,233,237,.14),transparent)"></span>
+                </div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="2">
+                    <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                      <div style="width:34px;height:34px;flex:none;border-radius:10px;background:rgba(145,132,217,.14);display:grid;place-items:center;color:#b5abfc"><i class="{{ i.icon }}" style="font-size:16px"></i></div>
+                      <div style="flex:1"><div style="font:600 13px Inter,sans-serif">{{ i.title }}</div><div style="font:400 11.5px Inter,sans-serif;color:rgba(233,233,237,.55);margin-top:2px">{{ i.sub }}</div></div>
+                      <button style="height:28px;padding:0 11px;border-radius:9px;border:1px solid rgba(145,132,217,.5);background:transparent;color:#b5abfc;font:600 11px Inter,sans-serif;cursor:pointer">Done</button>
+                    </div>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isScanner }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Breed scanner" style="padding:8px 20px 150px;animation:pj-in .25s ease">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:18px">
+              <button onClick="{{ goHome }}" style="border:0;background:transparent;color:rgba(233,233,237,.6);font-size:16px;cursor:pointer;padding:0"><i class="ph ph-x"></i></button>
+              <span style="font:600 14px Inter,sans-serif">Breed scanner</span>
+              <span style="flex:1"></span>
+              <span style="font:600 10px Inter,sans-serif;letter-spacing:.1em;padding:5px 10px;border-radius:10px;background:rgba(216,189,134,.12);color:#d8bd86">3 SCANS LEFT</span>
+            </div>
+            <div style="border-radius:24px;aspect-ratio:3/4;background:repeating-linear-gradient(135deg,#22242f 0 8px,#1d1f29 8px 16px);border:1px solid rgba(233,233,237,.1);position:relative;overflow:hidden;display:grid;place-items:center">
+              <div style="position:absolute;inset:26px;border-radius:16px;border:1px dashed rgba(216,189,134,.35)"></div>
+              <div style="position:absolute;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#9184d9,transparent);top:42%;animation:pj-blink 1.8s ease-in-out infinite"></div>
+              <div style="text-align:center;font:500 11px/1.7 ui-monospace,monospace;color:rgba(233,233,237,.5)">camera viewfinder<br>full body, side on</div>
+            </div>
+            <p style="margin:16px 4px 20px;font:400 13px/1.6 Inter,sans-serif;color:rgba(233,233,237,.6);text-align:center">Stand back a couple of steps and get all four legs in frame — daylight beats flash.</p>
+            <div style="display:flex;align-items:center;justify-content:center;gap:28px">
+              <button onClick="{{ doScan }}" style="width:46px;height:46px;border-radius:14px;border:1px solid rgba(233,233,237,.18);background:transparent;color:rgba(233,233,237,.7);cursor:pointer"><i class="ph ph-images" style="font-size:19px"></i></button>
+              <button onClick="{{ doScan }}" style="width:76px;height:76px;border-radius:50%;border:2px solid rgba(216,189,134,.6);background:rgba(145,132,217,.18);cursor:pointer;display:grid;place-items:center" style-hover="background:rgba(145,132,217,.3)"><i class="ph-fill ph-camera" style="font-size:28px;color:#e9e9ed"></i></button>
+              <button style="width:46px;height:46px;border-radius:14px;border:1px solid rgba(233,233,237,.18);background:transparent;color:rgba(233,233,237,.7);cursor:pointer"><i class="ph ph-lightning" style="font-size:19px"></i></button>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isResult }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Scan result" style="padding:8px 20px 150px;animation:pj-in .25s ease">
+            <button onClick="{{ goScanner }}" style="border:0;background:transparent;color:rgba(233,233,237,.6);font:500 12px Inter,sans-serif;cursor:pointer;padding:0;margin-bottom:14px"><i class="ph ph-arrow-left"></i> Rescan</button>
+            <div style="border-radius:22px;overflow:hidden;border:1px solid rgba(216,189,134,.25);background:#232532">
+              <div style="height:190px;background:repeating-linear-gradient(135deg,#2f3142 0 8px,#282a39 8px 16px);display:grid;place-items:center;font:500 9px ui-monospace,monospace;color:rgba(233,233,237,.45)">scanned photo</div>
+              <div style="padding:18px">
+                <div style="font:600 9px Inter,sans-serif;letter-spacing:.28em;text-transform:uppercase;color:#d8bd86">Most likely</div>
+                <div style="display:flex;align-items:baseline;gap:10px;margin-top:6px">
+                  <span style="font:700 23px Inter,sans-serif;letter-spacing:-.02em">Labrador Retriever</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
+                  <div style="flex:1;height:6px;border-radius:3px;background:rgba(233,233,237,.1);overflow:hidden"><div style="width:92%;height:100%;background:linear-gradient(90deg,#5d5294,#9184d9)"></div></div>
+                  <span style="font:600 12px Inter,sans-serif;color:#b5abfc">92%</span>
+                </div>
+                <div style="height:1px;margin:16px 0;background:linear-gradient(90deg,rgba(216,189,134,.4),transparent)"></div>
+                <div style="display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;justify-content:space-between;font:400 12.5px Inter,sans-serif;color:rgba(233,233,237,.7)"><span>Golden Retriever</span><span>5%</span></div>
+                  <div style="display:flex;justify-content:space-between;font:400 12.5px Inter,sans-serif;color:rgba(233,233,237,.7)"><span>Chesapeake Bay Retriever</span><span>3%</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div onClick="{{ openPaywall }}" style="margin-top:12px;border-radius:20px;padding:18px;background:linear-gradient(140deg,rgba(216,189,134,.14),rgba(145,132,217,.08));border:1px solid rgba(216,189,134,.35);cursor:pointer;position:relative;overflow:hidden">
+              <div style="display:flex;align-items:center;gap:10px">
+                <i class="ph-fill ph-lock-simple" style="font-size:16px;color:#d8bd86"></i>
+                <span style="font:600 13.5px Inter,sans-serif">Breed health watchlist</span>
+              </div>
+              <p style="margin:8px 0 0;font:400 12px/1.6 Inter,sans-serif;color:rgba(233,233,237,.62)">Labradors are prone to four conditions worth screening early. Unlock the full report, weight targets and a tailored vaccine schedule.</p>
+              <div style="filter:blur(3.5px);opacity:.5;margin-top:12px;display:flex;flex-direction:column;gap:6px">
+                <div style="height:9px;border-radius:5px;background:rgba(233,233,237,.3);width:82%"></div>
+                <div style="height:9px;border-radius:5px;background:rgba(233,233,237,.3);width:64%"></div>
+                <div style="height:9px;border-radius:5px;background:rgba(233,233,237,.3);width:73%"></div>
+              </div>
+              <div style="margin-top:14px;height:42px;border-radius:12px;border:1px solid #d8bd86;background:rgba(216,189,134,.12);display:grid;place-items:center;font:600 13px Inter,sans-serif;color:#d8bd86">Unlock with Pro</div>
+            </div>
+            <button onClick="{{ goPassport }}" style="width:100%;margin-top:10px;height:46px;border-radius:14px;border:1px solid rgba(145,132,217,.5);background:transparent;color:#b5abfc;font:600 13.5px Inter,sans-serif;cursor:pointer">Save breed to passport</button>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isChat }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Vet chat" style="display:flex;flex-direction:column;min-height:100%;animation:pj-in .25s ease">
+            <div style="padding:8px 20px 12px;display:flex;align-items:center;gap:10px">
+              <div style="width:34px;height:34px;border-radius:50%;background:rgba(145,132,217,.2);display:grid;place-items:center"><i class="ph-fill ph-first-aid-kit" style="font-size:16px;color:#d2cefd"></i></div>
+              <div><div style="font:600 14px Inter,sans-serif">Vet chat</div><div style="font:400 10.5px Inter,sans-serif;color:#5fc79a">awake now</div></div>
+              <span style="flex:1"></span>
+              <span style="font:600 10px Inter,sans-serif;letter-spacing:.08em;padding:5px 10px;border-radius:10px;background:rgba(216,189,134,.12);color:#d8bd86">{{ quota }}</span>
+            </div>
+            <div style="flex:1;padding:6px 20px 230px;display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ chat }}" as="m" hint-placeholder-count="3">
+                <sc-if value="{{ m.isUser }}" hint-placeholder-val="{{ false }}">
+                  <div style="align-self:flex-end;max-width:80%;padding:12px 15px;border-radius:18px 18px 4px 18px;background:#5d5294;font:400 13.5px/1.5 Inter,sans-serif">{{ m.text }}</div>
+                </sc-if>
+                <sc-if value="{{ m.isBot }}" hint-placeholder-val="{{ true }}">
+                  <div style="align-self:flex-start;max-width:86%;padding:14px 15px;border-radius:18px 18px 18px 4px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                    <div style="font:400 13.5px/1.6 Inter,sans-serif;color:#e9e9ed">{{ m.text }}</div>
+                    <sc-if value="{{ m.urgent }}" hint-placeholder-val="{{ false }}">
+                      <div style="margin-top:10px;padding:10px 12px;border-radius:12px;background:rgba(224,115,107,.12);border:1px solid rgba(224,115,107,.5);font:600 11.5px/1.5 Inter,sans-serif;color:#f5a49d">Call an emergency vet now — this one does not wait until morning.</div>
+                    </sc-if>
+                    <div style="margin-top:10px;font:400 11px/1.5 Inter,sans-serif;color:rgba(233,233,237,.72)">General information, not a diagnosis.</div>
+                  </div>
+                </sc-if>
+              </sc-for>
+              <sc-if value="{{ typing }}" hint-placeholder-val="{{ false }}">
+                <div style="align-self:flex-start;padding:14px 18px;border-radius:18px;background:#232532;display:flex;gap:5px">
+                  <span style="width:6px;height:6px;border-radius:50%;background:#b5abfc;animation:pj-blink 1s infinite"></span>
+                  <span style="width:6px;height:6px;border-radius:50%;background:#b5abfc;animation:pj-blink 1s .2s infinite"></span>
+                  <span style="width:6px;height:6px;border-radius:50%;background:#b5abfc;animation:pj-blink 1s .4s infinite"></span>
+                </div>
+              </sc-if>
+              <sc-if value="{{ showPrompts }}" hint-placeholder-val="{{ true }}">
+                <div style="margin-top:8px;font:400 12.5px/1.6 Inter,sans-serif;color:rgba(233,233,237,.6)">Ask anything about Sarthak, or start from one of the questions below.</div>
+              </sc-if>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isNutrition }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Nutrition" style="padding:8px 20px 150px;animation:pj-in .25s ease">
+            <div style="display:flex;align-items:center;margin-bottom:18px">
+              <div>
+                <div style="font:600 9px Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#d8bd86">Today</div>
+                <div style="font:700 21px Inter,sans-serif;letter-spacing:-.02em;margin-top:3px">Nutrition</div>
+              </div>
+              <span style="flex:1"></span>
+              <button style="width:34px;height:34px;border-radius:11px;border:1px solid rgba(233,233,237,.16);background:transparent;color:rgba(233,233,237,.72);cursor:pointer"><i class="ph ph-magnifying-glass" style="font-size:16px"></i></button>
+            </div>
+            <div style="border-radius:22px;padding:22px;background:#232532;border:1px solid rgba(233,233,237,.08);display:flex;gap:20px;align-items:center">
+              <div style="width:124px;height:124px;flex:none;border-radius:50%;display:grid;place-items:center;background:{{ ring }}">
+                <div style="width:96px;height:96px;border-radius:50%;background:#232532;display:grid;place-items:center;text-align:center">
+                  <div>
+                    <div style="font:700 24px Inter,sans-serif;color:#b5abfc">{{ kcal }}</div>
+                    <div style="font:400 10px Inter,sans-serif;color:rgba(233,233,237,.5)">of 767 kcal</div>
+                  </div>
+                </div>
+              </div>
+              <div style="flex:1;display:flex;flex-direction:column;gap:12px">
+                <div><div style="font:400 10.5px Inter,sans-serif;color:rgba(233,233,237,.5)">Remaining</div><div style="font:600 15px Inter,sans-serif;color:#5fc79a">{{ remaining }} kcal</div></div>
+                <div><div style="font:400 10.5px Inter,sans-serif;color:rgba(233,233,237,.5)">Treat budget</div><div style="font:600 15px Inter,sans-serif;color:#d8bd86">{{ treatUsed }} / 77 kcal</div></div>
+                <div style="height:5px;border-radius:3px;background:rgba(233,233,237,.1);overflow:hidden"><div style="height:100%;background:#d8bd86;width:{{ treatPct }}"></div></div>
+              </div>
+            </div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;margin:24px 0 10px">
+              <h2 style="margin:0;font:600 15px Inter,sans-serif">Quick add</h2>
+              <span style="font:400 11px Inter,sans-serif;color:rgba(233,233,237,.45)">Sarthak's usuals</span>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">
+              <sc-for list="{{ quickFoods }}" as="f" hint-placeholder-count="4">
+                <button onClick="{{ f.onClick }}" style="padding:10px 14px;border-radius:13px;border:1px solid rgba(233,233,237,.14);background:#232532;color:#e9e9ed;font:500 12.5px Inter,sans-serif;cursor:pointer;display:flex;gap:8px;align-items:center" style-hover="border-color:#9184d9">{{ f.name }}<span style="color:rgba(233,233,237,.45);font-size:11px">{{ f.kcal }}</span></button>
+              </sc-for>
+            </div>
+            <h2 style="margin:24px 0 10px;font:600 15px Inter,sans-serif">Logged today</h2>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ foodLog }}" as="l" hint-placeholder-count="2">
+                <div style="display:flex;align-items:center;gap:12px;padding:13px 14px;border-radius:15px;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                  <i class="{{ l.icon }}" style="font-size:16px;color:rgba(233,233,237,.6)"></i>
+                  <span style="flex:1;font:500 13px Inter,sans-serif">{{ l.name }}</span>
+                  <span style="font:500 12px Inter,sans-serif;color:rgba(233,233,237,.55)">{{ l.kcal }} kcal</span>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isStory }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Story" style="padding:8px 20px 150px;animation:pj-in .25s ease">
+            <div style="text-align:center;margin-bottom:22px">
+              <div style="font:600 9px Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#d8bd86">Nine years and counting</div>
+              <h1 style="margin:6px 0 0;font:700 24px Inter,sans-serif;letter-spacing:-.02em">Sarthak's story</h1>
+              <div style="width:80px;height:1px;margin:14px auto 0;background:linear-gradient(90deg,transparent,#d8bd86,transparent)"></div>
+            </div>
+            <sc-for list="{{ storyItems }}" as="s" hint-placeholder-count="2">
+              <div style="margin-bottom:26px">
+                <div style="font:600 10px Inter,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(233,233,237,.45);margin-bottom:10px">{{ s.month }}</div>
+                <div style="border-radius:20px;overflow:hidden;background:#232532;border:1px solid rgba(233,233,237,.08)">
+                  <div style="height:230px;background:repeating-linear-gradient(135deg,#2f3142 0 8px,#282a39 8px 16px);display:grid;place-items:center;font:500 9px ui-monospace,monospace;color:rgba(233,233,237,.45)">memory photo</div>
+                  <div style="padding:16px">
+                    <div style="display:flex;align-items:center;gap:8px">
+                      <span style="font:600 15px Inter,sans-serif">{{ s.title }}</span>
+                      <span style="flex:1"></span>
+                      <i class="ph ph-export" style="font-size:16px;color:rgba(233,233,237,.5)"></i>
+                    </div>
+                    <div style="font:400 11px Inter,sans-serif;color:rgba(233,233,237,.45);margin-top:3px">{{ s.date }}</div>
+                    <p style="margin:10px 0 0;font:400 13px/1.6 Inter,sans-serif;color:rgba(233,233,237,.72)">{{ s.note }}</p>
+                  </div>
+                </div>
+              </div>
+            </sc-for>
+            <div style="border-radius:18px;padding:18px;border:1px dashed rgba(216,189,134,.4);text-align:center">
+              <div style="font:600 13px Inter,sans-serif;color:#d8bd86">Print the year as a book</div>
+              <p style="margin:6px 0 0;font:400 11.5px/1.55 Inter,sans-serif;color:rgba(233,233,237,.55)">Twelve months of Sarthak, bound in linen. A Pro perk.</p>
+            </div>
+          </div>
+          </sc-if>
+
+          <sc-if value="{{ isSettings }}" hint-placeholder-val="{{ false }}">
+          <div data-screen-label="Settings" style="padding:8px 20px 150px;animation:pj-in .25s ease">
+            <button onClick="{{ goHome }}" style="border:0;background:transparent;color:rgba(233,233,237,.6);font:500 12px Inter,sans-serif;cursor:pointer;padding:0;margin-bottom:12px"><i class="ph ph-arrow-left"></i> Home</button>
+            <h1 style="margin:0 0 20px;font:700 24px Inter,sans-serif;letter-spacing:-.02em">Settings</h1>
+            <div style="border-radius:18px;padding:16px;background:linear-gradient(140deg,rgba(216,189,134,.14),rgba(145,132,217,.08));border:1px solid rgba(216,189,134,.32);display:flex;align-items:center;gap:12px">
+              <i class="ph-fill ph-crown-simple" style="font-size:20px;color:#d8bd86"></i>
+              <div style="flex:1">
+                <div style="font:600 13.5px Inter,sans-serif">{{ tierLabel }}</div>
+                <div style="font:400 11.5px Inter,sans-serif;color:rgba(233,233,237,.6);margin-top:2px">{{ tierSub }}</div>
+              </div>
+              <button onClick="{{ openPaywall }}" style="height:30px;padding:0 12px;border-radius:10px;border:1px solid #d8bd86;background:transparent;color:#d8bd86;font:600 11.5px Inter,sans-serif;cursor:pointer">Manage</button>
+            </div>
+            <div style="font:600 9.5px Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:rgba(233,233,237,.4);margin:24px 0 10px">Preferences</div>
+            <div style="border-radius:18px;background:#232532;border:1px solid rgba(233,233,237,.08);overflow:hidden">
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px">
+                <span style="flex:1;font:500 13.5px Inter,sans-serif">Units</span>
+                <div style="display:flex;padding:3px;border-radius:10px;background:rgba(233,233,237,.07)">
+                  <button onClick="{{ setImperial }}" style="height:26px;padding:0 12px;border:0;border-radius:8px;font:600 11.5px Inter,sans-serif;cursor:pointer;background:{{ impBg }};color:{{ impFg }}">lb / °F</button>
+                  <button onClick="{{ setMetric }}" style="height:26px;padding:0 12px;border:0;border-radius:8px;font:600 11.5px Inter,sans-serif;cursor:pointer;background:{{ metBg }};color:{{ metFg }}">kg / °C</button>
+                </div>
+              </div>
+              <div style="height:1px;background:rgba(233,233,237,.08)"></div>
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px">
+                <span style="flex:1;font:500 13.5px Inter,sans-serif">Time zone</span>
+                <span style="font:400 12.5px Inter,sans-serif;color:rgba(233,233,237,.55)">Asia/Kolkata</span>
+                <i class="ph ph-caret-right" style="font-size:14px;color:rgba(233,233,237,.4)"></i>
+              </div>
+              <div style="height:1px;background:rgba(233,233,237,.08)"></div>
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px">
+                <div style="flex:1"><div style="font:500 13.5px Inter,sans-serif">Care reminders</div><div style="font:400 11px Inter,sans-serif;color:rgba(233,233,237,.5);margin-top:2px">Two nudges: a week out, then the day of</div></div>
+                <button onClick="{{ toggleNotif }}" style="width:44px;height:26px;border-radius:13px;border:0;cursor:pointer;padding:3px;display:flex;justify-content:{{ notifJustify }};background:{{ notifBg }}"><span style="width:20px;height:20px;border-radius:50%;background:#e9e9ed;display:block"></span></button>
+              </div>
+            </div>
+            <div style="font:600 9.5px Inter,sans-serif;letter-spacing:.24em;text-transform:uppercase;color:rgba(233,233,237,.4);margin:24px 0 10px">Account</div>
+            <div style="border-radius:18px;background:#232532;border:1px solid rgba(233,233,237,.08);overflow:hidden">
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px"><span style="flex:1;font:500 13.5px Inter,sans-serif">Restore purchases</span><i class="ph ph-caret-right" style="font-size:14px;color:rgba(233,233,237,.4)"></i></div>
+              <div style="height:1px;background:rgba(233,233,237,.08)"></div>
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px"><span style="flex:1;font:500 13.5px Inter,sans-serif">Terms &amp; privacy</span><i class="ph ph-caret-right" style="font-size:14px;color:rgba(233,233,237,.4)"></i></div>
+              <div style="height:1px;background:rgba(233,233,237,.08)"></div>
+              <div style="display:flex;align-items:center;gap:12px;padding:15px 16px"><span style="flex:1;font:500 13.5px Inter,sans-serif;color:#e0736b">Delete account</span><span style="font:400 11px Inter,sans-serif;color:rgba(233,233,237,.4)">30-day grace</span></div>
+            </div>
+          </div>
+          </sc-if>
+
+        </div>
+
+        <sc-if value="{{ isChat }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;left:0;right:0;bottom:96px;z-index:5;padding:14px 16px 12px;background:linear-gradient(180deg,rgba(22,24,38,0),rgba(22,24,38,.96) 30%)">
+            <div style="display:flex;gap:7px;overflow:auto;padding-bottom:10px">
+              <sc-for list="{{ prompts }}" as="p" hint-placeholder-count="4">
+                <button onClick="{{ p.onClick }}" style="flex:none;padding:8px 12px;border-radius:11px;border:1px solid rgba(233,233,237,.16);background:rgba(35,37,50,.9);color:rgba(233,233,237,.85);font:500 11.5px Inter,sans-serif;cursor:pointer;white-space:nowrap" style-hover="border-color:#9184d9;color:#e9e9ed">{{ p.text }}</button>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:8px;align-items:flex-end">
+              <input value="{{ draft }}" onChange="{{ onDraft }}" onKeyDown="{{ onDraftKey }}" placeholder="{{ composerHint }}" style="flex:1;height:50px;padding:0 16px;border-radius:16px;border:1px solid rgba(233,233,237,.16);background:#232532;color:#e9e9ed;font:400 13.5px Inter,sans-serif;outline:none" style-focus="border-color:#9184d9">
+              <button onClick="{{ sendDraft }}" style="width:50px;height:50px;flex:none;border-radius:16px;cursor:pointer;display:grid;place-items:center;border:1px solid {{ sendBd }};background:{{ sendBg }};color:{{ sendFg }}">
+                <i class="{{ sendIcon }}" style="font-size:19px"></i>
+              </button>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:0 16px 22px;background:linear-gradient(180deg,rgba(22,24,38,0),rgba(22,24,38,.92) 38%);z-index:4">
+          <div style="height:64px;border-radius:26px;background:rgba(35,37,50,.94);border:1px solid rgba(233,233,237,.1);backdrop-filter:blur(14px);display:flex;align-items:center;padding:0 8px;position:relative">
+            <sc-for list="{{ navLeft }}" as="n" hint-placeholder-count="2">
+              <button onClick="{{ n.onClick }}" style="flex:1;height:100%;border:0;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:{{ n.color }}">
+                <i class="{{ n.icon }}" style="font-size:20px"></i>
+                <span style="font:600 9.5px Inter,sans-serif;letter-spacing:.04em">{{ n.label }}</span>
+              </button>
+            </sc-for>
+            <div style="width:74px;flex:none"></div>
+            <sc-for list="{{ navRight }}" as="n" hint-placeholder-count="2">
+              <button onClick="{{ n.onClick }}" style="flex:1;height:100%;border:0;background:transparent;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;color:{{ n.color }}">
+                <i class="{{ n.icon }}" style="font-size:20px"></i>
+                <span style="font:600 9.5px Inter,sans-serif;letter-spacing:.04em">{{ n.label }}</span>
+              </button>
+            </sc-for>
+            <button onClick="{{ openActions }}" style="position:absolute;left:50%;top:-20px;transform:translateX(-50%);width:62px;height:62px;border-radius:50%;border:1px solid rgba(216,189,134,.55);background:linear-gradient(150deg,#9184d9,#5d5294);color:#f5f4ff;cursor:pointer;display:grid;place-items:center;box-shadow:0 10px 26px rgba(93,82,148,.5)" style-hover="background:linear-gradient(150deg,#b5abfc,#796cbf)">
+              <i class="ph ph-plus" style="font-size:24px"></i>
+            </button>
+          </div>
+        </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetActions }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;background:rgba(10,10,17,.62);z-index:6"></div>
+          <div style="position:absolute;left:0;right:0;bottom:0;z-index:7;background:#1d1f2c;border-top:1px solid rgba(216,189,134,.3);border-radius:26px 26px 0 0;padding:14px 20px 30px;animation:pj-sheet .22s ease-out">
+            <div style="width:38px;height:4px;border-radius:2px;background:rgba(233,233,237,.2);margin:0 auto 18px"></div>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <sc-for list="{{ actions }}" as="a" hint-placeholder-count="4">
+                <button onClick="{{ a.onClick }}" style="display:flex;align-items:center;gap:14px;padding:15px;border-radius:16px;border:1px solid rgba(233,233,237,.1);background:#232532;color:#e9e9ed;cursor:pointer;text-align:left" style-hover="border-color:#9184d9">
+                  <span style="width:38px;height:38px;flex:none;border-radius:12px;background:rgba(145,132,217,.16);display:grid;place-items:center;color:#b5abfc"><i class="{{ a.icon }}" style="font-size:18px"></i></span>
+                  <span style="flex:1"><span style="display:block;font:600 13.5px Inter,sans-serif">{{ a.title }}</span><span style="display:block;font:400 11.5px Inter,sans-serif;color:rgba(233,233,237,.55);margin-top:2px">{{ a.sub }}</span></span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetRecord }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;background:rgba(10,10,17,.62);z-index:6"></div>
+          <div data-screen-label="Add record" style="position:absolute;left:0;right:0;bottom:0;top:120px;z-index:7;background:#1d1f2c;border-top:1px solid rgba(216,189,134,.3);border-radius:26px 26px 0 0;padding:14px 20px 26px;overflow:auto;animation:pj-sheet .22s ease-out">
+            <div style="width:38px;height:4px;border-radius:2px;background:rgba(233,233,237,.2);margin:0 auto 16px"></div>
+            <h2 style="margin:0 0 4px;font:700 20px Inter,sans-serif;letter-spacing:-.02em">Add to the passport</h2>
+            <p style="margin:0 0 18px;font:400 12.5px/1.55 Inter,sans-serif;color:rgba(233,233,237,.55)">Three fields is usually enough. The rest can wait.</p>
+            <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
+              <sc-for list="{{ recordTypes }}" as="rt" hint-placeholder-count="6">
+                <button onClick="{{ rt.onClick }}" style="padding:9px 14px;border-radius:12px;font:600 12.5px Inter,sans-serif;cursor:pointer;border:1px solid {{ rt.bd }};background:{{ rt.bg }};color:{{ rt.fg }}">{{ rt.label }}</button>
+              </sc-for>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <label style="display:block">
+                <span style="display:block;font:500 10.5px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(233,233,237,.45);margin-bottom:6px">{{ recordFieldLabel }}</span>
+                <input placeholder="{{ recordFieldHint }}" style="width:100%;height:50px;padding:0 15px;border-radius:14px;border:1px solid rgba(233,233,237,.14);background:#232532;color:#e9e9ed;font:400 14px Inter,sans-serif;outline:none" style-focus="border-color:#9184d9">
+              </label>
+              <div style="display:flex;gap:10px">
+                <label style="flex:1">
+                  <span style="display:block;font:500 10.5px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(233,233,237,.45);margin-bottom:6px">Date</span>
+                  <div style="height:50px;padding:0 15px;border-radius:14px;border:1px solid rgba(233,233,237,.14);background:#232532;display:flex;align-items:center;justify-content:space-between;font:400 14px Inter,sans-serif">15 Sep 2026<i class="ph ph-calendar-blank" style="color:rgba(233,233,237,.5)"></i></div>
+                </label>
+                <label style="flex:1">
+                  <span style="display:block;font:500 10.5px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(233,233,237,.45);margin-bottom:6px">Next due</span>
+                  <div style="height:50px;padding:0 15px;border-radius:14px;border:1px dashed rgba(216,189,134,.4);background:transparent;display:flex;align-items:center;justify-content:space-between;font:400 14px Inter,sans-serif;color:#d8bd86">+ 1 year<i class="ph ph-bell-ringing"></i></div>
+                </label>
+              </div>
+              <label style="display:block">
+                <span style="display:block;font:500 10.5px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:rgba(233,233,237,.45);margin-bottom:6px">Clinic (optional)</span>
+                <input placeholder="Dr. Rao, Paws &amp; Claws" style="width:100%;height:50px;padding:0 15px;border-radius:14px;border:1px solid rgba(233,233,237,.14);background:#232532;color:#e9e9ed;font:400 14px Inter,sans-serif;outline:none" style-focus="border-color:#9184d9">
+              </label>
+            </div>
+            <button onClick="{{ saveRecord }}" style="width:100%;margin-top:20px;height:52px;border-radius:15px;border:1px solid #9184d9;background:rgba(145,132,217,.18);color:#e9e9ed;font:600 14.5px Inter,sans-serif;cursor:pointer" style-hover="background:rgba(145,132,217,.3)">Save to passport</button>
+            <p style="margin:10px 0 0;text-align:center;font:400 11px Inter,sans-serif;color:rgba(233,233,237,.4)">A reminder is set automatically when a next-due date exists.</p>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ sheetPaywall }}" hint-placeholder-val="{{ false }}">
+          <div onClick="{{ closeSheet }}" style="position:absolute;inset:0;background:rgba(10,10,17,.7);z-index:6"></div>
+          <div data-screen-label="Paywall" style="position:absolute;left:0;right:0;bottom:0;z-index:7;background:linear-gradient(170deg,#2b2741,#1d1f2c 45%);border-top:1px solid rgba(216,189,134,.45);border-radius:26px 26px 0 0;padding:16px 22px 28px;animation:pj-sheet .24s ease-out;overflow:hidden">
+            <div style="position:absolute;inset:0 -40% auto;height:100%;background:linear-gradient(100deg,transparent 35%,rgba(216,189,134,.09) 50%,transparent 65%);animation:pj-sheen 3.6s ease-in-out infinite;pointer-events:none"></div>
+            <div style="width:38px;height:4px;border-radius:2px;background:rgba(233,233,237,.2);margin:0 auto 18px"></div>
+            <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:10px">
+              <div style="width:56px;height:56px;border-radius:50%;border:1px solid rgba(216,189,134,.6);display:grid;place-items:center;background:rgba(216,189,134,.08)"><i class="ph-fill ph-crown-simple" style="font-size:24px;color:#d8bd86"></i></div>
+              <div style="font:600 9.5px Inter,sans-serif;letter-spacing:.32em;text-transform:uppercase;color:#d8bd86">PawJourney Pro</div>
+              <h2 style="margin:0;font:700 22px/1.25 Inter,sans-serif;letter-spacing:-.02em;max-width:280px">Unlimited vet chat, and nothing left to memory.</h2>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:9px;margin:20px 0 18px">
+              <sc-for list="{{ proPerks }}" as="p" hint-placeholder-count="4">
+                <div style="display:flex;gap:10px;align-items:flex-start"><i class="ph-fill ph-check-circle" style="font-size:16px;color:#d8bd86;margin-top:1px"></i><span style="font:400 13px/1.45 Inter,sans-serif;color:rgba(233,233,237,.85)">{{ p }}</span></div>
+              </sc-for>
+            </div>
+            <div style="display:flex;gap:8px">
+              <sc-for list="{{ plans }}" as="pl" hint-placeholder-count="3">
+                <button onClick="{{ pl.onClick }}" style="flex:1;padding:14px 8px;border-radius:16px;cursor:pointer;text-align:center;border:1px solid {{ pl.bd }};background:{{ pl.bg }};position:relative">
+                  <span style="display:block;font:600 10.5px Inter,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:{{ pl.tagFg }}">{{ pl.tag }}</span>
+                  <span style="display:block;font:700 17px Inter,sans-serif;color:#e9e9ed;margin-top:6px">{{ pl.price }}</span>
+                  <span style="display:block;font:400 10.5px Inter,sans-serif;color:rgba(233,233,237,.5);margin-top:3px">{{ pl.note }}</span>
+                </button>
+              </sc-for>
+            </div>
+            <button style="width:100%;margin-top:16px;height:54px;border-radius:16px;border:1px solid #d8bd86;background:linear-gradient(120deg,rgba(216,189,134,.22),rgba(145,132,217,.22));color:#f5f4ff;font:600 15px Inter,sans-serif;cursor:pointer" style-hover="background:linear-gradient(120deg,rgba(216,189,134,.34),rgba(145,132,217,.32))">Start 7 days free</button>
+            <div style="display:flex;justify-content:center;gap:18px;margin-top:12px;font:400 10.5px Inter,sans-serif;color:rgba(233,233,237,.45)">
+              <span>Restore purchases</span><span>Terms</span><span>Privacy</span>
+            </div>
+          </div>
+        </sc-if>
+
+      </div>
+
+      <div style="width:390px;display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">
+        <sc-for list="{{ jumps }}" as="j" hint-placeholder-count="10">
+          <button onClick="{{ j.onClick }}" style="padding:5px 9px;border-radius:8px;border:1px solid rgba(233,233,237,.14);background:{{ j.bg }};color:{{ j.fg }};font:500 10.5px Inter,sans-serif;cursor:pointer">{{ j.label }}</button>
+        </sc-for>
+      </div>
+    </div>
+
+    <div id="1b" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+      <div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:rgba(233,233,237,.55)">
+        <a href="#1b" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(233,233,237,.1);color:#e9e9ed;border-radius:5px;text-decoration:none">1b</a>
+        Home alternate — companion-first, one question at a time
+      </div>
+      <div style="width:390px;height:844px;border-radius:46px;background:#161826;box-shadow:0 0 0 9px #0a0a11,0 0 0 10px rgba(216,189,134,.18),0 30px 70px rgba(0,0,0,.5);overflow:hidden;position:relative;display:flex;flex-direction:column">
+        <div style="height:52px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 6px;font:600 13px Inter,sans-serif"><span>5:39</span><span style="display:flex;gap:6px;font-size:12px;opacity:.85"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
+        <div data-screen-label="Home alt" style="flex:1;overflow:hidden;padding:12px 22px 0">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:26px">
+            <div style="width:34px;height:34px;border-radius:50%;background:repeating-linear-gradient(135deg,#2f3142 0 5px,#282a39 5px 10px);border:1px solid rgba(216,189,134,.4)"></div>
+            <span style="font:600 13px Inter,sans-serif">Sarthak</span>
+            <i class="ph ph-caret-down" style="font-size:12px;color:rgba(233,233,237,.5)"></i>
+            <span style="flex:1"></span>
+            <i class="ph ph-gear-six" style="font-size:18px;color:rgba(233,233,237,.5)"></i>
+          </div>
+          <div style="font:400 13px Inter,sans-serif;color:rgba(233,233,237,.5)">Monday, 15 September</div>
+          <h1 style="margin:8px 0 0;font:600 31px/1.22 Inter,sans-serif;letter-spacing:-.025em;text-wrap:pretty">Sarthak is <span style="color:#5fc79a">doing well</span>. One thing needs you today.</h1>
+          <div style="margin-top:24px;border-radius:20px;padding:18px;background:#232532;border:1px solid rgba(224,164,88,.35)">
+            <div style="display:flex;align-items:center;gap:10px"><i class="ph-fill ph-syringe" style="font-size:17px;color:#e0a458"></i><span style="font:600 14px Inter,sans-serif">Rabies booster due in 12 days</span></div>
+            <p style="margin:8px 0 14px;font:400 12.5px/1.55 Inter,sans-serif;color:rgba(233,233,237,.6)">Last given 20 Sep 2025 at Paws &amp; Claws. Most clinics want a week's notice.</p>
+            <div style="display:flex;gap:8px">
+              <button style="flex:1;height:42px;border-radius:12px;border:1px solid #9184d9;background:rgba(145,132,217,.16);color:#e9e9ed;font:600 12.5px Inter,sans-serif;cursor:pointer">Book a slot</button>
+              <button style="height:42px;padding:0 14px;border-radius:12px;border:1px solid rgba(233,233,237,.16);background:transparent;color:rgba(233,233,237,.7);font:600 12.5px Inter,sans-serif;cursor:pointer">Snooze</button>
+            </div>
+          </div>
+          <div style="margin-top:12px;border-radius:20px;padding:18px;background:linear-gradient(135deg,rgba(145,132,217,.22),rgba(145,132,217,.05));border:1px solid rgba(145,132,217,.35)">
+            <div style="font:400 12.5px/1.6 Inter,sans-serif;color:rgba(233,233,237,.85)">“Is it normal that he's slower on the stairs lately?”</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-top:12px"><i class="ph-fill ph-first-aid-kit" style="font-size:15px;color:#d2cefd"></i><span style="font:500 11.5px Inter,sans-serif;color:rgba(233,233,237,.6)">Ask the vet chat — answers in seconds</span></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-top:12px">
+            <div style="flex:1;border-radius:18px;padding:16px;background:#232532;border:1px solid rgba(233,233,237,.08)"><i class="ph ph-fork-knife" style="font-size:17px;color:#b5abfc"></i><div style="font:600 17px Inter,sans-serif;margin-top:10px">123<span style="font-size:11px;color:rgba(233,233,237,.5)"> /767 kcal</span></div><div style="font:400 11px Inter,sans-serif;color:rgba(233,233,237,.5);margin-top:2px">Two meals left</div></div>
+            <div style="flex:1;border-radius:18px;padding:16px;background:#232532;border:1px solid rgba(233,233,237,.08)"><i class="ph ph-images" style="font-size:17px;color:#d8bd86"></i><div style="font:600 17px Inter,sans-serif;margin-top:10px">3 <span style="font-size:11px;color:rgba(233,233,237,.5)">memories</span></div><div style="font:400 11px Inter,sans-serif;color:rgba(233,233,237,.5);margin-top:2px">This month</div></div>
+          </div>
+        </div>
+        <div style="position:absolute;left:0;right:0;bottom:0;padding:0 16px 22px;background:linear-gradient(180deg,rgba(22,24,38,0),rgba(22,24,38,.92) 38%)">
+          <div style="height:64px;border-radius:26px;background:rgba(35,37,50,.94);border:1px solid rgba(233,233,237,.1);display:flex;align-items:center;padding:0 8px;position:relative">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#b5abfc"><i class="ph-fill ph-house" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Home</span></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:rgba(233,233,237,.45)"><i class="ph ph-identification-card" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Passport</span></div>
+            <div style="width:74px;flex:none"></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:rgba(233,233,237,.45)"><i class="ph ph-fork-knife" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Nutrition</span></div>
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:rgba(233,233,237,.45)"><i class="ph ph-chat-teardrop-dots" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Chat</span></div>
+            <div style="position:absolute;left:50%;top:-20px;transform:translateX(-50%);width:62px;height:62px;border-radius:50%;border:1px solid rgba(216,189,134,.55);background:linear-gradient(150deg,#9184d9,#5d5294);display:grid;place-items:center;box-shadow:0 10px 26px rgba(93,82,148,.5)"><i class="ph ph-plus" style="font-size:24px;color:#f5f4ff"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1c" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+      <div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:rgba(233,233,237,.55)">
+        <a href="#1c" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(233,233,237,.1);color:#e9e9ed;border-radius:5px;text-decoration:none">1c</a>
+        Paywall alternate — full-screen investiture
+      </div>
+      <div style="width:390px;height:844px;border-radius:46px;background:#161826;box-shadow:0 0 0 9px #0a0a11,0 0 0 10px rgba(216,189,134,.18),0 30px 70px rgba(0,0,0,.5);overflow:hidden;position:relative;display:flex;flex-direction:column">
+        <div style="height:52px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 6px;font:600 13px Inter,sans-serif"><span>5:39</span><span style="display:flex;gap:6px;font-size:12px;opacity:.85"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
+        <div data-screen-label="Paywall alt" style="flex:1;display:flex;flex-direction:column;padding:0 24px 30px;background:radial-gradient(110% 50% at 50% 0%,#2b2741 0%,#161826 60%);position:relative;overflow:hidden">
+          <div style="display:flex;justify-content:flex-end;padding-top:6px"><i class="ph ph-x" style="font-size:20px;color:rgba(233,233,237,.45)"></i></div>
+          <div style="text-align:center;margin-top:10px">
+            <div style="width:84px;height:84px;margin:0 auto;border-radius:50%;border:1px solid rgba(216,189,134,.55);display:grid;place-items:center;background:rgba(216,189,134,.07)"><i class="ph-fill ph-crown-simple" style="font-size:34px;color:#d8bd86"></i></div>
+            <div style="width:130px;height:1px;margin:18px auto;background:linear-gradient(90deg,transparent,#d8bd86,transparent)"></div>
+            <div style="font:600 9.5px Inter,sans-serif;letter-spacing:.34em;text-transform:uppercase;color:#d8bd86">PawJourney Pro</div>
+            <h1 style="margin:12px 0 0;font:700 27px/1.24 Inter,sans-serif;letter-spacing:-.025em;text-wrap:pretty">Nine years of Sarthak deserve better than a shoebox of receipts.</h1>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:11px;margin:26px 0 auto">
+            <div style="display:flex;gap:11px;align-items:flex-start"><i class="ph-fill ph-infinity" style="font-size:17px;color:#d8bd86"></i><div><div style="font:600 13px Inter,sans-serif">Unlimited vet chat</div><div style="font:400 11.5px/1.5 Inter,sans-serif;color:rgba(233,233,237,.58)">No 3-a-month ceiling, no 3am hesitation</div></div></div>
+            <div style="display:flex;gap:11px;align-items:flex-start"><i class="ph-fill ph-dog" style="font-size:17px;color:#d8bd86"></i><div><div style="font:600 13px Inter,sans-serif">Every dog in the house</div><div style="font:400 11.5px/1.5 Inter,sans-serif;color:rgba(233,233,237,.58)">Multiple passports on one account</div></div></div>
+            <div style="display:flex;gap:11px;align-items:flex-start"><i class="ph-fill ph-cloud-check" style="font-size:17px;color:#d8bd86"></i><div><div style="font:600 13px Inter,sans-serif">Photos backed up, forever</div><div style="font:400 11.5px/1.5 Inter,sans-serif;color:rgba(233,233,237,.58)">Plus the printed year-book</div></div></div>
+            <div style="display:flex;gap:11px;align-items:flex-start"><i class="ph-fill ph-heartbeat" style="font-size:17px;color:#d8bd86"></i><div><div style="font:600 13px Inter,sans-serif">Breed health watchlists</div><div style="font:400 11.5px/1.5 Inter,sans-serif;color:rgba(233,233,237,.58)">Screen early for what Labradors carry</div></div></div>
+          </div>
+          <div style="border-radius:20px;border:1px solid rgba(216,189,134,.45);background:rgba(216,189,134,.07);padding:16px;text-align:center">
+            <div style="font:600 14px Inter,sans-serif">7 days free, then $59.99 a year</div>
+            <div style="font:400 11.5px Inter,sans-serif;color:rgba(233,233,237,.58);margin-top:3px">$4.99/mo billed yearly · or $9.99 monthly · family $14.99</div>
+          </div>
+          <button style="height:56px;margin-top:12px;border-radius:16px;border:1px solid #d8bd86;background:linear-gradient(120deg,rgba(216,189,134,.24),rgba(145,132,217,.24));color:#f5f4ff;font:600 15.5px Inter,sans-serif;cursor:pointer">Begin the free week</button>
+          <div style="display:flex;justify-content:center;gap:18px;margin-top:12px;font:400 10.5px Inter,sans-serif;color:rgba(233,233,237,.45)"><span>Restore purchases</span><span>Terms</span><span>Privacy</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="1d" style="display:flex;flex-direction:column;gap:10px;scroll-margin-top:16px">
+      <div style="display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 Inter,sans-serif;color:rgba(233,233,237,.55)">
+        <a href="#1d" style="font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(233,233,237,.1);color:#e9e9ed;border-radius:5px;text-decoration:none">1d</a>
+        Light theme — same system, parchment ground
+      </div>
+      <div style="display:flex;gap:22px">
+        <div style="width:390px;height:844px;border-radius:46px;background:#f3f2f7;box-shadow:0 0 0 9px #0a0a11,0 0 0 10px rgba(216,189,134,.18),0 30px 70px rgba(0,0,0,.5);overflow:hidden;position:relative;display:flex;flex-direction:column;color:#1b1a24">
+          <div style="height:52px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 6px;font:600 13px Inter,sans-serif"><span>5:39</span><span style="display:flex;gap:6px;font-size:12px;opacity:.8"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
+          <div data-screen-label="Home light" style="flex:1;overflow:hidden;padding:8px 20px 0">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:22px">
+              <div style="width:30px;height:30px;border-radius:50%;border:1px solid rgba(138,111,52,.45);display:grid;place-items:center"><i class="ph-fill ph-paw-print" style="font-size:14px;color:#8a6f34"></i></div>
+              <span style="font:600 10px Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#4a4858">PawJourney</span>
+              <span style="flex:1"></span>
+              <span style="height:26px;padding:0 10px;border-radius:13px;border:1px solid rgba(138,111,52,.4);background:rgba(216,189,134,.16);color:#8a6f34;font:600 10px Inter,sans-serif;letter-spacing:.12em;display:grid;place-items:center">GO PRO</span>
+              <i class="ph ph-gear-six" style="font-size:16px;color:#6a6878"></i>
+            </div>
+            <div style="border-radius:22px;padding:20px;background:#ffffff;border:1px solid rgba(138,111,52,.28);box-shadow:0 6px 18px rgba(27,26,36,.06)">
+              <div style="display:flex;gap:16px;align-items:center">
+                <div style="width:70px;height:70px;border-radius:50%;flex:none;border:1px solid rgba(138,111,52,.4);background:repeating-linear-gradient(135deg,#eceaf3 0 6px,#e3e1ec 6px 12px);display:grid;place-items:center;font:500 8px ui-monospace,monospace;color:#8b8998;text-align:center">dog<br>photo</div>
+                <div><div style="font:700 24px/1.1 Inter,sans-serif;letter-spacing:-.02em">Sarthak</div><div style="font:400 13px Inter,sans-serif;color:#6a6878;margin-top:3px">Labrador Retriever · 9 yrs 1 mo</div></div>
+              </div>
+              <div style="height:1px;margin:16px 0 12px;background:linear-gradient(90deg,transparent,rgba(138,111,52,.5) 18%,rgba(138,111,52,.5) 82%,transparent)"></div>
+              <div style="display:flex;justify-content:space-between;font:500 10px ui-monospace,monospace;letter-spacing:.12em;color:#8a6f34"><span>PASSPORT · PJ-0042-SAR</span><span>ISSUED 2017</span></div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px">
+              <div style="border-radius:14px;padding:12px 10px;background:#ffffff;border:1px solid rgba(27,26,36,.08)"><div style="font:400 10px Inter,sans-serif;color:#6a6878">Weight</div><div style="font:600 16px Inter,sans-serif;margin-top:4px">31.2<span style="font-size:11px;color:#6a6878"> kg</span></div></div>
+              <div style="border-radius:14px;padding:12px 10px;background:#ffffff;border:1px solid rgba(27,26,36,.08)"><div style="font:400 10px Inter,sans-serif;color:#6a6878">Next shot</div><div style="font:600 16px Inter,sans-serif;margin-top:4px;color:#a4661a">12<span style="font-size:11px;color:#6a6878"> days</span></div></div>
+              <div style="border-radius:14px;padding:12px 10px;background:#ffffff;border:1px solid rgba(27,26,36,.08)"><div style="font:400 10px Inter,sans-serif;color:#6a6878">Today</div><div style="font:600 16px Inter,sans-serif;margin-top:4px">123<span style="font-size:11px;color:#6a6878"> /767</span></div></div>
+            </div>
+            <h2 style="margin:26px 0 10px;font:600 15px Inter,sans-serif">Needs you this week</h2>
+            <div style="display:flex;flex-direction:column;gap:8px">
+              <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;background:#ffffff;border:1px solid rgba(27,26,36,.08)">
+                <div style="width:36px;height:36px;border-radius:11px;background:rgba(93,82,148,.12);display:grid;place-items:center;color:#5d5294"><i class="ph-fill ph-syringe" style="font-size:17px"></i></div>
+                <div style="flex:1"><div style="font:600 13.5px Inter,sans-serif">Rabies booster</div><div style="font:400 11.5px Inter,sans-serif;color:#6a6878;margin-top:2px">Due 27 Sep · Paws &amp; Claws</div></div>
+                <span style="font:600 10px Inter,sans-serif;padding:4px 9px;border-radius:9px;background:rgba(164,102,26,.12);color:#a4661a">12 DAYS</span>
+              </div>
+              <div style="display:flex;align-items:center;gap:12px;padding:14px;border-radius:16px;background:#ffffff;border:1px solid rgba(27,26,36,.08)">
+                <div style="width:36px;height:36px;border-radius:11px;background:rgba(93,82,148,.12);display:grid;place-items:center;color:#5d5294"><i class="ph-fill ph-scales" style="font-size:17px"></i></div>
+                <div style="flex:1"><div style="font:600 13.5px Inter,sans-serif">Monthly weigh-in</div><div style="font:400 11.5px Inter,sans-serif;color:#6a6878;margin-top:2px">Last logged 18 Aug</div></div>
+                <span style="font:600 10px Inter,sans-serif;padding:4px 9px;border-radius:9px;background:rgba(181,74,66,.12);color:#b54a42">OVERDUE</span>
+              </div>
+            </div>
+            <div style="margin-top:12px;border-radius:18px;padding:16px;background:linear-gradient(135deg,rgba(145,132,217,.18),rgba(145,132,217,.06));border:1px solid rgba(93,82,148,.3);display:flex;gap:13px;align-items:center">
+              <div style="width:40px;height:40px;border-radius:50%;background:rgba(93,82,148,.16);display:grid;place-items:center"><i class="ph-fill ph-first-aid-kit" style="font-size:19px;color:#5d5294"></i></div>
+              <div style="flex:1"><div style="font:600 13.5px Inter,sans-serif">Still awake at 3am?</div><div style="font:400 11.5px/1.45 Inter,sans-serif;color:#5a5868;margin-top:2px">The vet chat is too. Ask anything.</div></div>
+              <i class="ph ph-arrow-right" style="font-size:16px;color:#5d5294"></i>
+            </div>
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:0 16px 22px;background:linear-gradient(180deg,rgba(243,242,247,0),rgba(243,242,247,.95) 38%)">
+            <div style="height:64px;border-radius:26px;background:#ffffff;border:1px solid rgba(27,26,36,.09);box-shadow:0 8px 24px rgba(27,26,36,.1);display:flex;align-items:center;padding:0 8px;position:relative">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#5d5294"><i class="ph-fill ph-house" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Home</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8b8998"><i class="ph ph-identification-card" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Passport</span></div>
+              <div style="width:74px;flex:none"></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8b8998"><i class="ph ph-fork-knife" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Nutrition</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8b8998"><i class="ph ph-chat-teardrop-dots" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Chat</span></div>
+              <div style="position:absolute;left:50%;top:-20px;transform:translateX(-50%);width:62px;height:62px;border-radius:50%;border:1px solid rgba(138,111,52,.5);background:linear-gradient(150deg,#796cbf,#5d5294);display:grid;place-items:center;box-shadow:0 10px 26px rgba(93,82,148,.35)"><i class="ph ph-plus" style="font-size:24px;color:#ffffff"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div style="width:390px;height:844px;border-radius:46px;background:#f3f2f7;box-shadow:0 0 0 9px #0a0a11,0 0 0 10px rgba(216,189,134,.18),0 30px 70px rgba(0,0,0,.5);overflow:hidden;position:relative;display:flex;flex-direction:column;color:#1b1a24">
+          <div style="height:52px;flex:none;display:flex;align-items:flex-end;justify-content:space-between;padding:0 26px 6px;font:600 13px Inter,sans-serif"><span>5:39</span><span style="display:flex;gap:6px;font-size:12px;opacity:.8"><i class="ph-fill ph-cell-signal-full"></i><i class="ph-fill ph-wifi-high"></i><i class="ph-fill ph-battery-full"></i></span></div>
+          <div data-screen-label="Passport light" style="flex:1;overflow:hidden;padding:8px 20px 0">
+            <div style="display:flex;align-items:center;margin-bottom:16px">
+              <div><div style="font:600 9px Inter,sans-serif;letter-spacing:.3em;text-transform:uppercase;color:#8a6f34">Health passport</div><div style="font:700 21px Inter,sans-serif;letter-spacing:-.02em;margin-top:3px">Sarthak</div></div>
+              <span style="flex:1"></span>
+              <div style="width:34px;height:34px;border-radius:11px;border:1px solid rgba(27,26,36,.12);display:grid;place-items:center;color:#4a4858"><i class="ph ph-export" style="font-size:16px"></i></div>
+            </div>
+            <div style="display:flex;gap:6px;padding:4px;border-radius:14px;background:#e9e7f0">
+              <span style="flex:1;height:34px;border-radius:11px;background:#ffffff;box-shadow:0 1px 3px rgba(27,26,36,.1);display:grid;place-items:center;font:600 12px Inter,sans-serif;color:#1b1a24">Timeline</span>
+              <span style="flex:1;height:34px;display:grid;place-items:center;font:600 12px Inter,sans-serif;color:#6a6878">Vaccines</span>
+              <span style="flex:1;height:34px;display:grid;place-items:center;font:600 12px Inter,sans-serif;color:#6a6878">Meds</span>
+              <span style="flex:1;height:34px;display:grid;place-items:center;font:600 12px Inter,sans-serif;color:#6a6878">Weight</span>
+            </div>
+            <div style="margin-top:20px">
+              <div style="display:flex;gap:14px">
+                <div style="width:22px;flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:9px;height:9px;border-radius:50%;background:#8a6f34;margin-top:16px"></span><span style="flex:1;width:1px;background:rgba(27,26,36,.12)"></span></div>
+                <div style="flex:1;margin-bottom:10px;padding:14px;border-radius:16px;background:#ffffff;border:1px solid rgba(27,26,36,.08)"><div style="display:flex;align-items:baseline"><span style="font:600 13.5px Inter,sans-serif">Rabies vaccine</span><span style="flex:1"></span><span style="font:500 10px ui-monospace,monospace;color:#8b8998">20 Sep 2025</span></div><div style="font:400 11.5px Inter,sans-serif;color:#6a6878;margin-top:3px">Paws &amp; Claws · next due 27 Sep 2026</div></div>
+              </div>
+              <div style="display:flex;gap:14px">
+                <div style="width:22px;flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:9px;height:9px;border-radius:50%;background:#5d5294;margin-top:16px"></span><span style="flex:1;width:1px;background:rgba(27,26,36,.12)"></span></div>
+                <div style="flex:1;margin-bottom:10px;padding:14px;border-radius:16px;background:#ffffff;border:1px solid rgba(27,26,36,.08)"><div style="display:flex;align-items:baseline"><span style="font:600 13.5px Inter,sans-serif">Annual check-up</span><span style="flex:1"></span><span style="font:500 10px ui-monospace,monospace;color:#8b8998">14 Aug 2026</span></div><div style="font:400 11.5px Inter,sans-serif;color:#6a6878;margin-top:3px">Mild hip stiffness noted · Dr. Rao</div></div>
+              </div>
+              <div style="display:flex;gap:14px">
+                <div style="width:22px;flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:9px;height:9px;border-radius:50%;background:#5d5294;margin-top:16px"></span><span style="flex:1;width:1px;background:rgba(27,26,36,.12)"></span></div>
+                <div style="flex:1;margin-bottom:10px;padding:14px;border-radius:16px;background:#ffffff;border:1px solid rgba(27,26,36,.08)"><div style="display:flex;align-items:baseline"><span style="font:600 13.5px Inter,sans-serif">Weight 31.2 kg</span><span style="flex:1"></span><span style="font:500 10px ui-monospace,monospace;color:#8b8998">18 Aug 2026</span></div><div style="font:400 11.5px Inter,sans-serif;color:#6a6878;margin-top:3px">Steady for four months</div></div>
+              </div>
+              <div style="display:flex;gap:14px">
+                <div style="width:22px;flex:none;display:flex;flex-direction:column;align-items:center"><span style="width:9px;height:9px;border-radius:50%;background:#8a6f34;margin-top:16px"></span><span style="flex:1;width:1px;background:transparent"></span></div>
+                <div style="flex:1;padding:14px;border-radius:16px;background:#ffffff;border:1px solid rgba(27,26,36,.08)"><div style="display:flex;align-items:baseline"><span style="font:600 13.5px Inter,sans-serif">DHPP booster</span><span style="flex:1"></span><span style="font:500 10px ui-monospace,monospace;color:#8b8998">02 Mar 2026</span></div><div style="font:400 11.5px Inter,sans-serif;color:#6a6878;margin-top:3px">Paws &amp; Claws · next due 2029</div></div>
+              </div>
+            </div>
+          </div>
+          <div style="position:absolute;left:0;right:0;bottom:0;padding:0 16px 22px;background:linear-gradient(180deg,rgba(243,242,247,0),rgba(243,242,247,.95) 38%)">
+            <div style="height:64px;border-radius:26px;background:#ffffff;border:1px solid rgba(27,26,36,.09);box-shadow:0 8px 24px rgba(27,26,36,.1);display:flex;align-items:center;padding:0 8px;position:relative">
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8b8998"><i class="ph ph-house" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Home</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#5d5294"><i class="ph-fill ph-identification-card" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Passport</span></div>
+              <div style="width:74px;flex:none"></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8b8998"><i class="ph ph-fork-knife" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Nutrition</span></div>
+              <div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;color:#8b8998"><i class="ph ph-chat-teardrop-dots" style="font-size:20px"></i><span style="font:600 9.5px Inter,sans-serif">Chat</span></div>
+              <div style="position:absolute;left:50%;top:-20px;transform:translateX(-50%);width:62px;height:62px;border-radius:50%;border:1px solid rgba(138,111,52,.5);background:linear-gradient(150deg,#796cbf,#5d5294);display:grid;place-items:center;box-shadow:0 10px 26px rgba(93,82,148,.35)"><i class="ph ph-plus" style="font-size:24px;color:#ffffff"></i></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <p style="margin:26px 0 0;font:12px/1.5 Inter,sans-serif;color:rgba(233,233,237,.5)">Try next: "make <a href="#1b" style="font:600 10.5px ui-monospace,monospace;padding:2px 6px;background:rgba(233,233,237,.1);border-radius:5px;text-decoration:none">1b</a> the real home" · "warmer gold, less purple" · "show the multi-pet switcher" · "design the vet-chat triage escalation"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;tier&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;free&quot;,&quot;pro&quot;],&quot;default&quot;:&quot;free&quot;,&quot;tsType&quot;:&quot;'free' | 'pro'&quot;,&quot;section&quot;:&quot;Prototype&quot;},&quot;startScreen&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;onboarding&quot;,&quot;home&quot;,&quot;passport&quot;,&quot;reminders&quot;,&quot;scanner&quot;,&quot;result&quot;,&quot;chat&quot;,&quot;nutrition&quot;,&quot;story&quot;,&quot;settings&quot;],&quot;default&quot;:&quot;home&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Prototype&quot;}}">
+class Component extends DCLogic {
+  state = {
+    screen: null,
+    pTab: 'timeline',
+    sheet: null,
+    chat: [],
+    typing: false,
+    kcal: 123,
+    treat: 0,
+    log: [{ name: 'Morning kibble', kcal: 123, icon: 'ph ph-bowl-food' }],
+    draft: '',
+    rType: 'Vaccine',
+    units: 'imperial',
+    notif: true
+  };
+
+  get screen() { return this.state.screen || this.props.startScreen || 'home'; }
+
+  go = (s) => this.setState({ screen: s, sheet: null });
+
+  ask = (text) => {
+    const urgent = /chocolate|blood|seizure|not breathing/i.test(text);
+    const reply = urgent
+      ? 'Chocolate is toxic to dogs — the risk depends on how much and what kind. For a 31 kg Labrador, a few squares of milk chocolate is usually mild, but dark or baking chocolate is not.'
+      : 'Vomiting with lethargy for under 12 hours is often diet-related. Withhold food for 6 hours, keep water available, and watch for blood, a bloated belly, or repeated retching without result.';
+    this.setState(s => ({ chat: [...s.chat, { text, isUser: true }], typing: true, draft: '' }));
+    clearTimeout(this._t);
+    this._t = setTimeout(() => {
+      this.setState(s => ({ typing: false, chat: [...s.chat, { text: reply, isBot: true, urgent }] }));
+    }, 1100);
+  };
+
+  componentWillUnmount() { clearTimeout(this._t); }
+
+  addFood = (name, kcal, treat) => this.setState(s => ({
+    kcal: s.kcal + kcal,
+    treat: treat ? s.treat + kcal : s.treat,
+    log: [...s.log, { name, kcal, icon: treat ? 'ph ph-cookie' : 'ph ph-bowl-food' }]
+  }));
+
+  renderVals() {
+    const sc = this.screen;
+    const pro = this.props.tier === 'pro';
+    const acc = '#b5abfc', dim = 'rgba(233,233,237,.45)';
+    const nav = (id, label, icon, fill) => ({
+      label, icon: (sc === id ? fill : icon), color: sc === id ? acc : dim,
+      onClick: () => this.go(id)
+    });
+    const pTab = (id, label) => ({
+      label, bg: this.state.pTab === id ? 'rgba(145,132,217,.22)' : 'transparent',
+      fg: this.state.pTab === id ? '#e9e9ed' : 'rgba(233,233,237,.5)',
+      onClick: () => this.setState({ pTab: id })
+    });
+    const jump = (id, label) => ({
+      label, bg: sc === id ? 'rgba(145,132,217,.25)' : 'transparent',
+      fg: sc === id ? '#d2cefd' : 'rgba(233,233,237,.55)',
+      onClick: () => this.go(id)
+    });
+    const pct = Math.min(100, Math.round((this.state.kcal / 767) * 100));
+    const rt = (label) => ({
+      label,
+      bg: this.state.rType === label ? 'rgba(145,132,217,.2)' : 'transparent',
+      bd: this.state.rType === label ? '#9184d9' : 'rgba(233,233,237,.14)',
+      fg: this.state.rType === label ? '#d2cefd' : 'rgba(233,233,237,.7)',
+      onClick: () => this.setState({ rType: label })
+    });
+    const plan = (tag, price, note, best) => ({
+      tag, price, note,
+      bd: best ? '#d8bd86' : 'rgba(233,233,237,.14)',
+      bg: best ? 'rgba(216,189,134,.1)' : 'transparent',
+      tagFg: best ? '#d8bd86' : 'rgba(233,233,237,.5)',
+      onClick: () => {}
+    });
+
+    return {
+      isOnboarding: sc === 'onboarding',
+      isApp: sc !== 'onboarding',
+      isHome: sc === 'home', isPassport: sc === 'passport', isReminders: sc === 'reminders',
+      isScanner: sc === 'scanner', isResult: sc === 'result', isChat: sc === 'chat',
+      isNutrition: sc === 'nutrition', isStory: sc === 'story', isSettings: sc === 'settings',
+      pTimeline: this.state.pTab === 'timeline', pVaccines: this.state.pTab === 'vaccines',
+      pMeds: this.state.pTab === 'meds', pWeight: this.state.pTab === 'weight',
+
+      goHome: () => this.go('home'), goChat: () => this.go('chat'), goStory: () => this.go('story'),
+      goSettings: () => this.go('settings'), goReminders: () => this.go('reminders'),
+      goPassport: () => this.go('passport'), goScanner: () => this.go('scanner'),
+      doScan: () => this.go('result'), exportPdf: () => {},
+      openPaywall: () => this.setState({ sheet: 'paywall' }),
+      openActions: () => this.setState({ sheet: 'actions' }),
+      closeSheet: () => this.setState({ sheet: null }),
+      saveRecord: () => this.setState({ sheet: null, screen: 'passport', pTab: 'timeline' }),
+
+      sheetActions: this.state.sheet === 'actions',
+      sheetRecord: this.state.sheet === 'record',
+      sheetPaywall: this.state.sheet === 'paywall',
+
+      navLeft: [nav('home', 'Home', 'ph ph-house', 'ph-fill ph-house'), nav('passport', 'Passport', 'ph ph-identification-card', 'ph-fill ph-identification-card')],
+      navRight: [nav('nutrition', 'Nutrition', 'ph ph-fork-knife', 'ph-fill ph-fork-knife'), nav('chat', 'Chat', 'ph ph-chat-teardrop-dots', 'ph-fill ph-chat-teardrop-dots')],
+      passportTabs: [pTab('timeline', 'Timeline'), pTab('vaccines', 'Vaccines'), pTab('meds', 'Meds'), pTab('weight', 'Weight')],
+
+      jumps: [jump('onboarding', 'Onboarding'), jump('home', 'Home'), jump('passport', 'Passport'), jump('reminders', 'Care'), jump('scanner', 'Scanner'), jump('result', 'Scan result'), jump('chat', 'Chat'), jump('nutrition', 'Nutrition'), jump('story', 'Story'), jump('settings', 'Settings'),
+        { label: 'Add record', bg: 'transparent', fg: 'rgba(233,233,237,.55)', onClick: () => this.setState({ sheet: 'record' }) },
+        { label: 'Paywall', bg: 'transparent', fg: 'rgba(233,233,237,.55)', onClick: () => this.setState({ sheet: 'paywall' }) }],
+
+      reminders: [
+        { title: 'Rabies booster', sub: 'Due 27 Sep · Paws & Claws', chip: '12 DAYS', chipBg: 'rgba(224,164,88,.14)', chipFg: '#e0a458', icon: 'ph-fill ph-syringe' },
+        { title: 'Monthly weigh-in', sub: 'Last logged 18 Aug', chip: 'OVERDUE', chipBg: 'rgba(224,115,107,.14)', chipFg: '#e0736b', icon: 'ph-fill ph-scales' }
+      ],
+      memories: [
+        { title: 'Beach morning', date: '12 Sep' },
+        { title: 'New collar', date: '04 Sep' },
+        { title: 'Vet day', date: '14 Aug' }
+      ],
+      records: [
+        { title: 'Rabies vaccine', sub: 'Paws & Claws · next due 27 Sep 2026', date: '20 Sep 2025', dot: '#d8bd86' },
+        { title: 'Annual check-up', sub: 'Mild hip stiffness noted · Dr. Rao', date: '14 Aug 2026', dot: '#9184d9' },
+        { title: 'Weight 31.2 kg', sub: 'Steady for four months', date: '18 Aug 2026', dot: '#9184d9' },
+        { title: 'DHPP booster', sub: 'Paws & Claws · next due 2029', date: '02 Mar 2026', dot: '#d8bd86' }
+      ],
+      vaccines: [
+        { name: 'Rabies', given: 'Given 20 Sep 2025', chip: 'DUE SOON', chipBg: 'rgba(224,164,88,.14)', chipFg: '#e0a458', dot: '#e0a458' },
+        { name: 'DHPP', given: 'Given 02 Mar 2026', chip: 'CURRENT', chipBg: 'rgba(95,199,154,.12)', chipFg: '#5fc79a', dot: '#5fc79a' },
+        { name: 'Leptospirosis', given: 'Given 02 Mar 2026', chip: 'CURRENT', chipBg: 'rgba(95,199,154,.12)', chipFg: '#5fc79a', dot: '#5fc79a' },
+        { name: 'Bordetella', given: 'Never recorded', chip: 'MISSING', chipBg: 'rgba(233,233,237,.08)', chipFg: 'rgba(233,233,237,.55)', dot: 'rgba(233,233,237,.4)' }
+      ],
+      weights: [{ m: 'Apr', h: '58px' }, { m: 'May', h: '64px' }, { m: 'Jun', h: '70px' }, { m: 'Jul', h: '76px' }, { m: 'Aug', h: '80px' }, { m: 'Sep', h: '82px' }],
+      careGroups: [
+        { label: 'Overdue', color: '#e0736b', items: [{ title: 'Monthly weigh-in', sub: 'Was due 18 Sep', icon: 'ph-fill ph-scales' }] },
+        { label: 'This month', color: '#e0a458', items: [{ title: 'Rabies booster', sub: '27 Sep · Paws & Claws', icon: 'ph-fill ph-syringe' }, { title: 'Flea & tick spot-on', sub: '02 Oct · monthly', icon: 'ph-fill ph-bug' }] },
+        { label: 'Later', color: 'rgba(233,233,237,.5)', items: [{ title: 'Dental scale & polish', sub: 'Recommended by Dr. Rao · Nov', icon: 'ph-fill ph-tooth' }] }
+      ],
+      chat: this.state.chat,
+      typing: this.state.typing,
+      showPrompts: this.state.chat.length === 0,
+      quota: pro ? 'PRO · UNLIMITED' : '2 / 3 FREE',
+      prompts: [
+        { text: 'He is vomiting and lethargic', onClick: () => this.ask('He is vomiting and lethargic') },
+        { text: 'He ate chocolate', onClick: () => this.ask('He ate chocolate') },
+        { text: 'Limping on his front leg', onClick: () => this.ask('Limping on his front leg') },
+        { text: 'Scratching a lot lately', onClick: () => this.ask('Scratching a lot lately') }
+      ],
+
+      draft: this.state.draft,
+      composerHint: this.state.typing ? 'Thinking…' : 'Ask about Sarthak…',
+      onDraft: (e) => this.setState({ draft: e.target.value }),
+      onDraftKey: (e) => { if (e.key === 'Enter' && this.state.draft.trim() && !this.state.typing) this.ask(this.state.draft.trim()); },
+      sendDraft: () => { if (this.state.draft.trim() && !this.state.typing) this.ask(this.state.draft.trim()); },
+      sendIcon: this.state.typing ? 'ph ph-hourglass-medium' : 'ph-fill ph-paper-plane-tilt',
+      sendBd: this.state.draft.trim() && !this.state.typing ? '#9184d9' : 'rgba(233,233,237,.16)',
+      sendBg: this.state.draft.trim() && !this.state.typing ? 'rgba(145,132,217,.22)' : 'transparent',
+      sendFg: this.state.draft.trim() && !this.state.typing ? '#d2cefd' : 'rgba(233,233,237,.4)',
+
+      kcal: this.state.kcal,
+      remaining: Math.max(0, 767 - this.state.kcal),
+      treatUsed: this.state.treat,
+      treatPct: Math.min(100, Math.round((this.state.treat / 77) * 100)) + '%',
+      ring: 'conic-gradient(#9184d9 0% ' + pct + '%, rgba(233,233,237,.1) ' + pct + '% 100%)',
+      foodLog: this.state.log,
+      quickFoods: [
+        { name: 'Kibble cup', kcal: 340, onClick: () => this.addFood('Kibble cup', 340, false) },
+        { name: 'Chicken 100g', kcal: 165, onClick: () => this.addFood('Chicken 100g', 165, false) },
+        { name: 'Dental chew', kcal: 70, onClick: () => this.addFood('Dental chew', 70, true) },
+        { name: 'Carrot', kcal: 25, onClick: () => this.addFood('Carrot', 25, true) }
+      ],
+
+      storyItems: [
+        { month: 'September 2026', title: 'Beach morning', date: '12 September 2026', note: 'First time he swam out past the break and came back grinning. Nine years old and still a puppy about water.' },
+        { month: 'August 2026', title: 'The good check-up', date: '14 August 2026', note: 'Hips a little stiff, everything else perfect. Dr. Rao called him a well-kept dog.' }
+      ],
+
+      actions: [
+        { title: 'Scan a breed', sub: 'Identify a dog from a photo', icon: 'ph ph-camera', onClick: () => this.go('scanner') },
+        { title: 'Add a health record', sub: 'Vaccine, vet visit, weight, meds', icon: 'ph ph-first-aid-kit', onClick: () => this.setState({ sheet: 'record' }) },
+        { title: 'Log food', sub: 'Meal or treat, against today\u2019s budget', icon: 'ph ph-fork-knife', onClick: () => this.setState({ sheet: null, screen: 'nutrition' }) },
+        { title: 'Add a memory', sub: 'A photo for Sarthak\u2019s story', icon: 'ph ph-images', onClick: () => this.go('story') }
+      ],
+      recordTypes: ['Vaccine', 'Vet visit', 'Medication', 'Weight', 'Allergy', 'Preventive'].map(rt),
+      recordFieldLabel: this.state.rType === 'Weight' ? 'Weight' : this.state.rType + ' name',
+      recordFieldHint: this.state.rType === 'Weight' ? '31.2 kg' : 'Rabies (1-year)',
+
+      proPerks: [
+        'Unlimited vet chat — no 3-a-month ceiling',
+        'Every dog in the house on one account',
+        'Breed health watchlists and tailored schedules',
+        'Photos backed up, and the printed year-book'
+      ],
+      plans: [plan('Monthly', '$9.99', 'per month', false), plan('Yearly', '$59.99', 'save 50%', true), plan('Family', '$14.99', 'per month', false)],
+
+      tierLabel: pro ? 'PawJourney Pro — yearly' : 'Free plan',
+      tierSub: pro ? 'Renews 15 Sep 2027' : '3 vet chats and 3 scans a month',
+      impBg: this.state.units === 'imperial' ? 'rgba(145,132,217,.25)' : 'transparent',
+      impFg: this.state.units === 'imperial' ? '#d2cefd' : 'rgba(233,233,237,.55)',
+      metBg: this.state.units === 'metric' ? 'rgba(145,132,217,.25)' : 'transparent',
+      metFg: this.state.units === 'metric' ? '#d2cefd' : 'rgba(233,233,237,.55)',
+      setImperial: () => this.setState({ units: 'imperial' }),
+      setMetric: () => this.setState({ units: 'metric' }),
+      toggleNotif: () => this.setState(s => ({ notif: !s.notif })),
+      notifBg: this.state.notif ? '#5d5294' : 'rgba(233,233,237,.16)',
+      notifJustify: this.state.notif ? 'flex-end' : 'flex-start'
+    };
+  }
+}
+</script>
+</body>
+</html>

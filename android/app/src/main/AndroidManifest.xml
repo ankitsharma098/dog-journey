@@ -1,6 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Live camera preview in the breed scanner (the `camera` plugin
+         needs this declared explicitly — image_picker's camera intent
+         handoff didn't, since that just launches the OS camera app). -->
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera" android:required="false" />
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false" />
     <application
-        android:label="PawJourney"
+        android:label="Paw Journey"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

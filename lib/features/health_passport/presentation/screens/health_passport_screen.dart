@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_text_styles.dart';
 import '../../../../core/widgets/async_state_view.dart';
 import '../../../../core/widgets/glass/glass_container.dart';
 import '../../../../core/widgets/glass/glass_scaffold.dart';
+import '../../../../core/widgets/royal/engraved_label.dart';
+import '../../../../core/widgets/royal/segmented_track.dart';
+import '../../../../core/widgets/royal/status_chip.dart';
 import '../../../auth/bloc/auth_bloc.dart';
 import '../../../pets/bloc/pets_bloc.dart';
 import '../../../pets/data/models/pet.dart';
 import '../../bloc/health_passport_cubit.dart';
 import '../../data/models/health_record.dart';
-import '../widgets/health_record_tile.dart';
-import '../widgets/vaccine_card.dart';
-import '../widgets/weight_chart.dart';
-import 'add_health_record_sheet.dart';
+import '../../data/models/vaccine_type.dart';
 
+/// The Health Passport tab — segmented Timeline / Vaccines / Meds /
+/// Weight, matching design-ref/design_handoff_royal_redesign/README.md
+/// § "3. Health Passport". Adding a record now happens behind the
+/// shell's centre FAB (see HomeShell) rather than a local FAB here.
 class HealthPassportScreen extends StatelessWidget {
   const HealthPassportScreen({super.key});
 
@@ -24,7 +29,7 @@ class HealthPassportScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<PetsBloc, PetsState>(
       builder: (context, petsState) {
-        final pet = petsState.pets.isNotEmpty ? petsState.pets.first : null;
+        final pet = petsState.activePet;
         if (pet == null) return const _EmptyPassportView();
 
         return BlocBuilder<AuthBloc, AuthState>(
@@ -57,72 +62,45 @@ class _PassportView extends StatefulWidget {
   State<_PassportView> createState() => _PassportViewState();
 }
 
-class _PassportViewState extends State<_PassportView>
-    with SingleTickerProviderStateMixin {
-  late final TabController _tab;
-
-  @override
-  void initState() {
-    super.initState();
-    _tab = TabController(length: 4, vsync: this);
-  }
-
-  @override
-  void dispose() {
-    _tab.dispose();
-    super.dispose();
-  }
+class _PassportViewState extends State<_PassportView> {
+  int _tabIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final brightness = Theme.of(context).brightness;
 
     return GlassScaffold(
-      appBar: AppBar(
-        title: Text(
-          '${widget.pet.name}\'s Passport',
-          style: GoogleFonts.sora(fontWeight: FontWeight.w700),
-        ),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.logout_rounded),
-            tooltip: 'Sign out',
-            onPressed: () =>
-                context.read<AuthBloc>().add(const AuthSignedOutRequested()),
-          ),
-        ],
-        bottom: TabBar(
-          controller: _tab,
-          isScrollable: false,
-          labelColor: AppColors.primary,
-          unselectedLabelColor: isDark
-              ? AppColors.textSecondaryDark
-              : AppColors.textSecondaryLight,
-          indicatorColor: AppColors.primary,
-          indicatorWeight: 2.5,
-          labelStyle: GoogleFonts.inter(
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-          ),
-          tabs: const [
-            Tab(text: 'Timeline'),
-            Tab(text: 'Vaccines'),
-            Tab(text: 'Meds'),
-            Tab(text: 'Weight'),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        heroTag: 'healthPassportFab',
-        backgroundColor: AppColors.primary,
-        foregroundColor: Colors.white,
-        icon: const Icon(Icons.add_rounded),
-        label: const Text('Add Record'),
-        onPressed: () => _openAddSheet(context),
-      ),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _PetHeader(pet: widget.pet),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const EngravedLabel('Health passport'),
+                    const SizedBox(height: 3),
+                    Text(
+                      widget.pet.name,
+                      style: AppTextStyles.screenTitleCompact.copyWith(
+                        color: AppColors.textPrimary(brightness),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              _ExportButton(pet: widget.pet),
+            ],
+          ),
+          const SizedBox(height: 16),
+          SegmentedTrack(
+            labels: const ['Timeline', 'Vaccines', 'Meds', 'Weight'],
+            index: _tabIndex,
+            onChanged: (i) => setState(() => _tabIndex = i),
+          ),
+          const SizedBox(height: 8),
           Expanded(
             child: BlocBuilder<HealthPassportCubit, HealthPassportState>(
               builder: (context, state) {
@@ -137,13 +115,16 @@ class _PassportViewState extends State<_PassportView>
                     onRetry: () => context.read<HealthPassportCubit>().retry(),
                   );
                 }
-                return TabBarView(
-                  controller: _tab,
+                return IndexedStack(
+                  index: _tabIndex,
                   children: [
-                    _TimelineTab(pet: widget.pet),
-                    _VaccinesTab(pet: widget.pet),
-                    _MedsTab(),
-                    _WeightTab(),
+                    _TimelineTab(records: state.records),
+                    _VaccinesTab(
+                      records: state.vaccines,
+                      types: state.vaccineTypes,
+                    ),
+                    _MedsTab(records: state.medications),
+                    _WeightTab(records: state.weightRecords),
                   ],
                 );
               },
@@ -153,326 +134,514 @@ class _PassportViewState extends State<_PassportView>
       ),
     );
   }
-
-  void _openAddSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.transparent,
-      builder: (_) => BlocProvider.value(
-        value: context.read<HealthPassportCubit>(),
-        child: const AddHealthRecordSheet(),
-      ),
-    );
-  }
 }
 
 // ---------------------------------------------------------------------------
-// Pet Header
+// Header
 // ---------------------------------------------------------------------------
-class _PetHeader extends StatelessWidget {
-  const _PetHeader({required this.pet});
+class _ExportButton extends StatelessWidget {
+  const _ExportButton({required this.pet});
   final Pet pet;
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final age = pet.birthdate != null
-        ? _ageString(pet.birthdate!)
-        : 'Age unknown';
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 4),
-      child: GlassContainer(
-        padding: const EdgeInsets.all(14),
-        child: Row(
-          children: [
-            CircleAvatar(
-              radius: 28,
-              backgroundColor: AppColors.primary.withValues(alpha: 0.15),
-              backgroundImage: pet.photoUrl != null
-                  ? NetworkImage(pet.photoUrl!)
-                  : null,
-              child: pet.photoUrl == null
-                  ? const Icon(
-                      Icons.pets_rounded,
-                      color: AppColors.primary,
-                      size: 28,
-                    )
-                  : null,
-            ),
-            const SizedBox(width: 14),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    pet.name,
-                    style: GoogleFonts.sora(
-                      fontSize: 17,
-                      fontWeight: FontWeight.w700,
-                      color: isDark
-                          ? AppColors.textPrimaryDark
-                          : AppColors.textPrimaryLight,
-                    ),
-                  ),
-                  Text(
-                    age,
-                    style: TextStyle(
-                      color: isDark
-                          ? AppColors.textSecondaryDark
-                          : AppColors.textSecondaryLight,
-                      fontSize: 12,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            BlocBuilder<HealthPassportCubit, HealthPassportState>(
-              builder: (context, state) {
-                final weight = state.records
-                    .where(
-                      (r) => r.type == RecordType.weight && r.weightKg != null,
-                    )
-                    .toList();
-                if (weight.isEmpty) return const SizedBox.shrink();
-                final latest = weight.first;
-                return _WeightChip(kg: latest.weightKg!);
-              },
-            ),
-          ],
+    final brightness = Theme.of(context).brightness;
+    return GestureDetector(
+      onTap: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('PDF export — coming soon.')),
+        );
+      },
+      child: Container(
+        width: 34,
+        height: 34,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(11),
+          border: Border.all(color: AppColors.hairline(brightness)),
+        ),
+        alignment: Alignment.center,
+        child: Icon(
+          PhosphorIconsRegular.export,
+          size: 16,
+          color: AppColors.textSecondary(brightness),
         ),
       ),
     );
   }
-
-  String _ageString(DateTime birthdate) {
-    final now = DateTime.now();
-    final diff = now.difference(birthdate);
-    final months = diff.inDays ~/ 30;
-    if (months < 12) return '$months month${months == 1 ? '' : 's'} old';
-    final years = months ~/ 12;
-    final rem = months % 12;
-    if (rem == 0) return '$years yr${years == 1 ? '' : 's'} old';
-    return '$years yr${years == 1 ? '' : 's'} $rem mo old';
-  }
 }
 
-class _WeightChip extends StatelessWidget {
-  const _WeightChip({required this.kg});
-  final double kg;
+// ---------------------------------------------------------------------------
+// Timeline tab
+// ---------------------------------------------------------------------------
+class _TimelineTab extends StatelessWidget {
+  const _TimelineTab({required this.records});
+  final List<HealthRecord> records;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      decoration: BoxDecoration(
-        color: AppColors.primary.withValues(alpha: 0.1),
-        borderRadius: BorderRadius.circular(20),
-      ),
+    if (records.isEmpty) {
+      return const _EmptyState(
+        icon: PhosphorIconsRegular.folderOpen,
+        title: 'No records yet',
+        subtitle: 'Add a health record from the ＋ menu to start the timeline.',
+      );
+    }
+    final brightness = Theme.of(context).brightness;
+    return ListView.builder(
+      padding: const EdgeInsets.only(bottom: 150),
+      itemCount: records.length,
+      itemBuilder: (context, i) {
+        final r = records[i];
+        final isLast = i == records.length - 1;
+        final dotColor = r.type == RecordType.vaccine
+            ? AppColors.champagneOn(brightness)
+            : AppColors.accentOn(brightness);
+        // IntrinsicHeight gives the Row a finite height to stretch into —
+        // without it, a ListView item's unbounded height makes
+        // CrossAxisAlignment.stretch degenerate (the rail's Expanded
+        // connector line has nothing finite to expand into).
+        return IntrinsicHeight(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              SizedBox(
+                width: 22,
+                child: Column(
+                  children: [
+                    const SizedBox(height: 16),
+                    Container(
+                      width: 9,
+                      height: 9,
+                      decoration: BoxDecoration(
+                        color: dotColor,
+                        shape: BoxShape.circle,
+                      ),
+                    ),
+                    if (!isLast)
+                      Expanded(
+                        child: Container(
+                          width: 1,
+                          color: AppColors.hairline(brightness),
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 10),
+                  child: GlassContainer(
+                    borderRadius: 16,
+                    border: true,
+                    padding: const EdgeInsets.all(14),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                r.title,
+                                style: AppTextStyles.listRowTitle.copyWith(
+                                  fontSize: 13.5,
+                                  color: AppColors.textPrimary(brightness),
+                                ),
+                              ),
+                            ),
+                            Text(
+                              _formatDate(r.occurredOn),
+                              style: AppTextStyles.mono.copyWith(
+                                color: AppColors.textTertiary(brightness),
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          _subtitle(r),
+                          style: AppTextStyles.secondaryLine.copyWith(
+                            color: AppColors.textSecondary(brightness),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  String _subtitle(HealthRecord r) {
+    if (r.type == RecordType.weight && r.weightKg != null) {
+      return '${r.weightKg!.toStringAsFixed(1)} kg';
+    }
+    if (r.clinicName != null) return r.clinicName!;
+    if (r.dosageText != null) return r.dosageText!;
+    return r.type.label;
+  }
+
+  String _formatDate(DateTime d) {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return '${d.day} ${months[d.month - 1]} ${d.year}';
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Vaccines tab
+// ---------------------------------------------------------------------------
+class _VaccinesTab extends StatelessWidget {
+  const _VaccinesTab({required this.records, required this.types});
+  final List<HealthRecord> records;
+  final List<VaccineType> types;
+
+  @override
+  Widget build(BuildContext context) {
+    if (records.isEmpty) {
+      return const _EmptyState(
+        icon: PhosphorIconsRegular.syringe,
+        title: 'No vaccines recorded',
+        subtitle: 'Add a vaccine record to track the immunisation schedule.',
+      );
+    }
+    final brightness = Theme.of(context).brightness;
+    return ListView.separated(
+      padding: const EdgeInsets.only(bottom: 150),
+      itemCount: records.length,
+      separatorBuilder: (_, _) => const SizedBox(height: 8),
+      itemBuilder: (context, i) {
+        final r = records[i];
+        final now = DateTime.now();
+        final due = r.dueOn;
+        final (label, color) = due == null
+            ? ('CURRENT', AppColors.success)
+            : due.isBefore(now)
+            ? ('OVERDUE', AppColors.dangerOn(brightness))
+            : due.difference(now).inDays <= 30
+            ? ('DUE SOON', AppColors.warningOn(brightness))
+            : ('CURRENT', AppColors.success);
+
+        return GlassContainer(
+          borderRadius: 16,
+          border: true,
+          padding: const EdgeInsets.all(14),
+          child: Row(
+            children: [
+              Icon(PhosphorIconsFill.syringe, size: 18, color: color),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      r.title,
+                      style: AppTextStyles.listRowTitle.copyWith(
+                        fontSize: 13.5,
+                        color: AppColors.textPrimary(brightness),
+                      ),
+                    ),
+                    const SizedBox(height: 2),
+                    Text(
+                      'Given ${_formatDate(r.occurredOn)}',
+                      style: AppTextStyles.secondaryLine.copyWith(
+                        color: AppColors.textSecondary(brightness),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              StatusChip(
+                label: label,
+                background: color.withValues(alpha: 0.14),
+                foreground: color,
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  String _formatDate(DateTime d) {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return '${d.day} ${months[d.month - 1]} ${d.year}';
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Meds tab
+// ---------------------------------------------------------------------------
+class _MedsTab extends StatelessWidget {
+  const _MedsTab({required this.records});
+  final List<HealthRecord> records;
+
+  @override
+  Widget build(BuildContext context) {
+    if (records.isEmpty) {
+      return const _EmptyState(
+        icon: PhosphorIconsRegular.pill,
+        title: 'No active medications',
+        subtitle: 'Add a medication to track its course.',
+      );
+    }
+    final brightness = Theme.of(context).brightness;
+    return ListView.separated(
+      padding: const EdgeInsets.only(bottom: 150),
+      itemCount: records.length,
+      separatorBuilder: (_, _) => const SizedBox(height: 8),
+      itemBuilder: (context, i) {
+        final r = records[i];
+        final totalDays = r.endsOn?.difference(r.occurredOn).inDays;
+        final elapsedDays = totalDays == null
+            ? null
+            : DateTime.now()
+                  .difference(r.occurredOn)
+                  .inDays
+                  .clamp(0, totalDays);
+        final progress = (totalDays != null && totalDays > 0)
+            ? elapsedDays! / totalDays
+            : null;
+        final subtitle = [
+          if (r.dosageText != null) r.dosageText,
+          if (r.frequencyText != null) r.frequencyText,
+        ].whereType<String>().join(' · ');
+
+        return GlassContainer(
+          borderRadius: 16,
+          border: true,
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                r.title,
+                style: AppTextStyles.listRowTitle.copyWith(
+                  fontSize: 13.5,
+                  color: AppColors.textPrimary(brightness),
+                ),
+              ),
+              const SizedBox(height: 3),
+              Text(
+                subtitle.isEmpty ? 'Ongoing' : subtitle,
+                style: AppTextStyles.secondaryLine.copyWith(
+                  color: AppColors.textSecondary(brightness),
+                ),
+              ),
+              if (progress != null) ...[
+                const SizedBox(height: 12),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(3),
+                  child: LinearProgressIndicator(
+                    value: progress.clamp(0, 1),
+                    minHeight: 6,
+                    backgroundColor: AppColors.hairline(brightness),
+                    valueColor: const AlwaysStoppedAnimation(AppColors.accent),
+                  ),
+                ),
+              ],
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Weight tab
+// ---------------------------------------------------------------------------
+class _WeightTab extends StatelessWidget {
+  const _WeightTab({required this.records});
+  final List<HealthRecord> records;
+
+  @override
+  Widget build(BuildContext context) {
+    if (records.isEmpty) {
+      return const _EmptyState(
+        icon: PhosphorIconsRegular.scales,
+        title: 'No weight records yet',
+        subtitle: 'Add a weight entry to start tracking the trend.',
+      );
+    }
+    final brightness = Theme.of(context).brightness;
+    final sorted = [...records]
+      ..sort((a, b) => a.occurredOn.compareTo(b.occurredOn));
+    final current = sorted.last.weightKg ?? 0;
+    final previous = sorted.length > 1
+        ? sorted[sorted.length - 2].weightKg
+        : null;
+    final delta = previous == null ? null : current - previous;
+    final window = sorted.length > 6
+        ? sorted.sublist(sorted.length - 6)
+        : sorted;
+
+    return ListView(
+      padding: const EdgeInsets.only(bottom: 150),
+      children: [
+        GlassContainer(
+          borderRadius: 18,
+          border: true,
+          padding: const EdgeInsets.all(18),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text(
+                    '${current.toStringAsFixed(1)} kg',
+                    style: AppTextStyles.screenTitle.copyWith(
+                      fontSize: 26,
+                      color: AppColors.textPrimary(brightness),
+                    ),
+                  ),
+                  if (delta != null) ...[
+                    const SizedBox(width: 8),
+                    Text(
+                      '${delta >= 0 ? '+' : ''}${delta.toStringAsFixed(1)} since last',
+                      style: AppTextStyles.listRowTitle.copyWith(
+                        fontSize: 11,
+                        color: AppColors.success,
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+              const SizedBox(height: 20),
+              _WeightBarChart(records: window),
+            ],
+          ),
+        ),
+        const SizedBox(height: 14),
+        Text(
+          _reading(sorted),
+          style: AppTextStyles.body.copyWith(
+            color: AppColors.textSecondary(brightness),
+          ),
+        ),
+      ],
+    );
+  }
+
+  String _reading(List<HealthRecord> sorted) {
+    if (sorted.length < 2) return 'Add another weigh-in to see the trend.';
+    final first = sorted.first.weightKg ?? 0;
+    final last = sorted.last.weightKg ?? 0;
+    final diff = last - first;
+    if (diff.abs() < 0.3) return 'Weight has held steady over this period.';
+    return diff > 0
+        ? 'Up ${diff.toStringAsFixed(1)} kg over this period.'
+        : 'Down ${diff.abs().toStringAsFixed(1)} kg over this period.';
+  }
+}
+
+class _WeightBarChart extends StatelessWidget {
+  const _WeightBarChart({required this.records});
+  final List<HealthRecord> records;
+
+  @override
+  Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
+    final weights = records.map((r) => r.weightKg ?? 0).toList();
+    final maxW = weights.reduce((a, b) => a > b ? a : b);
+    final minW = weights.reduce((a, b) => a < b ? a : b);
+    final range = (maxW - minW).clamp(0.5, double.infinity);
+
+    return SizedBox(
+      height: 110,
       child: Row(
-        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const Icon(
-            Icons.monitor_weight_outlined,
-            size: 14,
-            color: AppColors.primary,
-          ),
-          const SizedBox(width: 4),
-          Text(
-            '${kg.toStringAsFixed(1)} kg',
-            style: const TextStyle(
-              color: AppColors.primary,
-              fontSize: 12,
-              fontWeight: FontWeight.w600,
+          for (final r in records) ...[
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Container(
+                    height: 14 + (((r.weightKg ?? 0) - minW) / range) * 76,
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(6),
+                      ),
+                      gradient: const LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [AppColors.accent, AppColors.accentDeep],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 7),
+                  Text(
+                    _monthLabel(r.occurredOn),
+                    style: AppTextStyles.caption.copyWith(
+                      fontSize: 9,
+                      color: AppColors.textTertiary(brightness),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
+            if (r != records.last) const SizedBox(width: 7),
+          ],
         ],
       ),
     );
   }
-}
 
-// ---------------------------------------------------------------------------
-// Timeline Tab
-// ---------------------------------------------------------------------------
-class _TimelineTab extends StatelessWidget {
-  const _TimelineTab({required this.pet});
-  final Pet pet;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<HealthPassportCubit, HealthPassportState>(
-      builder: (context, state) {
-        if (state.status == HealthPassportStatus.loading) {
-          return const Center(child: CircularProgressIndicator());
-        }
-        if (state.records.isEmpty) {
-          return _EmptyState(
-            icon: Icons.folder_open_rounded,
-            title: 'No records yet',
-            subtitle: 'Tap + Add Record to log vaccines, vet visits, and more.',
-          );
-        }
-
-        // Group by year
-        final grouped = <int, List<HealthRecord>>{};
-        for (final r in state.records) {
-          grouped.putIfAbsent(r.occurredOn.year, () => []).add(r);
-        }
-        final years = grouped.keys.toList()..sort((a, b) => b.compareTo(a));
-
-        return ListView(
-          padding: const EdgeInsets.fromLTRB(16, 0, 16, 100),
-          children: [
-            for (final year in years) ...[
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 10),
-                child: Text(
-                  year.toString(),
-                  style: GoogleFonts.sora(
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: AppColors.textSecondaryLight,
-                  ),
-                ),
-              ),
-              for (final r in grouped[year]!)
-                HealthRecordTile(
-                  record: r,
-                  onDelete: () =>
-                      context.read<HealthPassportCubit>().deleteRecord(r.id),
-                ),
-            ],
-          ],
-        );
-      },
-    );
+  String _monthLabel(DateTime d) {
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
+    return months[d.month - 1];
   }
 }
 
 // ---------------------------------------------------------------------------
-// Vaccines Tab
-// ---------------------------------------------------------------------------
-class _VaccinesTab extends StatelessWidget {
-  const _VaccinesTab({required this.pet});
-  final Pet pet;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<HealthPassportCubit, HealthPassportState>(
-      builder: (context, state) {
-        final vaccines = state.vaccines;
-        if (vaccines.isEmpty) {
-          return _EmptyState(
-            icon: Icons.vaccines_rounded,
-            title: 'No vaccines recorded',
-            subtitle:
-                'Add a vaccine record to track your dog\'s immunisation schedule.',
-          );
-        }
-        return ListView(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
-          children: vaccines
-              .map(
-                (v) => VaccineCard(
-                  record: v,
-                  vaccineType:
-                      state.vaccineTypes.cast<dynamic>().firstWhere(
-                            (t) => (t as dynamic).id == v.vaccineTypeId,
-                            orElse: () => null,
-                          )
-                          as dynamic,
-                ),
-              )
-              .toList(),
-        );
-      },
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Meds Tab
-// ---------------------------------------------------------------------------
-class _MedsTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<HealthPassportCubit, HealthPassportState>(
-      builder: (context, state) {
-        final meds = state.medications;
-        if (meds.isEmpty) {
-          return _EmptyState(
-            icon: Icons.medication_rounded,
-            title: 'No active medications',
-            subtitle:
-                'Add a medication record to track dose schedules and end dates.',
-          );
-        }
-        return ListView(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
-          children: meds
-              .map(
-                (r) => HealthRecordTile(
-                  record: r,
-                  onDelete: () => context
-                      .read<HealthPassportCubit>()
-                      .deactivateMedication(r.id),
-                ),
-              )
-              .toList(),
-        );
-      },
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Weight Tab
-// ---------------------------------------------------------------------------
-class _WeightTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<HealthPassportCubit, HealthPassportState>(
-      builder: (context, state) {
-        final weights = state.weightRecords;
-        return ListView(
-          padding: const EdgeInsets.fromLTRB(16, 8, 16, 100),
-          children: [
-            GlassContainer(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Weight History',
-                    style: GoogleFonts.sora(
-                      fontWeight: FontWeight.w700,
-                      fontSize: 15,
-                    ),
-                  ),
-                  const SizedBox(height: 12),
-                  WeightChart(records: weights),
-                ],
-              ),
-            ),
-            const SizedBox(height: 12),
-            ...weights.map(
-              (r) => HealthRecordTile(
-                record: r,
-                onDelete: () =>
-                    context.read<HealthPassportCubit>().deleteRecord(r.id),
-              ),
-            ),
-          ],
-        );
-      },
-    );
-  }
-}
-
-// ---------------------------------------------------------------------------
-// Empty State
+// Empty states
 // ---------------------------------------------------------------------------
 class _EmptyState extends StatelessWidget {
   const _EmptyState({
@@ -486,33 +655,27 @@ class _EmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
-              icon,
-              size: 56,
-              color: AppColors.primary.withValues(alpha: 0.4),
-            ),
+            Icon(icon, size: 48, color: AppColors.textTertiary(brightness)),
             const SizedBox(height: 16),
             Text(
               title,
-              style: GoogleFonts.sora(
-                fontSize: 17,
-                fontWeight: FontWeight.w700,
-                color: AppColors.textPrimaryLight,
+              style: AppTextStyles.sectionHeading.copyWith(
+                color: AppColors.textPrimary(brightness),
               ),
             ),
             const SizedBox(height: 8),
             Text(
               subtitle,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                color: AppColors.textSecondaryLight,
-                fontSize: 13,
+              style: AppTextStyles.secondaryLine.copyWith(
+                color: AppColors.textSecondary(brightness),
               ),
             ),
           ],
@@ -527,13 +690,9 @@ class _EmptyPassportView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final brightness = Theme.of(context).brightness;
     return GlassScaffold(
-      appBar: AppBar(
-        title: Text(
-          'Health Passport',
-          style: GoogleFonts.sora(fontWeight: FontWeight.w700),
-        ),
-      ),
+      padding: const EdgeInsets.fromLTRB(20, 8, 20, 0),
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(32),
@@ -541,26 +700,23 @@ class _EmptyPassportView extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
-                Icons.folder_shared_rounded,
-                size: 64,
-                color: AppColors.primary.withValues(alpha: 0.4),
+                PhosphorIconsRegular.identificationCard,
+                size: 56,
+                color: AppColors.textTertiary(brightness),
               ),
               const SizedBox(height: 16),
               Text(
-                'No Dog Selected',
-                style: GoogleFonts.sora(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w700,
+                'No dog selected',
+                style: AppTextStyles.sectionHeading.copyWith(
+                  color: AppColors.textPrimary(brightness),
                 ),
               ),
               const SizedBox(height: 8),
-              const Text(
-                'Add your dog to track vaccinations, medications, weight, and health records.',
+              Text(
+                'Add your dog to track vaccinations, medications, weight and health records.',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: AppColors.textSecondaryLight,
-                  fontSize: 13,
-                  height: 1.5,
+                style: AppTextStyles.secondaryLine.copyWith(
+                  color: AppColors.textSecondary(brightness),
                 ),
               ),
             ],
