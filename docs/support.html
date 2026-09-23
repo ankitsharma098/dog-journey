@@ -1,0 +1,428 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}</style></head><body>
+<title>PawJourney Support</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --canvas: #F3F2F7;
+    --surface: #FFFFFF;
+    --surface-2: #E9E7F0;
+    --ink: #1B1A24;
+    --ink-soft: #6A6878;
+    --ink-faint: #8B8998;
+    --hairline: rgba(27, 26, 36, 0.10);
+    --divider: rgba(27, 26, 36, 0.16);
+    --accent: #5D5294;
+    --accent-soft: rgba(93, 82, 148, 0.10);
+    --gold: #8A6F34;
+    --gold-soft: rgba(138, 111, 52, 0.12);
+    --gold-line: rgba(138, 111, 52, 0.35);
+    --shadow: rgba(27, 26, 36, 0.08);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --canvas: #161826;
+      --surface: #1D1F2C;
+      --surface-2: #232532;
+      --ink: #E9E9ED;
+      --ink-soft: rgba(233, 233, 237, 0.62);
+      --ink-faint: rgba(233, 233, 237, 0.45);
+      --hairline: rgba(233, 233, 237, 0.08);
+      --divider: rgba(233, 233, 237, 0.16);
+      --accent: #B5ABFC;
+      --accent-soft: rgba(145, 132, 217, 0.16);
+      --gold: #D8BD86;
+      --gold-soft: rgba(216, 189, 134, 0.12);
+      --gold-line: rgba(216, 189, 134, 0.4);
+      --shadow: rgba(0, 0, 0, 0.35);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --canvas: #161826;
+    --surface: #1D1F2C;
+    --surface-2: #232532;
+    --ink: #E9E9ED;
+    --ink-soft: rgba(233, 233, 237, 0.62);
+    --ink-faint: rgba(233, 233, 237, 0.45);
+    --hairline: rgba(233, 233, 237, 0.08);
+    --divider: rgba(233, 233, 237, 0.16);
+    --accent: #B5ABFC;
+    --accent-soft: rgba(145, 132, 217, 0.16);
+    --gold: #D8BD86;
+    --gold-soft: rgba(216, 189, 134, 0.12);
+    --gold-line: rgba(216, 189, 134, 0.4);
+    --shadow: rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.55;
+  }
+
+  .page {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 48px 22px 96px;
+  }
+
+  /* ---------- Cover ---------- */
+  .cover {
+    background: linear-gradient(180deg, var(--surface-2), var(--surface));
+    border: 1px solid var(--gold-line);
+    border-radius: 20px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: 0 18px 40px var(--shadow);
+  }
+
+  .seal {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 18px;
+    border-radius: 50%;
+    border: 1.5px solid var(--gold-line);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold-soft);
+  }
+
+  .seal svg { width: 30px; height: 30px; }
+
+  .eyebrow {
+    font-size: 11.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin: 0 0 10px;
+  }
+
+  h1.title {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-size: clamp(28px, 5vw, 36px);
+    font-weight: 500;
+    margin: 0 0 10px;
+    text-wrap: balance;
+    letter-spacing: 0.01em;
+  }
+
+  .cover p.sub {
+    color: var(--ink-soft);
+    font-size: 15px;
+    max-width: 44ch;
+    margin: 0 auto;
+  }
+
+  /* ---------- Quick nav ---------- */
+  nav.toc {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin: 26px 0 8px;
+  }
+
+  nav.toc a {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border: 1px solid var(--hairline);
+    background: var(--surface);
+    padding: 7px 13px;
+    border-radius: 100px;
+    transition: border-color 0.15s ease, color 0.15s ease;
+  }
+
+  nav.toc a:hover,
+  nav.toc a:focus-visible {
+    border-color: var(--accent);
+    color: var(--accent);
+  }
+
+  nav.toc a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+  /* ---------- Sections ---------- */
+  section.group {
+    margin-top: 44px;
+  }
+
+  .group-head {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+    scroll-margin-top: 24px;
+  }
+
+  .group-head .index {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 13px;
+    color: var(--gold);
+    border: 1px solid var(--gold-line);
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .group-head h2 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+  }
+
+  .qa {
+    border-top: 1px solid var(--hairline);
+    padding: 18px 0 18px 32px;
+  }
+
+  .qa:last-child { border-bottom: 1px solid var(--hairline); }
+
+  .qa h3 {
+    font-size: 15.5px;
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+
+  .qa p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    max-width: 62ch;
+  }
+
+  .qa p + p { margin-top: 8px; }
+
+  .qa code {
+    background: var(--surface-2);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-size: 13px;
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact {
+    margin-top: 52px;
+    border: 1px solid var(--gold-line);
+    background: var(--gold-soft);
+    border-radius: 18px;
+    padding: 30px 28px;
+    text-align: center;
+  }
+
+  .contact .stamp {
+    font-family: Georgia, "Iowan Old Style", serif;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-line);
+    border-radius: 100px;
+    padding: 5px 14px;
+    display: inline-block;
+    margin-bottom: 14px;
+  }
+
+  .contact h2 {
+    font-family: Georgia, "Iowan Old Style", "Times New Roman", serif;
+    font-weight: 500;
+    font-size: 21px;
+    margin: 0 0 8px;
+  }
+
+  .contact p {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    margin: 0 0 20px;
+    max-width: 46ch;
+    margin-inline: auto;
+  }
+
+  .contact a.email {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent);
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14.5px;
+    font-weight: 600;
+    padding: 12px 22px;
+    border-radius: 100px;
+    transition: opacity 0.15s ease;
+  }
+
+  .contact a.email:hover { opacity: 0.88; }
+  .contact a.email:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  .contact .meta {
+    margin-top: 16px;
+    font-size: 12.5px;
+    color: var(--ink-faint);
+  }
+
+  footer {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--ink-faint);
+  }
+
+  footer a { color: var(--ink-faint); }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+</style>
+
+<div class="page">
+
+  <div class="cover">
+    <div class="seal" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M12 21c-3.6-2.4-7-5.2-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 12c0 3.8-3.4 6.6-7 9Z" stroke="#8A6F34" stroke-width="1.4" fill="none"/>
+      </svg>
+    </div>
+    <p class="eyebrow">Support Center</p>
+    <h1 class="title">PawJourney</h1>
+    <p class="sub">Answers for health records, reminders, AI vet chat, and your subscription — and a direct line if you need more.</p>
+  </div>
+
+  <nav class="toc" aria-label="Jump to section">
+    <a href="#getting-started">Getting started</a>
+    <a href="#health">Health &amp; reminders</a>
+    <a href="#vet-chat">AI vet chat</a>
+    <a href="#billing">Subscription</a>
+    <a href="#privacy">Privacy &amp; account</a>
+  </nav>
+
+  <section class="group" id="getting-started">
+    <div class="group-head">
+      <span class="index" aria-hidden="true">1</span>
+      <h2>Getting started</h2>
+    </div>
+
+    <div class="qa">
+      <h3>How do I add my dog?</h3>
+      <p>From Home, tap the <code>+</code> button and choose "Add dog." Only a name is required — you can fill in birthdate, breed, and a photo later from the Passport tab.</p>
+    </div>
+
+    <div class="qa">
+      <h3>Can I track more than one dog?</h3>
+      <p>Yes. Switch between dogs any time from the pill at the top of Home. The free plan covers one dog; PawJourney Pro covers every dog in your home under one account.</p>
+    </div>
+
+    <div class="qa">
+      <h3>How does the breed scanner work?</h3>
+      <p>Open Breed Scanner and point your camera at your dog. It reads the live camera feed to identify breed and common mixes — no photo library upload needed, though you can use a saved photo instead if your dog won't hold still.</p>
+    </div>
+  </section>
+
+  <section class="group" id="health">
+    <div class="group-head">
+      <span class="index" aria-hidden="true">2</span>
+      <h2>Health records &amp; reminders</h2>
+    </div>
+
+    <div class="qa">
+      <h3>Where do vaccines and medications live?</h3>
+      <p>The Passport tab holds every record — vaccines, medications, weight checks, vet visits — in one timeline per dog, exportable as a PDF for a new vet or a boarder.</p>
+    </div>
+
+    <div class="qa">
+      <h3>Will I actually get notified when something's due?</h3>
+      <p>Yes. Set a due date on any record and PawJourney schedules a real notification on your device for that date — it's not just a number sitting in the Care calendar waiting to be checked.</p>
+    </div>
+
+    <div class="qa">
+      <h3>I marked something done, but I'm still worried it'll remind me again.</h3>
+      <p>Marking a due item "Done" from the Care calendar clears its due date and cancels the scheduled reminder together — nothing lingers on either side.</p>
+    </div>
+  </section>
+
+  <section class="group" id="vet-chat">
+    <div class="group-head">
+      <span class="index" aria-hidden="true">3</span>
+      <h2>AI vet chat</h2>
+    </div>
+
+    <div class="qa">
+      <h3>Is the AI vet chat a replacement for a real veterinarian?</h3>
+      <p>No. It's built to help you think through symptoms and know when something can wait until morning versus needs care now — and it's built to recognize real emergencies and tell you plainly when to see a vet immediately. It does not diagnose or prescribe.</p>
+    </div>
+
+    <div class="qa">
+      <h3>Why am I being asked to wait before sending another message?</h3>
+      <p>The free plan includes a limited number of chat messages per day so the feature stays sustainable. PawJourney Pro removes that limit entirely.</p>
+    </div>
+  </section>
+
+  <section class="group" id="billing">
+    <div class="group-head">
+      <span class="index" aria-hidden="true">4</span>
+      <h2>Subscription &amp; billing</h2>
+    </div>
+
+    <div class="qa">
+      <h3>I subscribed but the app still shows "Go Pro."</h3>
+      <p>Open Settings and tap "Restore purchases" — this re-syncs your subscription status directly from the App Store. If it still doesn't update after that, contact us below with the email on your Apple ID.</p>
+    </div>
+
+    <div class="qa">
+      <h3>How do I cancel or change my plan?</h3>
+      <p>Subscriptions are managed entirely through Apple, not inside PawJourney: on your device, go to Settings &gt; [your name] &gt; Subscriptions &gt; PawJourney.</p>
+    </div>
+
+    <div class="qa">
+      <h3>Do you offer refunds?</h3>
+      <p>Refunds are handled by Apple under their standard App Store refund policy — request one at <code>reportaproblem.apple.com</code>.</p>
+    </div>
+  </section>
+
+  <section class="group" id="privacy">
+    <div class="group-head">
+      <span class="index" aria-hidden="true">5</span>
+      <h2>Privacy &amp; account</h2>
+    </div>
+
+    <div class="qa">
+      <h3>Where is my data stored?</h3>
+      <p>Securely in the cloud, tied to your account — not just on one device. Full details are in the <a href="privacy.html">Privacy Policy</a>.</p>
+    </div>
+
+    <div class="qa">
+      <h3>How do I delete my account?</h3>
+      <p>Settings &gt; Delete account. This permanently deletes your account and data.</p>
+    </div>
+  </section>
+
+  <div class="contact">
+    <span class="stamp">Still stuck?</span>
+    <h2>We answer these ourselves</h2>
+    <p>No bots, no ticket queue — write to us directly and a real person from the PawJourney team will get back to you.</p>
+    <a class="email" href="mailto:support@pawjourney.app">
+      support@pawjourney.app
+    </a>
+    <div class="meta">Typical reply time: within 2 business days</div>
+  </div>
+
+  <footer>
+    PawJourney — a health passport, AI vet chat, and memory keeper for dog owners.
+  </footer>
+
+</div>
+
+</body></html>
